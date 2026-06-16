@@ -25,7 +25,6 @@ export default function LandingPage() {
 
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--slate); line-height: 1.6; font-size: 15px; }
 
-        /* Nav */
         nav {
           position: fixed; top: 0; left: 0; right: 0; z-index: 100;
           background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
@@ -41,7 +40,6 @@ export default function LandingPage() {
         .nav-cta { background: var(--forest); color: var(--white) !important; padding: 8px 20px; border-radius: 8px; font-size: 14px !important; font-weight: 600 !important; }
         .nav-cta:hover { background: var(--forest-mid) !important; }
 
-        /* Hero */
         .hero {
           padding: 140px 5% 100px;
           background: linear-gradient(160deg, var(--forest) 0%, var(--forest-mid) 60%, var(--green) 100%);
@@ -75,21 +73,19 @@ export default function LandingPage() {
         .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
         .hero-note { margin-top: 18px; font-size: 12px; color: rgba(255,255,255,0.45); }
 
-        /* Stats */
         .stats-bar { background: var(--cream); border-bottom: 1px solid var(--border); padding: 24px 5%; }
         .stats-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; }
         .stat { text-align: center; }
         .stat-num { font-size: 28px; font-weight: 700; color: var(--forest); letter-spacing: -1px; }
         .stat-label { font-size: 12px; color: var(--slate-light); margin-top: 2px; }
 
-        /* Sections */
         section { padding: 80px 5%; }
         .section-inner { max-width: 860px; margin: 0 auto; }
         .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin-bottom: 12px; }
         .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; color: var(--forest); letter-spacing: -0.5px; margin-bottom: 16px; line-height: 1.2; }
         .section-sub { font-size: 17px; color: var(--slate-light); max-width: 540px; line-height: 1.6; }
 
-        /* Problem section */
+        /* Problem */
         .problem-bg { background: var(--white); }
         .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; align-items: center; }
         .problem-list { list-style: none; padding: 0; }
@@ -105,25 +101,49 @@ export default function LandingPage() {
         .solution-items li { font-size: 13px; color: rgba(255,255,255,0.85); padding: 6px 0; display: flex; gap: 8px; }
         .solution-items li::before { content: "→"; color: var(--green-light); font-weight: 700; flex-shrink: 0; }
 
+        /* Before / After */
+        .before-after-bg { background: var(--cream); }
+        .before-after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .ba-card { border-radius: 14px; padding: 28px; }
+        .ba-before { background: #fef2f2; border: 1px solid #fecaca; }
+        .ba-after { background: #f0faf4; border: 1px solid #bbf7d0; }
+        .ba-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 16px; }
+        .ba-before .ba-label { color: var(--red); }
+        .ba-after .ba-label { color: var(--green); }
+        .ba-items { list-style: none; padding: 0; }
+        .ba-items li { font-size: 14px; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; gap: 10px; align-items: center; }
+        .ba-items li:last-child { border-bottom: none; }
+        .ba-before .ba-items li { color: #7f1d1d; }
+        .ba-before .ba-items li::before { content: "✗"; color: var(--red); font-weight: 700; flex-shrink: 0; }
+        .ba-after .ba-items li { color: var(--forest); }
+        .ba-after .ba-items li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+        /* Continuity */
+        .continuity-bg { background: var(--forest); color: var(--white); }
+        .continuity-bg .eyebrow { color: var(--green-light); }
+        .continuity-bg .section-title { color: var(--white); }
+        .continuity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 40px; }
+        .continuity-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center; }
+        .continuity-icon { font-size: 24px; margin-bottom: 10px; }
+        .continuity-label { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
+
         /* Modules */
-        .modules-bg { background: var(--cream); }
+        .modules-bg { background: var(--white); }
         .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
-        .module-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: box-shadow 0.15s, transform 0.15s; position: relative; }
+        .module-card { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: box-shadow 0.15s, transform 0.15s; position: relative; }
         .module-card:hover { box-shadow: 0 8px 24px rgba(26,61,43,0.08); transform: translateY(-2px); }
-        .module-card.live::after { content: "Live"; position: absolute; top: 14px; right: 14px; background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .module-card.coming::after { content: "Coming soon"; position: absolute; top: 14px; right: 14px; background: var(--border); color: var(--slate-light); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .module-card.live::after { content: "Live"; position: absolute; top: 14px; right: 14px; background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; }
+        .module-card.coming::after { content: "Coming soon"; position: absolute; top: 14px; right: 14px; background: var(--border); color: var(--slate-light); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; }
         .module-icon { font-size: 28px; margin-bottom: 12px; }
         .module-title { font-size: 15px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
         .module-desc { font-size: 13px; color: var(--slate-light); line-height: 1.6; }
 
         /* How it works */
-        .how-bg { background: var(--forest); color: var(--white); }
-        .how-bg .eyebrow { color: var(--green-light); }
-        .how-bg .section-title { color: var(--white); }
+        .how-bg { background: var(--cream); }
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 48px; }
-        .step-num { font-family: 'Playfair Display', Georgia, serif; font-size: 48px; font-weight: 700; color: rgba(255,255,255,0.1); line-height: 1; margin-bottom: 12px; }
-        .step-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
-        .step-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .step-num { font-family: 'Playfair Display', Georgia, serif; font-size: 48px; font-weight: 700; color: rgba(26,61,43,0.12); line-height: 1; margin-bottom: 12px; }
+        .step-title { font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 8px; }
+        .step-desc { font-size: 13px; color: var(--slate-light); line-height: 1.6; }
 
         /* Urgency */
         .urgency-bg { background: var(--white); }
@@ -168,15 +188,13 @@ export default function LandingPage() {
         .cta-sub { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.6; }
         .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-        /* Footer */
         footer { background: var(--forest); color: rgba(255,255,255,0.6); padding: 40px 5%; text-align: center; font-size: 13px; }
         footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
         footer a:hover { color: var(--white); }
 
         @media (max-width: 700px) {
           .nav-links { display: none; }
-          .urgency-cards { grid-template-columns: 1fr; }
-          .problem-grid { grid-template-columns: 1fr; }
+          .urgency-cards, .before-after-grid, .problem-grid { grid-template-columns: 1fr; }
           .hero { padding: 120px 5% 60px; }
         }
       `}</style>
@@ -199,13 +217,13 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-inner">
-          <div className="hero-tag">🤖 Agentic AI · Clinic Operating System</div>
+          <div className="hero-tag">🐾 Clinic Operating System · Clinical Intelligence</div>
           <h1>
-            Run your veterinary clinic<br />
-            <em>with AI that thinks and acts.</em>
+            Run your veterinary clinic —<br />
+            <em>with intelligent clinical support.</em>
           </h1>
           <p className="hero-sub">
-            VetsAI is the AI-powered operating system for veterinary clinics. Manage cases, generate clinical notes, check drug dosages, and support your vets — all from one agentic AI platform.
+            VetsAI is the clinic operating system for veterinary professionals — combining patient records, clinical support, and AI workflows in one place.
           </p>
           <div className="hero-for">
             <div className="hero-for-item">Veterinary clinics</div>
@@ -239,10 +257,10 @@ export default function LandingPage() {
           <div className="problem-grid">
             <ul className="problem-list">
               {[
-                { icon: "⏱️", title: "30+ minutes per case", desc: "Writing SOAP notes, looking up drug dosages, documenting history manually" },
+                { icon: "⏱️", title: "30+ minutes per case", desc: "Writing SOAP notes, looking up drug dosages, and documenting history manually" },
                 { icon: "📋", title: "Inconsistent records", desc: "Paper files, scattered notes, no continuity between consultations" },
-                { icon: "💊", title: "Drug errors", desc: "Dosage miscalculations and missed drug interactions put patients at risk" },
-                { icon: "🚨", title: "Missed emergencies", desc: "No system to flag and prioritise high-urgency cases automatically" },
+                { icon: "💊", title: "Dosage verification", desc: "Manual dosage calculations take time and require constant cross-referencing" },
+                { icon: "🚨", title: "Missed urgencies", desc: "No system to automatically flag and prioritise high-urgency cases" },
               ].map((p) => (
                 <li key={p.title}>
                   <span className="problem-icon">{p.icon}</span>
@@ -255,15 +273,74 @@ export default function LandingPage() {
             </ul>
             <div className="solution-box">
               <h3>VetsAI solves all of this</h3>
-              <p>One agentic AI platform that handles the clinical administration — so your vets can focus on what matters: the animals.</p>
+              <p>One platform that handles the clinical administration — so your vets can focus on what matters: the animals.</p>
               <ul className="solution-items">
-                <li>Auto-generate SOAP notes in seconds</li>
-                <li>Instant drug dosage checks by species and weight</li>
-                <li>Automatic urgency triage for every case</li>
+                <li>Clinical notes generated automatically for clinician review</li>
+                <li>Drug dosage guidance by species and weight — for clinician verification</li>
+                <li>Automatic urgency flagging for every case</li>
                 <li>Full patient history in one place</li>
                 <li>Powered by the Merck Veterinary Manual</li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Before / After */}
+      <section className="before-after-bg">
+        <div className="section-inner">
+          <div className="eyebrow">Why clinics switch</div>
+          <h2 className="section-title">A better way to run your clinic</h2>
+          <p className="section-sub">See what changes when your team uses VetsAI every day.</p>
+          <div className="before-after-grid">
+            <div className="ba-card ba-before">
+              <div className="ba-label">Before VetsAI</div>
+              <ul className="ba-items">
+                <li>Paper notes and handwritten records</li>
+                <li>Manual SOAP note writing</li>
+                <li>Scattered patient history</li>
+                <li>Slow drug dosage lookups</li>
+                <li>No urgency triage system</li>
+                <li>Delayed follow-up care</li>
+              </ul>
+            </div>
+            <div className="ba-card ba-after">
+              <div className="ba-label">After VetsAI</div>
+              <ul className="ba-items">
+                <li>Digital records, always accessible</li>
+                <li>Clinical notes drafted instantly</li>
+                <li>Central patient history per case</li>
+                <li>Dosage guidance in seconds</li>
+                <li>Automatic urgency detection</li>
+                <li>Faster, better-informed consultations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Continuity of care */}
+      <section className="continuity-bg">
+        <div className="section-inner">
+          <div className="eyebrow">Built for continuity of care</div>
+          <h2 className="section-title">Every visit becomes part of<br />a living patient record</h2>
+          <p className="section-sub" style={{ color: "rgba(255,255,255,0.65)" }}>
+            VetsAI is not a chatbot. It is clinical infrastructure — every case, note, and recommendation is saved and searchable, building a complete picture of every patient over time.
+          </p>
+          <div className="continuity-grid">
+            {[
+              { icon: "⚖️", title: "Weight history" },
+              { icon: "🩺", title: "Symptom tracking" },
+              { icon: "💊", title: "Treatment log" },
+              { icon: "📋", title: "SOAP notes" },
+              { icon: "📊", title: "Case history" },
+              { icon: "🔁", title: "Follow-up care" },
+            ].map((c) => (
+              <div className="continuity-item" key={c.title}>
+                <div className="continuity-icon">{c.icon}</div>
+                <div className="continuity-label">{c.title}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -273,18 +350,18 @@ export default function LandingPage() {
         <div className="section-inner">
           <div className="eyebrow">The platform</div>
           <h2 className="section-title">Everything your clinic needs,<br />in one place</h2>
-          <p className="section-sub">VetsAI is built as a full clinic operating system — not just a diagnostic tool.</p>
+          <p className="section-sub">VetsAI is a full clinic operating system — not just a diagnostic tool.</p>
           <div className="modules-grid">
             {[
-              { icon: "🧠", title: "AI Diagnostics", desc: "Agentic reasoning across symptoms, breed, age and weight to generate differential diagnoses instantly.", live: true },
-              { icon: "💊", title: "Drug Checker", desc: "Safe dosage ranges by species and weight, plus interaction warnings for common vet medications.", live: true },
-              { icon: "📋", title: "SOAP Notes", desc: "Auto-draft Subjective, Objective, Assessment and Plan notes — ready for your vet to review.", live: true },
-              { icon: "🚨", title: "Urgency Triage", desc: "Automatically flags high, medium and low urgency cases so you never miss a critical emergency.", live: true },
-              { icon: "📁", title: "Patient Records", desc: "Full pet medical history, consultation logs, and owner details — all in one secure place.", live: false },
+              { icon: "🧠", title: "Clinical Support", desc: "Intelligent clinical guidance across symptoms, breed, age and weight — generated for veterinarian review.", live: true },
+              { icon: "💊", title: "Drug Guidance", desc: "Dosage ranges by species and weight, plus interaction notes — for clinician verification before prescribing.", live: true },
+              { icon: "📋", title: "SOAP Notes", desc: "Clinical note drafts generated automatically — ready for your vet to review, edit and sign off.", live: true },
+              { icon: "🚨", title: "Urgency Triage", desc: "Every case is automatically flagged as high, medium or low urgency so your team knows what to prioritise.", live: true },
+              { icon: "📁", title: "Patient Records", desc: "Full pet medical history, consultation logs, and owner details — all in one secure digital record.", live: false },
               { icon: "📅", title: "Appointments", desc: "Scheduling, reminders, and calendar management for your entire clinic team.", live: false },
               { icon: "💰", title: "Billing & Invoicing", desc: "Generate invoices, track payments, and manage clinic finances from one dashboard.", live: false },
-              { icon: "👥", title: "Multi-user Accounts", desc: "Role-based access for vets, nurses, and admin staff across your entire clinic.", live: false },
-              { icon: "📊", title: "Analytics", desc: "Case trends, common diagnoses, urgency patterns, and clinic performance reports.", live: false },
+              { icon: "👥", title: "Multi-user Access", desc: "Role-based access for vets, nurses, and admin staff across your entire clinic.", live: false },
+              { icon: "📊", title: "Clinic Analytics", desc: "Case trends, common diagnoses, urgency patterns, and clinic performance reports.", live: false },
             ].map((m) => (
               <div className={`module-card ${m.live ? "live" : "coming"}`} key={m.title}>
                 <div className="module-icon">{m.icon}</div>
@@ -301,13 +378,13 @@ export default function LandingPage() {
         <div className="section-inner">
           <div className="eyebrow">How it works</div>
           <h2 className="section-title">Up and running in minutes</h2>
-          <p className="section-sub" style={{ color: "rgba(255,255,255,0.65)" }}>No installation. No training. Start managing cases immediately.</p>
+          <p className="section-sub">No installation. No training. Start managing cases immediately.</p>
           <div className="steps">
             {[
-              { num: "01", title: "Enter the case", desc: "Input the animal type, breed, age, weight and symptoms. The more detail, the smarter the assessment." },
-              { num: "02", title: "Agent reasons autonomously", desc: "VetsAI searches the Merck Manual, checks drug interactions, triages urgency, and generates a full clinical picture — automatically." },
-              { num: "03", title: "Get your full assessment", desc: "Differential diagnoses, drug notes, SOAP note draft, and a printable report — all in under 60 seconds." },
-              { num: "04", title: "Save to patient records", desc: "Every case is automatically saved to your clinic's patient history for full continuity of care." },
+              { num: "01", title: "Enter the case", desc: "Input the animal type, breed, age, weight and symptoms. The more detail, the more complete the clinical support." },
+              { num: "02", title: "Clinical support is generated", desc: "VetsAI searches the Merck Manual, checks drug dosages, triages urgency, and prepares a clinical summary — automatically." },
+              { num: "03", title: "Veterinarian reviews and acts", desc: "Your vet reviews the differential diagnoses, drug guidance, and SOAP note draft — then makes the clinical decision." },
+              { num: "04", title: "Saved to patient records", desc: "Every case is automatically saved to the patient's history for full continuity of care across every visit." },
             ].map((s) => (
               <div className="step" key={s.num}>
                 <div className="step-num">{s.num}</div>
@@ -355,12 +432,12 @@ export default function LandingPage() {
             {[
               {
                 name: "Starter", price: "$49", period: "per month",
-                features: ["1 vet account", "Up to 50 cases/month", "AI diagnostics & triage", "Drug dosage notes", "SOAP note drafts", "Printable reports", "Email support"],
+                features: ["1 vet account", "Up to 200 cases/month", "Clinical support & triage", "Drug dosage guidance", "SOAP note drafts", "Printable reports", "Email support"],
                 featured: false, popular: false,
               },
               {
                 name: "Professional", price: "$99", period: "per month",
-                features: ["3 vet accounts", "Unlimited cases", "AI diagnostics & triage", "Drug dosage notes", "SOAP note drafts", "Patient records", "Case history & export", "Priority support"],
+                features: ["3 vet accounts", "Unlimited cases", "Clinical support & triage", "Drug dosage guidance", "SOAP note drafts", "Patient records", "Case history & export", "Priority support"],
                 featured: true, popular: true,
               },
               {
@@ -390,7 +467,7 @@ export default function LandingPage() {
           <div className="eyebrow" style={{ color: "rgba(255,255,255,0.6)" }}>Get started today</div>
           <h2 className="section-title">Ready to run a smarter clinic?</h2>
           <p className="cta-sub">
-            Trusted by veterinary professionals worldwide — from Ghana to the UK, Nigeria to the US. VetsAI delivers agentic AI clinical support wherever you practice.
+            Designed for veterinary professionals across Africa and beyond — VetsAI delivers intelligent clinical support wherever you practice.
           </p>
           <div className="cta-actions">
             <a href="/app" className="btn-primary">Start free trial →</a>
@@ -404,7 +481,7 @@ export default function LandingPage() {
       <footer>
         <div style={{ marginBottom: 12 }}>
           <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>🐾 VetsAI</span>
-          &nbsp;·&nbsp; Agentic AI clinic operating system for veterinary professionals worldwide
+          &nbsp;·&nbsp; Clinic operating system for veterinary professionals worldwide
         </div>
         <div style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
           <a href="#modules">Platform</a>
@@ -414,7 +491,7 @@ export default function LandingPage() {
           <a href="mailto:hi@vetsai.app">Contact</a>
         </div>
         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
-          © {new Date().getFullYear()} VetsAI. Built for veterinary professionals across Africa and beyond.
+          © {new Date().getFullYear()} VetsAI. Designed for veterinary professionals across Africa and beyond.
         </div>
       </footer>
     </>

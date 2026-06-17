@@ -1,19 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLogin = async () => {
+    const email = emailRef.current?.value || "";
+    const password = passwordRef.current?.value || "";
+
     if (!email.trim() || !password.trim()) {
-      setError("Please enter your email and password.");
+      setError(`Please enter your email and password.`);
       return;
     }
 
@@ -74,32 +77,24 @@ export default function LoginPage() {
           <div className="field">
             <label>Email address</label>
             <input
-            type="email"
-            placeholder="you@clinic.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={(e) => setEmail(e.target.value)}
-            autoComplete="email"
+              ref={emailRef}
+              type="email"
+              placeholder="you@clinic.com"
+              autoComplete="email"
             />
           </div>
 
           <div className="field">
             <label>Password</label>
             <input
-            type="password"
-            placeholder="Your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
+              ref={passwordRef}
+              type="password"
+              placeholder="Your password"
+              autoComplete="current-password"
             />
           </div>
 
-          <button
-            className="btn-login"
-            onClick={handleLogin}
-            disabled={loading}
-          >
+          <button className="btn-login" onClick={handleLogin} disabled={loading}>
             {loading ? "Logging in…" : "Log in →"}
           </button>
 

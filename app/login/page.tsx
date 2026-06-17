@@ -74,20 +74,24 @@ export default function LoginPage() {
           <div className="field">
             <label>Email address</label>
             <input
-              type="email"
-              placeholder="you@clinic.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="you@clinic.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             />
           </div>
 
           <div className="field">
             <label>Password</label>
             <input
-              type="password"
-              placeholder="Your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="Your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onBlur={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
             />
           </div>
 

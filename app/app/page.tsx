@@ -80,13 +80,14 @@ function cap(s?: string): string {
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
   // Form fields
-  const [animal, setAnimal] = useState("");
-  const [petName, setPetName] = useState("");
-  const [breed, setBreed] = useState("");
-  const [age, setAge] = useState("");
-  const [weight, setWeight] = useState("");
-  const [symptoms, setSymptoms] = useState("");
+  const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+  const [animal, setAnimal] = useState(searchParams?.get("animal") ?? "");
+  const [petName, setPetName] = useState(searchParams?.get("name") ?? "");
+  const [breed, setBreed] = useState(searchParams?.get("breed") ?? "");
+  const [age, setAge] = useState(searchParams?.get("age") ?? "");
+  const [weight, setWeight] = useState(searchParams?.get("weight") ?? "");
 
   // UI state
   const [tab, setTab] = useState<Tab>("new-case");

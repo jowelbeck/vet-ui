@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data: result, error } = await resend.emails.send({
-      from: "VetsAI <notifications@vetsai.vet>",
+      from: "VetsAI <onboarding@resend.dev>",
       to,
       subject,
       html,

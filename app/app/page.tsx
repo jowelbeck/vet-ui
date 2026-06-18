@@ -1,4 +1,7 @@
 "use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 import { useEffect, useState } from "react";
 
@@ -80,6 +83,12 @@ function cap(s?: string): string {
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) router.push("/login");
+    });
+  }, []);
   // Form fields
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");

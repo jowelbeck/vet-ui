@@ -611,6 +611,9 @@ export default function Home() {
             </a>
           <a href="/billing" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
             💰 Billing
+            </a>
+          <a href="/analytics" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
+            📊 Analytics
           </a>
           </a>
           <div className="tab-bar">

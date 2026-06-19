@@ -116,6 +116,29 @@ export async function POST(req: NextRequest) {
     } else if (type === "invoice") {
       subject = `Invoice for ${data.patientName} — ${data.currency} ${data.amount}`;
       html = invoiceEmail(data.patientName, data.ownerName, data.amount, data.currency, data.services);
+    } else if (type === "appointment") {
+      subject = `Appointment confirmed — ${data.patientName} on ${new Date(data.date + "T00:00:00").toLocaleDateString("en-GB", { weekday: "long", month: "long", day: "numeric" })} at ${data.time}`;
+      html = `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;background:#f1f5f9;padding:40px 20px;">
+<div style="max-width:560px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
+<div style="background:linear-gradient(135deg,#1a3d2b,#3a8f5f);padding:32px;text-align:center;">
+<div style="font-size:32px;margin-bottom:8px;">📅</div>
+<h1 style="color:#fff;font-size:22px;font-weight:700;margin:0;">Appointment Confirmed</h1>
+</div>
+<div style="padding:32px;">
+<p style="color:#64748b;margin-bottom:20px;">Dear <strong>${data.ownerName || "Pet Owner"}</strong>,</p>
+<p style="color:#64748b;line-height:1.7;margin-bottom:20px;">Your appointment has been confirmed. Here are the details:</p>
+<div style="background:#f0faf4;border-radius:10px;padding:20px;margin-bottom:24px;">
+<table style="width:100%;border-collapse:collapse;">
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Patient</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.patientName}</td></tr>
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Type</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.appointmentType}</td></tr>
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Date</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${new Date(data.date + "T00:00:00").toLocaleDateString("en-GB", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</td></tr>
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Time</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.time}</td></tr>
+</table>
+</div>
+<p style="color:#94a3b8;font-size:12px;text-align:center;">Please arrive 10 minutes early · Powered by <a href="https://vetsai.vet" style="color:#1a3d2b;">VetsAI</a></p>
+</div>
+</div>
+</body></html>`;
     } else {
       return NextResponse.json({ error: "Unknown email type" }, { status: 400 });
     }

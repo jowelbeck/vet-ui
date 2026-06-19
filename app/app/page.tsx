@@ -123,6 +123,7 @@ export default function Home() {
       if (params.get("weight")) setWeight(params.get("weight") ?? "");
     }, []);
   useEffect(() => {
+    if (typeof window === "undefined") return;
     try {
       const saved = localStorage.getItem("caseHistory");
       setCaseHistory(saved ? JSON.parse(saved) : []);

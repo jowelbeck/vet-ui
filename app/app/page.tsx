@@ -82,14 +82,11 @@ function cap(s?: string): string {
 
 export default function Home() {
   const router = useRouter();
-  const [authChecked, setAuthChecked] = useState(false);
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
-      if (!user) { router.push("/login"); return; }
-      setAuthChecked(true);
+      if (!user) router.push("/login");
     });
   }, []);
-  if (!authChecked) return null;
   // Form fields
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");

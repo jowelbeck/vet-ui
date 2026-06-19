@@ -32,6 +32,13 @@ function typeIcon(t: string) {
   return m[t?.toLowerCase()] ?? "📅";
 }
 
+function buildWhatsAppLink(phone: string, patientName: string, ownerName: string, date: string, time: string, type: string) {
+  const formattedDate = new Date(date + "T00:00:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const message = `Hello ${ownerName}, your appointment for *${patientName}* (${type}) is confirmed for *${formattedDate} at ${time}*. Please arrive 10 minutes early. Thank you — VetsAI Clinic`;
+  const cleanPhone = phone.replace(/\s+/g, "").replace(/^\+/, "");
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+}
+
 export default function AppointmentsPage() {
   const router = useRouter();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -47,10 +54,12 @@ export default function AppointmentsPage() {
   const [patientName, setPatientName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
+  const [ownerEmail, setOwnerEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("09:00");
   const [type, setType] = useState("Consultation");
   const [notes, setNotes] = useState("");
+  const [notifyMethod, setNotifyMethod] = useState("none");
 
   useEffect(() => { checkAuthAndLoad(); }, []);
 
@@ -88,8 +97,34 @@ export default function AppointmentsPage() {
       status: "scheduled",
     });
     if (error) { setError(error.message); setSaving(false); return; }
-    setSuccessMsg("Appointment booked!");
-    setTimeout(() => setSuccessMsg(""), 3000);
+
+    // Send email notification
+    if (notifyMethod === "email" && ownerEmail.trim()) {
+      fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "appointment",
+          to: ownerEmail.trim(),
+          data: {
+            patientName: patientName.trim(),
+            ownerName: ownerName.trim(),
+            date,
+            time,
+            appointmentType: type,
+          }
+        })
+      }).catch(console.error);
+      setSuccessMsg("Appointment booked! Email notification sent.");
+    } else if (notifyMethod === "whatsapp" && ownerPhone.trim()) {
+      const waLink = buildWhatsAppLink(ownerPhone.trim(), patientName.trim(), ownerName.trim(), date, time, type);
+      window.open(waLink, "_blank");
+      setSuccessMsg("Appointment booked! WhatsApp opened to notify owner.");
+    } else {
+      setSuccessMsg("Appointment booked!");
+    }
+
+    setTimeout(() => setSuccessMsg(""), 4000);
     setShowForm(false);
     resetForm();
     loadAppointments();
@@ -107,19 +142,24 @@ export default function AppointmentsPage() {
     setAppointments(prev => prev.filter(a => a.id !== id));
   };
 
+  const sendWhatsAppReminder = (appt: Appointment) => {
+    if (!appt.owner_phone) { alert("No phone number for this owner."); return; }
+    const waLink = buildWhatsAppLink(appt.owner_phone, appt.patient_name, appt.owner_name, appt.date, appt.time, appt.type);
+    window.open(waLink, "_blank");
+  };
+
   const resetForm = () => {
-    setPatientName(""); setOwnerName(""); setOwnerPhone("");
-    setDate(""); setTime("09:00"); setType("Consultation"); setNotes(""); setError("");
+    setPatientName(""); setOwnerName(""); setOwnerPhone(""); setOwnerEmail("");
+    setDate(""); setTime("09:00"); setType("Consultation"); setNotes("");
+    setNotifyMethod("none"); setError("");
   };
 
   const today = new Date().toISOString().split("T")[0];
-
   const filtered = appointments.filter(a => {
     if (filterStatus !== "all" && a.status !== filterStatus) return false;
     if (filterDate && a.date !== filterDate) return false;
     return true;
   });
-
   const todayAppts = appointments.filter(a => a.date === today && a.status === "scheduled");
   const upcomingAppts = appointments.filter(a => a.date > today && a.status === "scheduled");
   const totalScheduled = appointments.filter(a => a.status === "scheduled").length;
@@ -157,6 +197,11 @@ export default function AppointmentsPage() {
         .field label { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px; }
         .field input, .field select, .field textarea { padding: 9px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; color: #1e293b; background: #f8fafc; outline: none; font-family: inherit; transition: border-color 0.15s; }
         .field input:focus, .field select:focus, .field textarea:focus { border-color: #1a3d2b; box-shadow: 0 0 0 3px rgba(26,61,43,0.1); background: #fff; }
+        .notify-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+        .notify-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 10px; }
+        .notify-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        .notify-btn { padding: 7px 14px; border-radius: 8px; border: 1.5px solid #e2e8f0; background: #fff; font-size: 13px; font-weight: 500; color: #64748b; cursor: pointer; font-family: inherit; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+        .notify-btn.active { border-color: #1a3d2b; background: #f0faf4; color: #1a3d2b; font-weight: 600; }
         .btn-row { display: flex; gap: 8px; margin-top: 16px; }
         .btn-save { background: #1a3d2b; color: #fff; padding: 9px 18px; border-radius: 7px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
         .btn-cancel { background: #fff; color: #64748b; padding: 9px 18px; border-radius: 7px; border: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -175,16 +220,16 @@ export default function AppointmentsPage() {
         .status-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
         .appt-actions { display: flex; gap: 6px; padding: 0 16px 12px; flex-wrap: wrap; }
         .btn-complete { background: #f0faf4; color: #1a3d2b; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid #d4f0e0; cursor: pointer; font-family: inherit; }
+        .btn-whatsapp { background: #f0fdf4; color: #15803d; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid #bbf7d0; cursor: pointer; font-family: inherit; }
         .btn-cancel-appt { background: #fef2f2; color: #dc2626; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid #fecaca; cursor: pointer; font-family: inherit; }
         .btn-delete { background: #fff; color: #94a3b8; font-size: 12px; padding: 5px 10px; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer; font-family: inherit; }
         .today-banner { background: #1a3d2b; color: #fff; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .today-banner-text { font-size: 13px; color: rgba(255,255,255,0.85); }
         .today-banner-count { font-size: 20px; font-weight: 700; color: #fff; }
+        .today-banner-text { font-size: 13px; color: rgba(255,255,255,0.85); }
         .empty { text-align: center; padding: 40px 20px; color: #94a3b8; }
         .empty-icon { font-size: 36px; margin-bottom: 10px; }
         @media (max-width: 560px) {
           .field-grid, .stats { grid-template-columns: 1fr; }
-          .nav-links .nav-link { font-size: 11px; padding: 4px 6px; }
         }
       `}</style>
 
@@ -218,8 +263,7 @@ export default function AppointmentsPage() {
           <div className="today-banner">
             <div className="today-banner-count">{todayAppts.length}</div>
             <div className="today-banner-text">
-              appointment{todayAppts.length !== 1 ? "s" : ""} scheduled for today —{" "}
-              {todayAppts.map(a => a.patient_name).join(", ")}
+              appointment{todayAppts.length !== 1 ? "s" : ""} today — {todayAppts.map(a => a.patient_name).join(", ")}
             </div>
           </div>
         )}
@@ -272,6 +316,35 @@ export default function AppointmentsPage() {
                 <input placeholder="+233 20 000 0000" value={ownerPhone} onChange={e => setOwnerPhone(e.target.value)} />
               </div>
             </div>
+
+            {/* Notification options */}
+            <div className="notify-section">
+              <div className="notify-title">📣 Notify owner</div>
+              <div className="notify-options">
+                <button className={`notify-btn ${notifyMethod === "none" ? "active" : ""}`} onClick={() => setNotifyMethod("none")}>
+                  🔕 No notification
+                </button>
+                <button className={`notify-btn ${notifyMethod === "email" ? "active" : ""}`} onClick={() => setNotifyMethod("email")}>
+                  📧 Send email
+                </button>
+                <button className={`notify-btn ${notifyMethod === "whatsapp" ? "active" : ""}`} onClick={() => setNotifyMethod("whatsapp")}>
+                  💬 WhatsApp
+                </button>
+              </div>
+
+              {notifyMethod === "email" && (
+                <div className="field">
+                  <label>Owner email *</label>
+                  <input type="email" placeholder="owner@email.com" value={ownerEmail} onChange={e => setOwnerEmail(e.target.value)} />
+                </div>
+              )}
+              {notifyMethod === "whatsapp" && (
+                <p style={{ fontSize: 12, color: "#64748b" }}>
+                  WhatsApp will open with a pre-filled message to {ownerPhone || "the owner's number"}. Make sure the owner phone is filled in above.
+                </p>
+              )}
+            </div>
+
             <div className="field">
               <label>Notes</label>
               <textarea placeholder="Any notes about this appointment…" rows={2} value={notes} onChange={e => setNotes(e.target.value)} />
@@ -291,16 +364,8 @@ export default function AppointmentsPage() {
               {f.charAt(0).toUpperCase() + f.slice(1)}
             </button>
           ))}
-          <input
-            type="date"
-            className="date-filter"
-            value={filterDate}
-            onChange={e => setFilterDate(e.target.value)}
-            title="Filter by date"
-          />
-          {filterDate && (
-            <button className="filter-btn" onClick={() => setFilterDate("")}>Clear date</button>
-          )}
+          <input type="date" className="date-filter" value={filterDate} onChange={e => setFilterDate(e.target.value)} />
+          {filterDate && <button className="filter-btn" onClick={() => setFilterDate("")}>Clear date</button>}
         </div>
 
         {loading ? (
@@ -326,7 +391,7 @@ export default function AppointmentsPage() {
                     <div className="appt-meta">
                       {appt.type} · {new Date(appt.date + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}
                       {appt.owner_name ? ` · ${appt.owner_name}` : ""}
-                      {appt.notes ? ` · ${appt.notes}` : ""}
+                      {appt.owner_phone ? ` · ${appt.owner_phone}` : ""}
                     </div>
                   </div>
                   <div className="appt-right">
@@ -339,7 +404,8 @@ export default function AppointmentsPage() {
                 <div className="appt-actions">
                   {appt.status === "scheduled" && (
                     <>
-                      <button className="btn-complete" onClick={() => updateStatus(appt.id, "completed")}>✓ Mark complete</button>
+                      <button className="btn-complete" onClick={() => updateStatus(appt.id, "completed")}>✓ Complete</button>
+                      <button className="btn-whatsapp" onClick={() => sendWhatsAppReminder(appt)}>💬 WhatsApp reminder</button>
                       <button className="btn-cancel-appt" onClick={() => updateStatus(appt.id, "cancelled")}>✕ Cancel</button>
                     </>
                   )}

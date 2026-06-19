@@ -196,7 +196,7 @@ export default function Home() {
     setError("");
     setResult(null);
     try {
-      const res = await fetch("https://web-production-91359.up.railway.app/query", {
+      const res = await fetch("/backend/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -235,7 +235,7 @@ export default function Home() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("https://web-production-91359.up.railway.app/follow-up", {
+      const res = await fetch("/backend/follow-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -612,17 +612,53 @@ export default function Home() {
             </button>
             </div>
           </div>
-          <a href="/patients" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
-            📁 Patients
-            <a href="/team" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
-            👥 Team
-            </a>
-          <a href="/billing" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
-            💰 Billing
-            </a>
+          <div
+  style={{
+    display: "flex",
+    gap: 10,
+  }}
+>
+  <a
+    href="/patients"
+    style={{
+      fontSize: 13,
+      fontWeight: 500,
+      color: "var(--slate)",
+      textDecoration: "none",
+      padding: "5px 10px",
+    }}
+      >
+        📁 Patients
+      </a>
+
+      <a
+        href="/team"
+        style={{
+          fontSize: 13,
+          fontWeight: 500,
+          color: "var(--slate)",
+          textDecoration: "none",
+          padding: "5px 10px",
+        }}
+      >
+        👥 Team
+      </a>
+
+      <a
+        href="/billing"
+        style={{
+          fontSize: 13,
+          fontWeight: 500,
+          color: "var(--slate)",
+          textDecoration: "none",
+          padding: "5px 10px",
+        }}
+      >
+        💳 Billing
+      </a>
+    </div>
           <a href="/analytics" style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
             📊 Analytics
-          </a>
           </a>
           <div className="tab-bar">
             <button

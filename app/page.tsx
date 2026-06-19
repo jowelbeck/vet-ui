@@ -357,11 +357,11 @@ export default function LandingPage() {
               { icon: "💊", title: "Drug Guidance", desc: "Dosage ranges by species and weight, plus interaction notes — for clinician verification before prescribing.", live: true },
               { icon: "📋", title: "SOAP Notes", desc: "Clinical note drafts generated automatically — ready for your vet to review, edit and sign off.", live: true },
               { icon: "🚨", title: "Urgency Triage", desc: "Every case is automatically flagged as high, medium or low urgency so your team knows what to prioritise.", live: true },
-              { icon: "📁", title: "Patient Records", desc: "Full pet medical history, consultation logs, and owner details — all in one secure digital record.", live: false },
+              { icon: "📁", title: "Patient Records", desc: "Full pet medical history, consultation logs, and owner details — all in one secure digital record.", live: true },
               { icon: "📅", title: "Appointments", desc: "Scheduling, reminders, and calendar management for your entire clinic team.", live: false },
-              { icon: "💰", title: "Billing & Invoicing", desc: "Generate invoices, track payments, and manage clinic finances from one dashboard.", live: false },
-              { icon: "👥", title: "Multi-user Access", desc: "Role-based access for vets, nurses, and admin staff across your entire clinic.", live: false },
-              { icon: "📊", title: "Clinic Analytics", desc: "Case trends, common diagnoses, urgency patterns, and clinic performance reports.", live: false },
+              { icon: "💰", title: "Billing & Invoicing", desc: "Generate invoices, track payments, and manage clinic finances from one dashboard.", live: true },
+              { icon: "👥", title: "Multi-user Access", desc: "Role-based access for vets, nurses, and admin staff across your entire clinic.", live: true },
+              { icon: "📊", title: "Clinic Analytics", desc: "Case trends, common diagnoses, urgency patterns, and clinic performance reports.", live: true },
             ].map((m) => (
               <div className={`module-card ${m.live ? "live" : "coming"}`} key={m.title}>
                 <div className="module-icon">{m.icon}</div>

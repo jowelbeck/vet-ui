@@ -122,6 +122,13 @@ export default function Home() {
     high: lang === "fr" ? "Élevée" : "High",
     medium: lang === "fr" ? "Moyenne" : "Medium",
     low: lang === "fr" ? "Faible" : "Low",
+    placeholderAnimal: lang === "fr" ? "Chien, chat, lapin…" : "Dog, cat, rabbit…",
+    placeholderPetName: lang === "fr" ? "Buddy" : "Buddy",
+    placeholderBreed: lang === "fr" ? "Labrador, Persan…" : "Labrador, Persian…",
+    placeholderAge: lang === "fr" ? "3 ans" : "3 years",
+    placeholderWeight: lang === "fr" ? "12 kg" : "12 kg",
+    placeholderSymptoms: lang === "fr" ? "Décrivez ce que vous avez observé — comportement, signes physiques, durée…" : "Describe what you've observed — behaviour, physical signs, duration…",
+    placeholderSearch: lang === "fr" ? "Rechercher par animal, espèce ou symptômes…" : "Search by pet, animal, or symptoms…",
   };
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -904,7 +911,7 @@ export default function Home() {
                       {t.animalType} <span style={{ color: "var(--red-500)" }}>*</span>
                     </label>
                     <input
-                      placeholder="Dog, cat, rabbit…"
+                      placeholder={t.placeholderAnimal}
                       value={animal}
                       onChange={(e) => setAnimal(e.target.value)}
                     />
@@ -920,7 +927,7 @@ export default function Home() {
                   <div className="field">
                     <label>{t.breed}</label>
                     <input
-                      placeholder="Labrador, Persian…"
+                      placeholder={t.placeholderBreed}
                       value={breed}
                       onChange={(e) => setBreed(e.target.value)}
                     />
@@ -928,7 +935,7 @@ export default function Home() {
                   <div className="field">
                     <label>{t.age}</label>
                     <input
-                      placeholder="3 years"
+                      placeholder={t.placeholderAge}
                       value={age}
                       onChange={(e) => setAge(e.target.value)}
                     />
@@ -936,7 +943,7 @@ export default function Home() {
                   <div className="field">
                     <label>{t.weight}</label>
                     <input
-                      placeholder="12 kg"
+                      placeholder={t.placeholderWeight}
                       value={weight}
                       onChange={(e) => setWeight(e.target.value)}
                     />
@@ -946,7 +953,7 @@ export default function Home() {
                       {t.symptoms} <span style={{ color: "var(--red-500)" }}>*</span>
                     </label>
                     <textarea
-                      placeholder="Describe what you've observed — behaviour, physical signs, duration…"
+                      placeholder={t.placeholderSymptoms}
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
                     />
@@ -1013,7 +1020,7 @@ export default function Home() {
             <div className="search-wrap">
               <span className="search-icon">🔍</span>
               <input
-                placeholder="Search by pet, animal, or symptoms…"
+                placeholder={t.placeholderSearch}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

@@ -118,12 +118,6 @@ export default function Home() {
     billing: lang === "fr" ? "Facturation" : "Billing",
     analytics: lang === "fr" ? "Analytique" : "Analytics",
     qr: lang === "fr" ? "QR" : "QR",
-    patients: lang === "fr" ? "Patients" : "Patients",
-    team: lang === "fr" ? "Équipe" : "Team",
-    appointments: lang === "fr" ? "Rendez-vous" : "Appointments",
-    billing: lang === "fr" ? "Facturation" : "Billing",
-    analytics: lang === "fr" ? "Analytique" : "Analytics",
-    qr: lang === "fr" ? "QR" : "QR",
   };
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

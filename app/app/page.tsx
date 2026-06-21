@@ -243,6 +243,7 @@ export default function Home() {
           breed: breed.trim(),
           age: age.trim(),
           weight: weight.trim(),
+          language: lang,
         }),
       });
       const data: ApiResult = await res.json();
@@ -284,6 +285,7 @@ export default function Home() {
           breed: breed.trim(),
           age: age.trim(),
           weight: weight.trim(),
+          language: lang,
         }),
       });
       const data: ApiResult = await res.json();

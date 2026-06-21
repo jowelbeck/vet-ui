@@ -134,6 +134,10 @@ export default function Home() {
     errorGeneral: lang === "fr" ? "Une erreur s'est produite." : "Something went wrong.",
     successCleared: lang === "fr" ? "Historique des cas effacé." : "Case history cleared.",
     startNewCase: lang === "fr" ? "＋ Nouveau cas" : "＋ Start new case",
+    followUpQuestions: lang === "fr" ? "Questions de suivi" : "Follow-up questions",
+    yourAnswers: lang === "fr" ? "Vos réponses" : "Your answers",
+    submitAnswers: lang === "fr" ? "Soumettre les réponses" : "Submit answers",
+    submitting: lang === "fr" ? "Envoi en cours…" : "Submitting…",
   };
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -882,14 +886,14 @@ export default function Home() {
             {/* Follow-up panel */}
             {followUpQuestions.length > 0 && (
               <div className="card">
-                <div className="card-title">Follow-up questions</div>
+                <div className="card-title">{t.followUpQuestions}</div>
                 <ul className="followup-list">
                   {followUpQuestions.map((q, i) => (
                     <li key={i}>{q}</li>
                   ))}
                 </ul>
                 <div className="field">
-                  <label>Your answers</label>
+                  <label>{t.yourAnswers}</label>
                   <textarea
                     placeholder="Answer each question above…"
                     value={followUpAnswers}
@@ -902,7 +906,7 @@ export default function Home() {
                     onClick={handleFollowUp}
                     disabled={loading}
                   >
-                    {loading ? "Submitting…" : "Submit answers"}
+                    {loading ? t.submitting : t.submitAnswers}
                   </button>
                 </div>
               </div>

@@ -98,6 +98,14 @@ export default function Home() {
   // UI state
   const [tab, setTab] = useState<Tab>("new-case");
   const [lang, setLang] = useState<"en" | "fr">("en");
+  useEffect(() => {
+    const saved = localStorage.getItem("vetsai_lang");
+    if (saved === "fr") setLang("fr");
+  }, []);
+  const toggleLang = (newLang: "en" | "fr") => {
+    setLang(newLang);
+    localStorage.setItem("vetsai_lang", newLang);
+  };
   const t = {
     newCase: lang === "fr" ? "Nouveau cas" : "New case",
     caseHistory: lang === "fr" ? "Historique" : "Case history",
@@ -655,7 +663,7 @@ export default function Home() {
               Log out
             </button>
             <button
-              onClick={() => setLang(lang === "en" ? "fr" : "en")}
+              onClick={() => toggleLang(lang === "en" ? "fr" : "en")}
               style={{ fontSize: 12, padding: "5px 10px", background: "var(--slate-100)", border: "1px solid var(--slate-200)", borderRadius: 6, cursor: "pointer", fontFamily: "inherit" }}
             >
               {lang === "en" ? "🇫🇷 FR" : "🇬🇧 EN"}

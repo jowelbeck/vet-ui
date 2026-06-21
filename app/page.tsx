@@ -237,6 +237,15 @@ export default function LandingPage() {
             <a href="mailto:hi@vetsai.vet" className="btn-outline">📅 Book a clinic demo</a>
           </div>
           <p className="hero-note">No credit card required · First 3 months free · Cancel anytime</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
+            <div style={{ background: "rgba(255,255,255,0.95)", padding: 10, borderRadius: 10, display: "inline-block" }}>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={80} height={80} style={{ display: "block" }} />
+            </div>
+            <div>
+              <a href="https://vetsai.vet" style={{ color: "#fff", fontWeight: 700, fontSize: 14, textDecoration: "none", display: "block", marginBottom: 4 }}>vetsai.vet</a>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)" }}>📱 Scan to share with your clinic</p>
+            </div>
+          </div>
         </div>
       </section>
 

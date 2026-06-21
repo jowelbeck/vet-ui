@@ -170,7 +170,7 @@ export default function SignupPage() {
           <span className="trust-item">✓ No credit card</span>
           <span className="trust-item">✓ 3 months free</span>
           <span className="trust-item">✓ Cancel anytime</span>
-          <span className="trust-item">✓ Merck Manual powered</span>
+          <span className="trust-item">✓ Gold standard research</span>
         </div>
       </div>
     </>

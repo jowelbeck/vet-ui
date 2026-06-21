@@ -163,7 +163,7 @@ export default function OnboardingPage() {
                 <li>Drug dosage guidance for clinician verification</li>
                 <li>Auto-generated SOAP note drafts</li>
                 <li>Patient records and case history</li>
-                <li>Powered by the Merck Veterinary Manual</li>
+                <li>Powered by gold standard veterinary research</li>
               </ul>
               <button className="btn-next" onClick={() => setStep(2)}>
                 Set up my clinic →

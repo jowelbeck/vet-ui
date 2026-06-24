@@ -96,7 +96,7 @@ export default function SignupPage() {
 
       <div className="page">
         <a href="/" className="logo">
-          <div className="logo-mark">🐾</div>
+          <img src="/vetsai-icon.svg" alt="VetsAI" width={40} height={40} style={{ borderRadius: "10px" }} />
           <span className="logo-text">VetsAI</span>
         </a>
 

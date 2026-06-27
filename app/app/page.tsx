@@ -102,9 +102,6 @@ export default function Home() {
   const [tab, setTab] = useState<Tab>("new-case");
   const [lang, setLang] = useState<"en" | "fr">("en");
   const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
-  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
-  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
-  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
   useEffect(() => {
     const saved = localStorage.getItem("vetsai_lang");
     if (saved === "fr") setLang("fr");
@@ -155,7 +152,6 @@ export default function Home() {
     submitting: lang === "fr" ? "Envoi en cours…" : "Submitting…",
   };
   const [loading, setLoading] = useState(false);
-  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 

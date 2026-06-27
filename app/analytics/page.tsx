@@ -48,7 +48,7 @@ export default function AnalyticsPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push("/login"); return; }
 
-    const { data: clinic } = await supabase.from("clinics").select("name").eq("user_id", user.id).single();
+    const { data: clinic } = await supabase.from("clinics").select("name").eq("user_id", user.id).maybeSingle();
     if (clinic) setClinicName(clinic.name);
 
     await loadStats(user.id);

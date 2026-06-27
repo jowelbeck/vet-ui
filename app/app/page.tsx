@@ -224,7 +224,9 @@ export default function Home() {
       return updated;
     });
     // Also save to Supabase
+    console.log("Saving case to Supabase...");
     supabase.auth.getUser().then(({ data: { user } }) => {
+      console.log("User for case save:", user?.id);
       if (user) {
         supabase.from("cases").insert({
           user_id: user.id,

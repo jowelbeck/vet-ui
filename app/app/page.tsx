@@ -88,7 +88,8 @@ export default function Home() {
     supabase.from("subscriptions").select("plan,status").eq("user_id", session.user.id).single().then(({ data }) => {
       if (data) setSubscription(data);
     });
-      if (!user) router.push("/login");
+      if (!user) { router.push("/login"); return; }
+      supabase.from("subscriptions").select("plan,status").eq("user_id", user.id).single().then(({ data }) => { if (data) setSubscription(data); });
     });
   }, []);
   // Form fields
@@ -102,6 +103,10 @@ export default function Home() {
   // UI state
   const [tab, setTab] = useState<Tab>("new-case");
   const [lang, setLang] = useState<"en" | "fr">("en");
+  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
+  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
+  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
+  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
   useEffect(() => {
     const saved = localStorage.getItem("vetsai_lang");
     if (saved === "fr") setLang("fr");

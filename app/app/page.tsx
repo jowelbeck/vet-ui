@@ -84,6 +84,10 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
+      // Fetch subscription
+    supabase.from("subscriptions").select("plan,status").eq("user_id", session.user.id).single().then(({ data }) => {
+      if (data) setSubscription(data);
+    });
       if (!user) router.push("/login");
     });
   }, []);
@@ -148,6 +152,7 @@ export default function Home() {
     submitting: lang === "fr" ? "Envoi en cours…" : "Submitting…",
   };
   const [loading, setLoading] = useState(false);
+  const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -652,7 +657,7 @@ export default function Home() {
             <img src="/vetsai-icon.svg" alt="VetsAI" width={40} height={40} style={{ borderRadius: "10px", flexShrink: 0 }} />
             <div>
               <h1>VetsAI</h1>
-              <div className="header-sub">Clinical decision support</div><button
+              <div className="header-sub">Clinical decision support {subscription && <span style={{ marginLeft: 8, background: subscription.status === "active" ? "#97bc62" : "#e2e8f0", color: subscription.status === "active" ? "#1a3d2b" : "#64748b", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700, textTransform: "uppercase" as const }}>{subscription.plan} {subscription.status}</span>}</div><button
               style={{ fontSize: 12, padding: "6px 12px", background: "var(--slate-100)", border: "1px solid var(--slate-200)", borderRadius: 6, cursor: "pointer", color: "var(--slate-500)" }}
               onClick={async () => {
                 const { supabase } = await import("@/lib/supabase");
@@ -663,7 +668,9 @@ export default function Home() {
               Log out
             </button>
             <button
-              onClick={() => toggleLang(lang === "en" ? "fr" : "en")}
+              onClick={(
+
+              ) => toggleLang(lang === "en" ? "fr" : "en")}
               style={{ fontSize: 12, padding: "5px 10px", background: "var(--slate-100)", border: "1px solid var(--slate-200)", borderRadius: 6, cursor: "pointer", fontFamily: "inherit" }}
             >
               {lang === "en" ? "🇫🇷 FR" : "🇬🇧 EN"}

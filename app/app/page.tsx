@@ -84,12 +84,10 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
-      // Fetch subscription
-    supabase.from("subscriptions").select("plan,status").eq("user_id", session.user.id).single().then(({ data }) => {
-      if (data) setSubscription(data);
-    });
       if (!user) { router.push("/login"); return; }
-      supabase.from("subscriptions").select("plan,status").eq("user_id", user.id).single().then(({ data }) => { if (data) setSubscription(data); });
+      supabase.from("subscriptions").select("plan,status").eq("user_id", user.id).single().then(({ data }) => {
+        if (data) setSubscription(data);
+      });
     });
   }, []);
   // Form fields

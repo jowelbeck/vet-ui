@@ -223,6 +223,24 @@ export default function Home() {
       localStorage.setItem("caseHistory", JSON.stringify(updated));
       return updated;
     });
+    // Also save to Supabase
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        supabase.from("cases").insert({
+          user_id: user.id,
+          animal: newCase.animal,
+          pet_name: newCase.petName,
+          breed: newCase.breed,
+          age: newCase.age,
+          weight: newCase.weight,
+          symptoms: newCase.symptoms,
+          urgency: newCase.urgency,
+          recommendation: newCase.recommendation,
+          soap_note: newCase.soap_note,
+          created_at: newCase.createdAt,
+        }).then(({ error }) => { if (error) console.error("Case save error:", error); });
+      }
+    });
   };
 
   // ── Form actions ───────────────────────────────────────────────────────────

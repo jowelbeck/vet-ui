@@ -66,7 +66,7 @@ export default function AnalyticsPage() {
     const outstandingRevenue = invoices?.filter(i => i.status === "unpaid").reduce((s, i) => s + i.total, 0) ?? 0;
 
     // Cases from localStorage (since cases are stored locally)
-    const saved = typeof window !== "undefined" ? localStorage.getItem("caseHistory") : null;
+    const saved = typeof window !== "undefined" ? null // moved to Supabase : null;
     const cases = saved ? JSON.parse(saved) : [];
     const totalCases = cases.length;
     const highCases = cases.filter((c: any) => c.urgency === "high").length;

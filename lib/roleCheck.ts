@@ -15,7 +15,6 @@ const ROLE_ACCESS: Record<string, Role[]> = {
 
 export async function getCurrentUserRole(): Promise<Role | null> {
   const { data: { user } } = await supabase.auth.getUser();
-  console.log("roleCheck: user =", user?.email, user?.id);
   if (!user) return null;
 
   // Check if user is the clinic owner (always admin)
@@ -25,7 +24,6 @@ export async function getCurrentUserRole(): Promise<Role | null> {
     .eq("user_id", user.id)
     .maybeSingle();
 
-  console.log("roleCheck: clinic =", clinic);
   if (clinic) return "admin";
 
   // Otherwise check clinic_members table for invited role

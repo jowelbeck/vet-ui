@@ -12,7 +12,7 @@ type Member = {
   created_at: string;
 };
 
-const ROLES = ["admin", "vet", "nurse", "receptionist"];
+const ROLES = ["admin", "vet", "nurse", "technician", "receptionist"];
 
 export default function TeamPage() {
   const router = useRouter();

@@ -66,6 +66,12 @@ export default function AppointmentsPage() {
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push("/login"); return; }
+    const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+    const role = await getCurrentUserRole();
+    if (!hasAccess("appointments", role)) {
+      router.push("/patients");
+      return;
+    }
     loadAppointments();
   };
 

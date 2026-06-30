@@ -34,16 +34,44 @@ const CATEGORIES: Record<string, string[]> = {
   livestock: ["Antibiotics", "Antiparasitics", "Dewormers", "Vaccines", "Hormones", "IV Fluids", "Anti-inflammatories", "Vitamins & Supplements", "Ectoparasiticides", "Other"],
 };
 
-const COMMON_VET_DRUGS = [
-  { name: "Amoxicillin 500mg", category: "Antibiotics" },
-  { name: "Ivermectin 1%", category: "Antiparasitics" },
-  { name: "Meloxicam 5mg/ml", category: "Anti-inflammatories" },
-  { name: "Ketamine 500mg/10ml", category: "Anaesthetics" },
-  { name: "Dexamethasone 2mg/ml", category: "Anti-inflammatories" },
-  { name: "Vitamin B Complex", category: "Vitamins & Supplements" },
-  { name: "Praziquantel 50mg", category: "Antiparasitics" },
-  { name: "Penicillin G", category: "Antibiotics" },
-];
+const COMMON_VET_DRUGS: Record<string, {name: string, category: string}[]> = {
+  pets: [
+    { name: "Amoxicillin 500mg", category: "Antibiotics" },
+    { name: "Ivermectin 1%", category: "Antiparasitics" },
+    { name: "Meloxicam 5mg/ml", category: "Anti-inflammatories" },
+    { name: "Ketamine 500mg/10ml", category: "Anaesthetics" },
+    { name: "Dexamethasone 2mg/ml", category: "Anti-inflammatories" },
+    { name: "Vitamin B Complex", category: "Vitamins & Supplements" },
+    { name: "Praziquantel 50mg", category: "Antiparasitics" },
+    { name: "Penicillin G", category: "Antibiotics" },
+  ],
+  poultry: [
+    { name: "Newcastle Disease Vaccine", category: "Vaccines" },
+    { name: "Gumboro (IBD) Vaccine", category: "Vaccines" },
+    { name: "Marek's Disease Vaccine", category: "Vaccines" },
+    { name: "Infectious Bronchitis Vaccine", category: "Vaccines" },
+    { name: "Fowlpox Vaccine", category: "Vaccines" },
+    { name: "Tylosin Soluble Powder", category: "Solubles" },
+    { name: "Enrofloxacin 10% Solution", category: "Solubles" },
+    { name: "Vitamin C + Electrolytes", category: "Vitamins & Electrolytes" },
+    { name: "Amprolium 20%", category: "Anticoccidials" },
+    { name: "Toltrazuril 2.5%", category: "Anticoccidials" },
+    { name: "Piperazine Citrate", category: "Dewormers" },
+    { name: "Virkon S Disinfectant", category: "Disinfectants" },
+  ],
+  livestock: [
+    { name: "Oxytetracycline 20%", category: "Antibiotics" },
+    { name: "Penicillin-Streptomycin", category: "Antibiotics" },
+    { name: "Albendazole 10%", category: "Dewormers" },
+    { name: "Ivermectin 1% Injectable", category: "Antiparasitics" },
+    { name: "Oxytocin 10IU", category: "Hormones" },
+    { name: "Dexamethasone 2mg/ml", category: "Anti-inflammatories" },
+    { name: "Normal Saline 1L", category: "IV Fluids" },
+    { name: "Lugol's Iodine", category: "Vitamins & Supplements" },
+    { name: "Multivitamin Injectable", category: "Vitamins & Supplements" },
+    { name: "Tick & Lice Grease", category: "Ectoparasiticides" },
+  ],
+};
 
 export default function VetPharmacyPage() {
   const router = useRouter();
@@ -278,9 +306,9 @@ export default function VetPharmacyPage() {
             <h2 style={{ color: "#1a3d2b", marginBottom: 16, fontSize: 18 }}>Add Veterinary Drug</h2>
             <div style={{ marginBottom: 12 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Quick select common drugs</label>
-              <select onChange={e => { const d = COMMON_VET_DRUGS.find(x => x.name === e.target.value); if (d) { setDrugName(d.name); setCategory(d.category); } }} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
+              <select onChange={e => { const activeType = filterType !== "all" ? filterType : categoryType; const list = COMMON_VET_DRUGS[activeType] || COMMON_VET_DRUGS.pets; const d = list.find(x => x.name === e.target.value); if (d) { setDrugName(d.name); setCategory(d.category); } }} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
                 <option value="">Select common drug...</option>
-                {COMMON_VET_DRUGS.map(d => <option key={d.name}>{d.name}</option>)}
+                {(COMMON_VET_DRUGS[filterType !== "all" ? filterType : categoryType] || COMMON_VET_DRUGS.pets).map(d => <option key={d.name}>{d.name}</option>)}
               </select>
             </div>
             {[

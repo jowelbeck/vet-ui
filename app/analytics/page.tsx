@@ -339,6 +339,7 @@ export default function AnalyticsPage() {
                   { label: "👤 Add patient", href: "/patients" },
                   { label: "🧾 New invoice", href: "/billing" },
                   { label: "💊 Pharmacy", href: "/pharmacy" },
+                  { label: "🔬 Lab Results", href: "/lab" },
                   { label: "👥 Invite team", href: "/team" },
                 ].map(a => (
                   <a key={a.label} href={a.href} style={{ background: "#f0faf4", border: "1px solid #d4f0e0", color: "#1a3d2b", padding: "8px 16px", borderRadius: 8, fontSize: 13, fontWeight: 600, textDecoration: "none", transition: "all 0.15s" }}>

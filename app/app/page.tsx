@@ -732,7 +732,12 @@ export default function Home() {
       </a>
 
       <a
-        href="/pharmacy"
+        href="/lab"
+        style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
+            🔬 Lab
+          </a>
+          <a
+            href="/pharmacy"
         style={{ fontSize: 13, fontWeight: 500, color: "var(--slate-500)", textDecoration: "none", padding: "5px 10px", borderRadius: 6, background: "var(--slate-100)" }}>
             💊 Pharmacy
           </a>

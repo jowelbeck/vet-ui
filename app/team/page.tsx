@@ -33,6 +33,12 @@ export default function TeamPage() {
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push("/login"); return; }
+    const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+    const role = await getCurrentUserRole();
+    if (!hasAccess("team", role)) {
+      router.push("/app");
+      return;
+    }
     setCurrentUser(user);
 
     // Load clinic name

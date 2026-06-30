@@ -6,6 +6,9 @@ import { supabase } from "@/lib/supabase";
 
 type Stats = {
   totalPatients: number;
+  totalDrugs: number;
+  lowStockDrugs: number;
+  dispensedToday: number;
   totalInvoices: number;
   totalRevenue: number;
   outstandingRevenue: number;
@@ -34,6 +37,7 @@ export default function AnalyticsPage() {
   const [stats, setStats] = useState<Stats>({
     totalPatients: 0, totalInvoices: 0, totalRevenue: 0,
     outstandingRevenue: 0, totalCases: 0, highCases: 0, mediumCases: 0, lowCases: 0,
+    totalDrugs: 0, lowStockDrugs: 0, dispensedToday: 0,
   });
   const [animalCounts, setAnimalCounts] = useState<AnimalCount[]>([]);
   const [recentCases, setRecentCases] = useState<RecentCase[]>([]);
@@ -79,6 +83,13 @@ export default function AnalyticsPage() {
     const mediumCases = cases.filter((c: any) => c.urgency === "medium").length;
     const lowCases = cases.filter((c: any) => c.urgency === "low").length;
 
+    const { data: drugs } = await supabase.from("vet_pharmacy_stock").select("quantity, reorder_level");
+    const totalDrugs = drugs?.length ?? 0;
+    const lowStockDrugs = drugs?.filter((d: any) => d.quantity <= d.reorder_level).length ?? 0;
+    const { data: dispensing } = await supabase.from("vet_pharmacy_dispensing").select("dispensed_at");
+    const today = new Date().toDateString();
+    const dispensedToday = dispensing?.filter((d: any) => new Date(d.dispensed_at).toDateString() === today).length ?? 0;
+
     // Animal counts from cases
     const animalMap: Record<string, number> = {};
     cases.forEach((c: any) => {
@@ -99,7 +110,7 @@ export default function AnalyticsPage() {
       createdAt: c.createdAt,
     }));
 
-    setStats({ totalPatients: patientCount ?? 0, totalInvoices, totalRevenue, outstandingRevenue, totalCases, highCases, mediumCases, lowCases });
+    setStats({ totalPatients: patientCount ?? 0, totalInvoices, totalRevenue, outstandingRevenue, totalCases, highCases, mediumCases, lowCases, totalDrugs, lowStockDrugs, dispensedToday });
     setAnimalCounts(animalCountsArr);
     setRecentCases(recent);
   };
@@ -222,6 +233,21 @@ export default function AnalyticsPage() {
                 <div className="stat-icon">🟠</div>
                 <div className="stat-label">Outstanding</div>
                 <div className="stat-value">$ {stats.outstandingRevenue.toFixed(0)}</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">💊</div>
+                <div className="stat-label">Drugs in stock</div>
+                <div className="stat-value">{stats.totalDrugs}</div>
+              </div>
+              <div className="stat-card amber">
+                <div className="stat-icon">⚠️</div>
+                <div className="stat-label">Low stock alerts</div>
+                <div className="stat-value">{stats.lowStockDrugs}</div>
+              </div>
+              <div className="stat-card green">
+                <div className="stat-icon">✅</div>
+                <div className="stat-label">Dispensed today</div>
+                <div className="stat-value">{stats.dispensedToday}</div>
               </div>
             </div>
 

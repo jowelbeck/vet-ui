@@ -300,7 +300,7 @@ export default function VetPharmacyPage() {
             ))}
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Practice type</label>
-              <select value={categoryType} onChange={e => setCategoryType(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
+              <select value={categoryType} onChange={e => { setCategoryType(e.target.value); setCategory(""); }} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
                 <option value="pets">🐾 Pets</option>
                 <option value="poultry">🐔 Poultry</option>
                 <option value="livestock">🐄 Livestock</option>

@@ -3,9 +3,9 @@ import { supabase } from "@/lib/supabase";
 export type Role = "admin" | "vet" | "nurse" | "technician" | "receptionist";
 
 const ROLE_ACCESS: Record<string, Role[]> = {
-  cases: ["admin", "vet", "nurse"],
+  cases: ["admin", "vet", "nurse", "technician"],
   patients: ["admin", "vet", "nurse", "technician", "receptionist"],
-  appointments: ["admin", "vet", "nurse", "receptionist"],
+  appointments: ["admin", "vet", "nurse", "technician", "receptionist"],
   billing: ["admin", "receptionist"],
   pharmacy: ["admin", "vet", "nurse", "technician"],
   lab: ["admin", "vet", "nurse", "technician"],

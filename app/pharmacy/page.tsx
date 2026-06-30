@@ -8,6 +8,7 @@ type Drug = {
   drug_name: string;
   generic_name: string;
   category: string;
+  category_type: string;
   quantity: number;
   unit: string;
   reorder_level: number;
@@ -50,6 +51,8 @@ export default function VetPharmacyPage() {
   const [showDispense, setShowDispense] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  const [categoryType, setCategoryType] = useState("pets");
+  const [filterType, setFilterType] = useState("all");
   const [drugName, setDrugName] = useState("");
   const [genericName, setGenericName] = useState("");
   const [category, setCategory] = useState("");
@@ -98,7 +101,7 @@ export default function VetPharmacyPage() {
       user_id: user!.id,
       drug_name: drugName, generic_name: genericName, category,
       quantity: parseInt(quantity), unit, reorder_level: parseInt(reorderLevel),
-      expiry_date: expiryDate, supplier, unit_price: parseFloat(unitPrice),
+      expiry_date: expiryDate, supplier, unit_price: parseFloat(unitPrice), category_type: categoryType,
     });
     setDrugName(""); setGenericName(""); setCategory(""); setQuantity(""); setUnit(""); setReorderLevel("10"); setExpiryDate(""); setSupplier(""); setUnitPrice("");
     setShowAddDrug(false);
@@ -113,10 +116,12 @@ export default function VetPharmacyPage() {
     if (drug) {
       await supabase.from("vet_pharmacy_stock").update({ quantity: drug.quantity - parseInt(dispQty) }).eq("id", drug.id);
     }
+    const dispensedDrug = stock.find(d => d.drug_name === dispDrug);
     await supabase.from("vet_pharmacy_dispensing").insert({
       user_id: user!.id,
       patient_name: dispPatient, species: dispSpecies, drug_name: dispDrug,
       quantity: parseInt(dispQty), doctor: dispDoctor, notes: dispNotes,
+      category_type: dispensedDrug?.category_type || "pets",
     });
     setDispPatient(""); setDispSpecies(""); setDispDrug(""); setDispQty(""); setDispDoctor(""); setDispNotes("");
     setShowDispense(false);
@@ -170,6 +175,15 @@ export default function VetPharmacyPage() {
           ))}
         </div>
 
+        {/* Practice type filter */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+          {["all", "pets", "poultry", "livestock"].map(f => (
+            <button key={f} onClick={() => setFilterType(f)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: filterType === f ? 700 : 400, background: filterType === f ? "#1a3d2b" : "#e2e8f0", color: filterType === f ? "#fff" : "#64748b", fontSize: 13, textTransform: "capitalize" as const }}>
+              {f === "all" ? "All" : f === "pets" ? "🐾 Pets" : f === "poultry" ? "🐔 Poultry" : "🐄 Livestock"}
+            </button>
+          ))}
+        </div>
+
         <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
           {(["stock", "history"] as const).map(t => (
             <button key={t} onClick={() => setTab(t)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: tab === t ? 700 : 400, background: tab === t ? "#1a3d2b" : "#e2e8f0", color: tab === t ? "#fff" : "#64748b", fontSize: 13, textTransform: "capitalize" as const }}>
@@ -180,6 +194,13 @@ export default function VetPharmacyPage() {
 
         {tab === "stock" && (
           loading ? <div style={{ textAlign: "center", padding: 40, color: "#64748b" }}>Loading...</div> :
+          (() => { const filteredStock = filterType === "all" ? stock : stock.filter(d => d.category_type === filterType); return filteredStock; })().length === 0 && filterType !== "all" ? (
+            <div style={{ textAlign: "center", padding: 60, color: "#94a3b8" }}>
+              <div style={{ fontSize: 40, marginBottom: 12 }}>{filterType === "pets" ? "🐾" : filterType === "poultry" ? "🐔" : "🐄"}</div>
+              <div>No {filterType} drugs in stock yet</div>
+              <button onClick={() => setShowAddDrug(true)} style={{ marginTop: 16, background: "#1a3d2b", color: "#fff", border: "none", padding: "10px 24px", borderRadius: 8, cursor: "pointer", fontWeight: 600 }}>Add {filterType} drug</button>
+            </div>
+          ) :
           stock.length === 0 ? (
             <div style={{ textAlign: "center", padding: 60, color: "#94a3b8" }}>
               <div style={{ fontSize: 40, marginBottom: 12 }}>💊</div>
@@ -197,7 +218,7 @@ export default function VetPharmacyPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {stock.map((d, i) => {
+                  {(filterType === "all" ? stock : stock.filter(d => d.category_type === filterType)).map((d, i) => {
                     const isLow = d.quantity <= d.reorder_level;
                     return (
                       <tr key={d.id} style={{ borderTop: "1px solid #f1f5f9", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
@@ -273,8 +294,16 @@ export default function VetPharmacyPage() {
                 <input type={f.type || "text"} value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.placeholder} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
               </div>
             ))}
+            <div style={{ marginBottom: 14 }}>
+              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Practice type</label>
+              <select value={categoryType} onChange={e => setCategoryType(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
+                <option value="pets">🐾 Pets</option>
+                <option value="poultry">🐔 Poultry</option>
+                <option value="livestock">🐄 Livestock</option>
+              </select>
+            </div>
             <div style={{ marginBottom: 20 }}>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Category</label>
+              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
               <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
                 <option value="">Select...</option>
                 {CATEGORIES.map(c => <option key={c}>{c}</option>)}

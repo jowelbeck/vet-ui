@@ -62,6 +62,12 @@ export default function BillingPage() {
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push("/login"); return; }
+    const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+    const role = await getCurrentUserRole();
+    if (!hasAccess("billing", role)) {
+      router.push("/app");
+      return;
+    }
     loadInvoices();
   };
 

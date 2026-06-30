@@ -83,8 +83,14 @@ function cap(s?: string): string {
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) { router.push("/login"); return; }
+      const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+      const role = await getCurrentUserRole();
+      if (!hasAccess("cases", role)) {
+        router.push("/patients");
+        return;
+      }
       supabase.from("subscriptions").select("plan,status").eq("user_id", user.id).single().then(({ data }) => {
         if (data) setSubscription(data);
       });

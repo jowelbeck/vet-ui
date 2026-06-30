@@ -28,7 +28,11 @@ type Dispensing = {
   dispensed_at: string;
 };
 
-const CATEGORIES = ["Antibiotics", "Antiparasitics", "Vaccines", "Anaesthetics", "Anti-inflammatories", "Vitamins & Supplements", "Hormones", "Antifungals", "IV Fluids", "Other"];
+const CATEGORIES: Record<string, string[]> = {
+  pets: ["Antibiotics", "Antiparasitics", "Anaesthetics", "Anti-inflammatories", "Vaccines", "Vitamins & Supplements", "Antifungals", "Hormones", "Other"],
+  poultry: ["Vaccines", "Solubles", "Antibiotics", "Dewormers", "Disinfectants", "Feed Additives", "Vitamins & Electrolytes", "Other"],
+  livestock: ["Antibiotics", "Antiparasitics", "Dewormers", "Vaccines", "Hormones", "IV Fluids", "Anti-inflammatories", "Vitamins & Supplements", "Other"],
+};
 
 const COMMON_VET_DRUGS = [
   { name: "Amoxicillin 500mg", category: "Antibiotics" },
@@ -306,7 +310,7 @@ export default function VetPharmacyPage() {
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
               <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
                 <option value="">Select...</option>
-                {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+                {(CATEGORIES[categoryType] || CATEGORIES.pets).map(c => <option key={c}>{c}</option>)}
               </select>
             </div>
             <div style={{ display: "flex", gap: 12 }}>

@@ -47,6 +47,12 @@ export default function AnalyticsPage() {
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push("/login"); return; }
+    const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+    const role = await getCurrentUserRole();
+    if (!hasAccess("analytics", role)) {
+      router.push("/app");
+      return;
+    }
 
     const { data: clinic } = await supabase.from("clinics").select("name").eq("user_id", user.id).maybeSingle();
     if (clinic) setClinicName(clinic.name);

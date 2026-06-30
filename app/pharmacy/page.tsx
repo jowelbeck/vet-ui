@@ -68,8 +68,14 @@ export default function VetPharmacyPage() {
   const [dispNotes, setDispNotes] = useState("");
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) { router.push("/login"); return; }
+      const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+      const role = await getCurrentUserRole();
+      if (!hasAccess("pharmacy", role)) {
+        router.push("/patients");
+        return;
+      }
       loadData();
     });
   }, []);

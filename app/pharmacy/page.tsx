@@ -343,8 +343,8 @@ export default function VetPharmacyPage() {
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug *</label>
               <select value={dispDrug} onChange={e => setDispDrug(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
                 <option value="">Select drug...</option>
-                {stock.filter(d => d.quantity > 0).map(d => (
-                  <option key={d.id} value={d.drug_name}>{d.drug_name} ({d.quantity} {d.unit} available)</option>
+                {stock.filter(d => d.quantity > 0 && (filterType === "all" || d.category_type === filterType)).map(d => (
+                  <option key={d.id} value={d.drug_name}>{d.drug_name} ({d.quantity} {d.unit} available) [{d.category_type}]</option>
                 ))}
               </select>
             </div>

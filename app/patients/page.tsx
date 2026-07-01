@@ -233,7 +233,7 @@ export default function PatientsPage() {
             <div className="card-title">New patient</div>
             <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
               {["pets", "poultry", "livestock"].map(f => (
-                <button key={f} onClick={() => { setSpeciesType(f); setAnimal(f === "pets" ? "Dog" : f === "poultry" ? "Chicken" : "Cattle"); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: (filterType !== "all" ? filterType : speciesType) === f ? 700 : 400, background: (filterType !== "all" ? filterType : speciesType) === f ? "#1a3d2b" : "#e2e8f0", color: (filterType !== "all" ? filterType : speciesType) === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                <button key={f} onClick={() => { setSpeciesType(f); setAnimal(f === "pets" ? "Dog" : f === "poultry" ? "Chicken" : "Cattle"); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
                   {f === "pets" ? "🐾 Pets" : f === "poultry" ? "🐔 Poultry" : "🐄 Livestock"}
                 </button>
               ))}
@@ -246,9 +246,9 @@ export default function PatientsPage() {
               <div className="field">
                 <label>Animal *</label>
                 <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
-                  {(speciesType === "pets" || filterType === "pets"
+                  {(speciesType === "pets"
                     ? ["Dog", "Cat", "Rabbit", "Bird", "Hamster", "Guinea Pig", "Other"]
-                    : speciesType === "poultry" || filterType === "poultry"
+                    : speciesType === "poultry"
                     ? ["Chicken", "Turkey", "Duck", "Guinea Fowl", "Ostrich", "Quail", "Other"]
                     : ["Cattle", "Goat", "Sheep", "Pig", "Horse", "Donkey", "Camel", "Other"]
                   ).map((a) => (

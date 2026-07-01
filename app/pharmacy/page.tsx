@@ -333,13 +333,20 @@ export default function VetPharmacyPage() {
               { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
               { label: "Expiry date", value: expiryDate, set: setExpiryDate, placeholder: "", type: "date" },
 
-              { label: "Unit price (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
+              { label: "Unit cost (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
             ].map(f => (
               <div key={f.label} style={{ marginBottom: 12 }}>
                 <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>{f.label}</label>
                 <input type={f.type || "text"} value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.placeholder} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
               </div>
             ))}
+            {/* Unit cost and total cost row */}
+            {unitPrice && quantity && (
+              <div style={{ background: "#f0faf4", borderRadius: 8, padding: "10px 14px", marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: 13, color: "#64748b" }}>GHS {parseFloat(unitPrice || "0").toFixed(2)} × {quantity} units</span>
+                <span style={{ fontWeight: 700, fontSize: 15, color: "#1a3d2b" }}>= GHS {(parseFloat(unitPrice || "0") * parseInt(quantity || "0")).toFixed(2)}</span>
+              </div>
+            )}
             <div style={{ marginBottom: 20 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
               <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>

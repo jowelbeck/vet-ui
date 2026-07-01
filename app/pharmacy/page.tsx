@@ -15,6 +15,9 @@ type Drug = {
   expiry_date: string;
   supplier: string;
   unit_price: number;
+  invoice_number: string;
+  invoice_date: string;
+  created_at: string;
 };
 
 type Dispensing = {
@@ -135,7 +138,9 @@ export default function VetPharmacyPage() {
       user_id: user!.id,
       drug_name: drugName, generic_name: genericName, category,
       quantity: parseInt(quantity), unit, reorder_level: parseInt(reorderLevel),
-      expiry_date: expiryDate, supplier, unit_price: parseFloat(unitPrice), category_type: categoryType,
+      expiry_date: expiryDate, supplier, unit_price: parseFloat(unitPrice),
+      category_type: filterType !== "all" ? filterType : categoryType,
+      invoice_number: invoiceNumber, invoice_date: invoiceDate || null,
     });
     setDrugName(""); setGenericName(""); setCategory(""); setQuantity(""); setUnit(""); setReorderLevel("10"); setExpiryDate(""); setSupplier(""); setUnitPrice("");
     setShowAddDrug(false);
@@ -246,7 +251,7 @@ export default function VetPharmacyPage() {
               <table style={{ width: "100%", borderCollapse: "collapse" as const }}>
                 <thead>
                   <tr style={{ background: "#f8fafc" }}>
-                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Invoice Date", "Date Added", "Supplier", "Status"].map(h => (
+                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Inv Date / Added", "Supplier", "Status"].map(h => (
                       <th key={h} style={{ padding: "12px 16px", textAlign: "left" as const, fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase" as const }}>{h}</th>
                     ))}
                   </tr>
@@ -265,8 +270,10 @@ export default function VetPharmacyPage() {
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.unit}</td>
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.expiry_date ? new Date(d.expiry_date).toLocaleDateString() : "—"}</td>
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>GHS {d.unit_price}</td>
-                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.invoice_date ? new Date(d.invoice_date).toLocaleDateString() : "—"}</td>
-                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.created_at ? new Date(d.created_at).toLocaleDateString() : "—"}</td>
+                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>
+                          <div>Inv: {d.invoice_date ? new Date(d.invoice_date).toLocaleDateString() : "—"}</div>
+                          <div style={{ fontSize: 11, color: "#94a3b8" }}>Added: {d.created_at ? new Date(d.created_at).toLocaleDateString() : "—"}</div>
+                        </td>
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.supplier || "—"}</td>
                         <td style={{ padding: "12px 16px" }}>
                           <span style={{ background: isLow ? "#fef2f2" : "#f0faf4", color: isLow ? "#dc2626" : "#16a34a", padding: "3px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700 }}>

@@ -29,7 +29,7 @@ type Dispensing = {
 };
 
 const CATEGORIES: Record<string, string[]> = {
-  pets: ['Anaesthetics', 'Anti-inflammatories', 'Antibiotics', 'Antifungals', 'Antiparasitics', 'Hormones', 'Vaccines', 'Vitamins & Supplements', 'Other'],
+  pets: ['Anaesthetics', 'Anti-inflammatories', 'Antibiotics', 'Antifungals', 'Antiparasitics', 'Hormones', 'Leashes', 'Pet Bowls', 'Pet Food', 'Toys', 'Vaccines', 'Vitamins & Supplements', 'Other'],
   poultry: ['Antibiotics', 'Anticoccidials', 'Delousing', 'Dewormers', 'Disinfectants', 'Feed Additives', 'Feeders & Drinkers', 'Solubles', 'Vaccination Equipment', 'Vaccines', 'Vitamins & Electrolytes', 'Other'],
   livestock: ['Anti-inflammatories', 'Antibiotics', 'Antiparasitics', 'Dewormers', 'Ectoparasiticides', 'Hormones', 'IV Fluids', 'Vaccines', 'Vitamins & Supplements', 'Other'],
 };
@@ -303,7 +303,10 @@ export default function VetPharmacyPage() {
       {showAddDrug && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50, padding: 20 }}>
           <div style={{ background: "#fff", borderRadius: 16, padding: 32, width: "100%", maxWidth: 480, maxHeight: "90vh", overflowY: "auto" as const }}>
-            <h2 style={{ color: "#1a3d2b", marginBottom: 16, fontSize: 18 }}>Add Veterinary Drug</h2>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+              <button onClick={() => setShowAddDrug(false)} style={{ background: "#f1f5f9", border: "none", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#64748b", fontSize: 16, marginRight: 12 }}>✕</button>
+              <h2 style={{ color: "#1a3d2b", margin: 0, fontSize: 18 }}>Add Veterinary Drug</h2>
+            </div>
             <div style={{ marginBottom: 12 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Quick select common drugs</label>
               <select onChange={e => { const activeType = filterType !== "all" ? filterType : categoryType; const list = COMMON_VET_DRUGS[activeType] || COMMON_VET_DRUGS.pets; const d = list.find(x => x.name === e.target.value); if (d) { setDrugName(d.name); setCategory(d.category); } }} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
@@ -346,7 +349,10 @@ export default function VetPharmacyPage() {
       {showDispense && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50, padding: 20 }}>
           <div style={{ background: "#fff", borderRadius: 16, padding: 32, width: "100%", maxWidth: 440 }}>
-            <h2 style={{ color: "#1a3d2b", marginBottom: 20, fontSize: 18 }}>Dispense Drug</h2>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
+              <button onClick={() => setShowDispense(false)} style={{ background: "#f1f5f9", border: "none", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#64748b", fontSize: 16, marginRight: 12 }}>✕</button>
+              <h2 style={{ color: "#1a3d2b", margin: 0, fontSize: 18 }}>Dispense Drug</h2>
+            </div>
             {[
               { label: "Patient/Animal name *", value: dispPatient, set: setDispPatient, placeholder: "Buddy" },
               { label: "Species", value: dispSpecies, set: setDispSpecies, placeholder: "Dog / Cat / Horse..." },

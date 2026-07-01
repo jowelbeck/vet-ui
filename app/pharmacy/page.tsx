@@ -328,7 +328,12 @@ export default function VetPharmacyPage() {
             {[
               { label: "Drug name *", value: drugName, set: setDrugName, placeholder: "Amoxicillin 500mg" },
               { label: "Generic name", value: genericName, set: setGenericName, placeholder: "Amoxicillin" },
-            ]}
+            ].map(f => (
+              <div key={f.label} style={{ marginBottom: 12 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>{f.label}</label>
+                <input type="text" value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.placeholder} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
+              </div>
+            ))}
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
               <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>

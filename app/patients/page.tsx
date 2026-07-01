@@ -31,6 +31,7 @@ export default function PatientsPage() {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterType, setFilterType] = useState("all");
   const [showForm, setShowForm] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -38,6 +39,7 @@ export default function PatientsPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Form state
+  const [speciesType, setSpeciesType] = useState("pets");
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("Dog");
   const [breed, setBreed] = useState("");
@@ -75,6 +77,8 @@ export default function PatientsPage() {
       user_id: user?.id,
       name: name.trim(),
       animal: animal.trim(),
+      species_type: filterType !== "all" ? filterType : speciesType,
+      species_type: filterType !== "all" ? filterType : speciesType,
       breed: breed.trim(),
       age: age.trim(),
       weight: weight.trim(),
@@ -102,6 +106,7 @@ export default function PatientsPage() {
   };
 
   const filtered = patients.filter((p) => {
+    if (filterType !== "all" && p.species_type !== filterType) return false;
     const q = searchTerm.toLowerCase();
     return (
       p.name.toLowerCase().includes(q) ||
@@ -226,15 +231,27 @@ export default function PatientsPage() {
         {showForm && (
           <div className="card">
             <div className="card-title">New patient</div>
+            <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+              {["pets", "poultry", "livestock"].map(f => (
+                <button key={f} onClick={() => { setSpeciesType(f); setAnimal(f === "pets" ? "Dog" : f === "poultry" ? "Chicken" : "Cattle"); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: (filterType !== "all" ? filterType : speciesType) === f ? 700 : 400, background: (filterType !== "all" ? filterType : speciesType) === f ? "#1a3d2b" : "#e2e8f0", color: (filterType !== "all" ? filterType : speciesType) === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                  {f === "pets" ? "🐾 Pets" : f === "poultry" ? "🐔 Poultry" : "🐄 Livestock"}
+                </button>
+              ))}
+            </div>
             <div className="field-grid">
               <div className="field">
-                <label>Pet name *</label>
-                <input placeholder="Buddy" value={name} onChange={(e) => setName(e.target.value)} />
+                <label>Patient name *</label>
+                <input placeholder={speciesType === "pets" ? "Buddy" : speciesType === "poultry" ? "Flock A" : "Bull 001"} value={name} onChange={(e) => setName(e.target.value)} />
               </div>
               <div className="field">
                 <label>Animal *</label>
                 <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
-                  {["Dog", "Cat", "Rabbit", "Bird", "Horse", "Goat", "Cow", "Other"].map((a) => (
+                  {(speciesType === "pets" || filterType === "pets"
+                    ? ["Dog", "Cat", "Rabbit", "Bird", "Hamster", "Guinea Pig", "Other"]
+                    : speciesType === "poultry" || filterType === "poultry"
+                    ? ["Chicken", "Turkey", "Duck", "Guinea Fowl", "Ostrich", "Quail", "Other"]
+                    : ["Cattle", "Goat", "Sheep", "Pig", "Horse", "Donkey", "Camel", "Other"]
+                  ).map((a) => (
                     <option key={a}>{a}</option>
                   ))}
                 </select>
@@ -270,6 +287,15 @@ export default function PatientsPage() {
             </div>
           </div>
         )}
+
+        {/* Practice type filter */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+          {["all", "pets", "poultry", "livestock"].map(f => (
+            <button key={f} onClick={() => setFilterType(f)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: filterType === f ? 700 : 400, background: filterType === f ? "#1a3d2b" : "#e2e8f0", color: filterType === f ? "#fff" : "#64748b", fontSize: 13, textTransform: "capitalize" as const }}>
+              {f === "all" ? "All" : f === "pets" ? "🐾 Pets" : f === "poultry" ? "🐔 Poultry" : "🐄 Livestock"}
+            </button>
+          ))}
+        </div>
 
         {/* Search */}
         <div className="search-wrap">

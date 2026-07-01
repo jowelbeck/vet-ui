@@ -328,11 +328,11 @@ export default function VetPharmacyPage() {
             {[
               { label: "Drug name *", value: drugName, set: setDrugName, placeholder: "Amoxicillin 500mg" },
               { label: "Generic name", value: genericName, set: setGenericName, placeholder: "Amoxicillin" },
-              { label: "Quantity *", value: quantity, set: setQuantity, placeholder: "100", type: "number" },
-              { label: "Unit", value: unit, set: setUnit, placeholder: "tablets / vials / bottles" },
-              { label: "Unit cost (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
-              { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
               { label: "Expiry date", value: expiryDate, set: setExpiryDate, placeholder: "", type: "date" },
+              { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
+              { label: "Unit", value: unit, set: setUnit, placeholder: "tablets / vials / bottles" },
+              { label: "Quantity *", value: quantity, set: setQuantity, placeholder: "100", type: "number" },
+              { label: "Unit cost (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
 
             ].map(f => (
               <div key={f.label} style={{ marginBottom: 12 }}>

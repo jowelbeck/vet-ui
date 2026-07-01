@@ -246,7 +246,7 @@ export default function VetPharmacyPage() {
               <table style={{ width: "100%", borderCollapse: "collapse" as const }}>
                 <thead>
                   <tr style={{ background: "#f8fafc" }}>
-                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Status"].map(h => (
+                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Invoice Date", "Date Added", "Supplier", "Status"].map(h => (
                       <th key={h} style={{ padding: "12px 16px", textAlign: "left" as const, fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase" as const }}>{h}</th>
                     ))}
                   </tr>
@@ -265,6 +265,9 @@ export default function VetPharmacyPage() {
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.unit}</td>
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.expiry_date ? new Date(d.expiry_date).toLocaleDateString() : "—"}</td>
                         <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>GHS {d.unit_price}</td>
+                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.invoice_date ? new Date(d.invoice_date).toLocaleDateString() : "—"}</td>
+                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.created_at ? new Date(d.created_at).toLocaleDateString() : "—"}</td>
+                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.supplier || "—"}</td>
                         <td style={{ padding: "12px 16px" }}>
                           <span style={{ background: isLow ? "#fef2f2" : "#f0faf4", color: isLow ? "#dc2626" : "#16a34a", padding: "3px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700 }}>
                             {isLow ? "LOW" : "OK"}

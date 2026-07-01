@@ -29,9 +29,9 @@ type Dispensing = {
 };
 
 const CATEGORIES: Record<string, string[]> = {
-  pets: ["Antibiotics", "Antiparasitics", "Anaesthetics", "Anti-inflammatories", "Vaccines", "Vitamins & Supplements", "Antifungals", "Hormones", "Other"],
-  poultry: ["Vaccines", "Solubles", "Antibiotics", "Anticoccidials", "Dewormers", "Disinfectants", "Delousing", "Feed Additives", "Vitamins & Electrolytes", "Feeders & Drinkers", "Vaccination Equipment", "Other"],
-  livestock: ["Antibiotics", "Antiparasitics", "Dewormers", "Vaccines", "Hormones", "IV Fluids", "Anti-inflammatories", "Vitamins & Supplements", "Ectoparasiticides", "Other"],
+  pets: ['Anaesthetics', 'Anti-inflammatories', 'Antibiotics', 'Antifungals', 'Antiparasitics', 'Hormones', 'Vaccines', 'Vitamins & Supplements', 'Other'],
+  poultry: ['Antibiotics', 'Anticoccidials', 'Delousing', 'Dewormers', 'Disinfectants', 'Feed Additives', 'Feeders & Drinkers', 'Solubles', 'Vaccination Equipment', 'Vaccines', 'Vitamins & Electrolytes', 'Other'],
+  livestock: ['Anti-inflammatories', 'Antibiotics', 'Antiparasitics', 'Dewormers', 'Ectoparasiticides', 'Hormones', 'IV Fluids', 'Vaccines', 'Vitamins & Supplements', 'Other'],
 };
 
 const COMMON_VET_DRUGS: Record<string, {name: string, category: string}[]> = {

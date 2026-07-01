@@ -330,10 +330,10 @@ export default function VetPharmacyPage() {
               { label: "Generic name", value: genericName, set: setGenericName, placeholder: "Amoxicillin" },
               { label: "Quantity *", value: quantity, set: setQuantity, placeholder: "100", type: "number" },
               { label: "Unit", value: unit, set: setUnit, placeholder: "tablets / vials / bottles" },
+              { label: "Unit cost (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
               { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
               { label: "Expiry date", value: expiryDate, set: setExpiryDate, placeholder: "", type: "date" },
 
-              { label: "Unit cost (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
             ].map(f => (
               <div key={f.label} style={{ marginBottom: 12 }}>
                 <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>{f.label}</label>

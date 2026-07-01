@@ -240,8 +240,8 @@ export default function PatientsPage() {
             </div>
             <div className="field-grid">
               <div className="field">
-                <label>Patient name *</label>
-                <input placeholder={speciesType === "pets" ? "Buddy" : speciesType === "poultry" ? "Flock A" : "Bull 001"} value={name} onChange={(e) => setName(e.target.value)} />
+                <label>{speciesType === "pets" ? "Pet name *" : speciesType === "poultry" ? "Farm name *" : "Animal ID / Tag *"}</label>
+                <input placeholder={speciesType === "pets" ? "Buddy" : speciesType === "poultry" ? "Kofi Farms" : "TAG-001"} value={name} onChange={(e) => setName(e.target.value)} />
               </div>
               <div className="field">
                 <label>Animal *</label>
@@ -257,16 +257,16 @@ export default function PatientsPage() {
                 </select>
               </div>
               <div className="field">
-                <label>Breed</label>
-                <input placeholder="Labrador" value={breed} onChange={(e) => setBreed(e.target.value)} />
+                <label>{speciesType === "pets" ? "Breed" : speciesType === "poultry" ? "Breed / Strain" : "Breed"}</label>
+                <input placeholder={speciesType === "pets" ? "Labrador" : speciesType === "poultry" ? "Broiler / Layer / Noiler" : "Friesian / Sahiwal"} value={breed} onChange={(e) => setBreed(e.target.value)} />
               </div>
               <div className="field">
-                <label>Age</label>
-                <input placeholder="3 years" value={age} onChange={(e) => setAge(e.target.value)} />
+                <label>{speciesType === "poultry" ? "Flock size" : "Age"}</label>
+                <input placeholder={speciesType === "pets" ? "3 years" : speciesType === "poultry" ? "500 birds" : "4 years"} value={age} onChange={(e) => setAge(e.target.value)} />
               </div>
               <div className="field">
-                <label>Weight</label>
-                <input placeholder="12 kg" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                <label>{speciesType === "poultry" ? "Age (weeks)" : "Weight"}</label>
+                <input placeholder={speciesType === "pets" ? "12 kg" : speciesType === "poultry" ? "4 weeks" : "450 kg"} value={weight} onChange={(e) => setWeight(e.target.value)} />
               </div>
               <div className="field">
                 <label>Owner name</label>

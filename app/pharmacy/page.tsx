@@ -93,6 +93,7 @@ export default function VetPharmacyPage() {
   const [reorderLevel, setReorderLevel] = useState("10");
   const [expiryDate, setExpiryDate] = useState("");
   const [supplier, setSupplier] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState("");
   const [unitPrice, setUnitPrice] = useState("");
 
   const [dispPatient, setDispPatient] = useState("");
@@ -307,6 +308,16 @@ export default function VetPharmacyPage() {
               <button onClick={() => setShowAddDrug(false)} style={{ background: "#f1f5f9", border: "none", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#64748b", fontSize: 16, marginRight: 12 }}>✕</button>
               <h2 style={{ color: "#1a3d2b", margin: 0, fontSize: 18 }}>Add Veterinary Drug</h2>
             </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
+              <div>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Supplier name</label>
+                <input value={supplier} onChange={e => setSupplier(e.target.value)} placeholder="e.g. Intervet Ghana" style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
+              </div>
+              <div>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Invoice #</label>
+                <input value={invoiceNumber} onChange={e => setInvoiceNumber(e.target.value)} placeholder="e.g. INV-2026-001" style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
+              </div>
+            </div>
             <div style={{ marginBottom: 12 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Quick select common drugs</label>
               <select onChange={e => { const activeType = filterType !== "all" ? filterType : categoryType; const list = COMMON_VET_DRUGS[activeType] || COMMON_VET_DRUGS.pets; const d = list.find(x => x.name === e.target.value); if (d) { setDrugName(d.name); setCategory(d.category); } }} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
@@ -321,7 +332,7 @@ export default function VetPharmacyPage() {
               { label: "Unit", value: unit, set: setUnit, placeholder: "tablets / vials / bottles" },
               { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
               { label: "Expiry date", value: expiryDate, set: setExpiryDate, placeholder: "", type: "date" },
-              { label: "Supplier", value: supplier, set: setSupplier, placeholder: "Supplier name" },
+
               { label: "Unit price (GHS)", value: unitPrice, set: setUnitPrice, placeholder: "15.00", type: "number" },
             ].map(f => (
               <div key={f.label} style={{ marginBottom: 12 }}>

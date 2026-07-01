@@ -328,6 +328,15 @@ export default function VetPharmacyPage() {
             {[
               { label: "Drug name *", value: drugName, set: setDrugName, placeholder: "Amoxicillin 500mg" },
               { label: "Generic name", value: genericName, set: setGenericName, placeholder: "Amoxicillin" },
+            ]}
+            <div style={{ marginBottom: 14 }}>
+              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
+              <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
+                <option value="">Select...</option>
+                {(CATEGORIES[filterType !== "all" ? filterType : categoryType] || CATEGORIES.pets).map(c => <option key={c}>{c}</option>)}
+              </select>
+            </div>
+            {[
               { label: "Expiry date", value: expiryDate, set: setExpiryDate, placeholder: "", type: "date" },
               { label: "Reorder level", value: reorderLevel, set: setReorderLevel, placeholder: "10", type: "number" },
               { label: "Unit", value: unit, set: setUnit, placeholder: "tablets / vials / bottles" },
@@ -347,13 +356,7 @@ export default function VetPharmacyPage() {
                 <span style={{ fontWeight: 700, fontSize: 15, color: "#1a3d2b" }}>= GHS {(parseFloat(unitPrice || "0") * parseInt(quantity || "0")).toFixed(2)}</span>
               </div>
             )}
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Drug category</label>
-              <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }}>
-                <option value="">Select...</option>
-                {(CATEGORIES[filterType !== "all" ? filterType : categoryType] || CATEGORIES.pets).map(c => <option key={c}>{c}</option>)}
-              </select>
-            </div>
+
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => setShowAddDrug(false)} style={{ flex: 1, padding: "10px", borderRadius: 8, border: "1px solid #e2e8f0", background: "#fff", cursor: "pointer", color: "#64748b" }}>Cancel</button>
               <button onClick={addDrug} disabled={!drugName || !quantity || saving} style={{ flex: 2, padding: "10px", borderRadius: 8, border: "none", background: "#1a3d2b", color: "#fff", fontWeight: 700, cursor: "pointer" }}>

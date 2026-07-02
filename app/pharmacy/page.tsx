@@ -426,5 +426,6 @@ export default function VetPharmacyPage() {
         </div>
       )}
     </main>
+    </>
   );
 }

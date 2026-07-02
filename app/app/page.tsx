@@ -289,7 +289,7 @@ export default function Home() {
         body: JSON.stringify({
           animal: animal.trim(),
         species_type: speciesType,
-        vaccination_history: speciesType === "poultry" ? vaccinationHistory.join(", ") : null,
+        vaccination_history: vaccinationHistory.length > 0 ? vaccinationHistory.join(", ") : null,
           symptoms: symptoms.trim(),
           pet_name: petName.trim(),
           breed: breed.trim(),
@@ -980,7 +980,7 @@ export default function Home() {
                 <div className="card-title">{t.patientInfo}</div>
                 <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
                 {["pets", "poultry", "livestock"].map(f => (
-                  <button key={f} onClick={() => setSpeciesType(f)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                  <button key={f} onClick={() => { setSpeciesType(f); setVaccinationHistory([]); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
                     {f === "pets" ? "Pets" : f === "poultry" ? "Poultry" : "Livestock"}
                   </button>
                 ))}
@@ -1028,11 +1028,16 @@ export default function Home() {
                       onChange={(e) => setWeight(e.target.value)}
                     />
                   </div>
-                  {speciesType === "poultry" && (
+                  {(speciesType === "poultry" || speciesType === "pets" || speciesType === "livestock") && (
                     <div className="field field-full">
                       <label>{lang === "fr" ? "Vaccins administres" : "Vaccination history"}</label>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
-                        {["Newcastle Disease", "Gumboro (IBD)", "Infectious Bronchitis", "Mareks Disease", "Fowlpox", "Avian Influenza", "Not vaccinated", "Unknown"].map(v => (
+                        {(speciesType === "pets"
+                          ? ["Rabies", "Distemper (CDV)", "Parvovirus (CPV)", "Hepatitis (CAV)", "Leptospirosis", "Bordetella", "Feline Herpesvirus (FHV)", "Feline Calicivirus (FCV)", "Feline Panleukopenia (FPV)", "Not vaccinated", "Unknown"]
+                          : speciesType === "poultry"
+                          ? ["Newcastle Disease", "Gumboro (IBD)", "Infectious Bronchitis", "Mareks Disease", "Fowlpox", "Avian Influenza", "Not vaccinated", "Unknown"]
+                          : ["FMD (Foot & Mouth)", "Anthrax", "Blackleg", "Brucellosis", "PPR", "Lumpy Skin Disease", "Rabies", "Not vaccinated", "Unknown"]
+                        ).map(v => (
                           <label key={v} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, cursor: "pointer", background: vaccinationHistory.includes(v) ? "#e8f5e9" : "#f8fafc", border: "1px solid " + (vaccinationHistory.includes(v) ? "#1a3d2b" : "#e2e8f0"), borderRadius: 6, padding: "5px 10px" }}>
                             <input type="checkbox" checked={vaccinationHistory.includes(v)} onChange={e => setVaccinationHistory(prev => e.target.checked ? [...prev, v] : prev.filter(x => x !== v))} />
                             {v}

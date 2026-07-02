@@ -525,6 +525,7 @@ export default function Home() {
   // ── Derived values ─────────────────────────────────────────────────────────
 
   const filteredHistory = caseHistory.filter((item) => {
+    if (caseFilterType !== "all" && item.species_type !== caseFilterType) return false;
     const q = searchTerm.toLowerCase();
     return (
       (item.petName ?? "").toLowerCase().includes(q) ||
@@ -1089,6 +1090,13 @@ export default function Home() {
               </button>
             </div>
 
+            <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+              {["all", "pets", "poultry", "livestock"].map(f => (
+                <button key={f} onClick={() => setCaseFilterType(f)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: caseFilterType === f ? 700 : 400, background: caseFilterType === f ? "#1a3d2b" : "#e2e8f0", color: caseFilterType === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                  {f === "all" ? "All" : f === "pets" ? "🐾 Pets" : f === "poultry" ? "🐔 Poultry" : "🐄 Livestock"}
+                </button>
+              ))}
+            </div>
             <div className="search-wrap">
               <span className="search-icon">🔍</span>
               <input

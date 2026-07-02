@@ -149,7 +149,9 @@ export default function Home() {
     placeholderAge: lang === "fr" ? (speciesType === "poultry" ? "4 semaines" : speciesType === "livestock" ? "4 ans" : "3 ans") : (speciesType === "poultry" ? "4 weeks" : speciesType === "livestock" ? "4 years" : "3 years"),
     placeholderWeight: lang === "fr" ? (speciesType === "poultry" ? "ex: 200 oiseaux" : speciesType === "livestock" ? "450 kg" : "12 kg") : (speciesType === "poultry" ? "e.g. 200 birds" : speciesType === "livestock" ? "450 kg" : "12 kg"),
     placeholderSymptoms: lang === "fr" ? "Décrivez ce que vous avez observé — comportement, signes physiques, durée…" : "Describe what you've observed — behaviour, physical signs, duration…",
-    placeholderSearch: lang === "fr" ? "Rechercher par animal, espèce ou symptômes…" : "Search by pet, animal, or symptoms…",
+    placeholderSearch: lang === "fr"
+      ? (caseFilterType === "poultry" ? "Rechercher par ferme, oiseau ou symptômes…" : caseFilterType === "livestock" ? "Rechercher par ID, animal ou symptômes…" : "Rechercher par animal, espèce ou symptômes…")
+      : (caseFilterType === "poultry" ? "Search by farm, bird type, or symptoms…" : caseFilterType === "livestock" ? "Search by animal ID, breed, or symptoms…" : "Search by pet, animal, or symptoms…"),
     errorRequired: lang === "fr" ? "Le type d'animal et les symptômes sont obligatoires." : "Animal type and symptoms are required.",
     errorFollowUp: lang === "fr" ? "Veuillez répondre aux questions de suivi." : "Please answer the follow-up questions.",
     errorGeneral: lang === "fr" ? "Une erreur s'est produite." : "Something went wrong.",

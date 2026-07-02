@@ -1192,11 +1192,11 @@ export default function Home() {
                         <div className="case-body-inner">
                           <div className="pet-profile">
                             {[
-                              [item.species_type === "poultry" ? "Farm name" : item.species_type === "livestock" ? "Animal ID" : "Name", item.petName],
-                              [item.species_type === "poultry" ? "Bird type" : "Animal", item.animal],
-                              [item.species_type === "poultry" ? "Breed / Strain" : "Breed", item.breed],
-                              [item.species_type === "poultry" ? "Flock size" : "Age", item.age],
-                              [item.species_type === "poultry" ? "Birds affected" : "Weight", item.weight],
+                              [item.species_type === "poultry" ? (lang === "fr" ? "Nom de la ferme" : "Farm name") : item.species_type === "livestock" ? (lang === "fr" ? "Identifiant" : "Animal ID") : (lang === "fr" ? "Nom" : "Name"), item.petName],
+                              [item.species_type === "poultry" ? (lang === "fr" ? "Type d'oiseau" : "Bird type") : (lang === "fr" ? "Animal" : "Animal"), item.animal],
+                              [item.species_type === "poultry" ? (lang === "fr" ? "Race / Souche" : "Breed / Strain") : (lang === "fr" ? "Race" : "Breed"), item.breed],
+                              [item.species_type === "poultry" ? (lang === "fr" ? "Taille du troupeau" : "Flock size") : (lang === "fr" ? "Âge" : "Age"), item.age],
+                              [item.species_type === "poultry" ? (lang === "fr" ? "Oiseaux affectés" : "Birds affected") : (lang === "fr" ? "Poids" : "Weight"), item.weight],
                             ].map(([label, val]) => (
                               <div className="pet-field" key={label}>
                                 <strong>{label}</strong>

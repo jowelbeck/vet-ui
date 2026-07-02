@@ -46,6 +46,7 @@ type CaseHistoryItem = {
   soap_note?: SoapNote;
   drug_notes?: string[];
   disclaimer?: string;
+  species_type?: string;
   createdAt: string;
 };
 

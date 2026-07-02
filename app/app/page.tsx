@@ -97,6 +97,8 @@ export default function Home() {
     });
   }, []);
   // Form fields
+  const [speciesType, setSpeciesType] = useState("pets");
+  const [caseFilterType, setCaseFilterType] = useState("all");
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");
   const [breed, setBreed] = useState("");
@@ -281,6 +283,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           animal: animal.trim(),
+        species_type: speciesType,
           symptoms: symptoms.trim(),
           pet_name: petName.trim(),
           breed: breed.trim(),
@@ -322,6 +325,7 @@ export default function Home() {
         body: JSON.stringify({
           case_id: caseId,
           animal: animal.trim(),
+        species_type: speciesType,
           symptoms: symptoms.trim(),
           follow_up_answers: followUpAnswers.trim(),
           pet_name: petName.trim(),

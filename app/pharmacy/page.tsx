@@ -97,6 +97,7 @@ export default function VetPharmacyPage() {
   const [reorderLevel, setReorderLevel] = useState("10");
   const [expiryDate, setExpiryDate] = useState("");
   const [supplier, setSupplier] = useState("");
+  const [supplierPhone, setSupplierPhone] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
   const [invoiceDate, setInvoiceDate] = useState("");
   const [unitPrice, setUnitPrice] = useState("");
@@ -139,7 +140,7 @@ export default function VetPharmacyPage() {
       user_id: user!.id,
       drug_name: drugName, generic_name: genericName, category,
       quantity: parseInt(quantity), unit, reorder_level: parseInt(reorderLevel),
-      expiry_date: expiryDate, supplier, unit_price: parseFloat(unitPrice),
+      expiry_date: expiryDate, supplier, supplier_phone: supplierPhone, unit_price: parseFloat(unitPrice),
       category_type: filterType !== "all" ? filterType : categoryType,
       invoice_number: invoiceNumber, invoice_date: invoiceDate || null,
     });
@@ -324,6 +325,10 @@ export default function VetPharmacyPage() {
               <div>
                 <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Supplier name</label>
                 <input value={supplier} onChange={e => setSupplier(e.target.value)} placeholder="e.g. Intervet Ghana" style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
+              </div>
+              <div>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Supplier phone</label>
+                <input value={supplierPhone} onChange={e => setSupplierPhone(e.target.value)} placeholder="+233 20 000 0000" style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 7, fontSize: 14, boxSizing: "border-box" as const }} />
               </div>
               <div>
                 <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 5 }}>Invoice #</label>

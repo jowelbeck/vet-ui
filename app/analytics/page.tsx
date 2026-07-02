@@ -10,6 +10,10 @@ type Stats = {
   totalDrugs: number;
   lowStockDrugs: number;
   dispensedToday: number;
+  stockValue: number;
+  petsStockValue: number;
+  poultryStockValue: number;
+  livestockStockValue: number;
   totalInvoices: number;
   totalRevenue: number;
   outstandingRevenue: number;
@@ -39,6 +43,7 @@ export default function AnalyticsPage() {
     totalPatients: 0, totalInvoices: 0, totalRevenue: 0,
     outstandingRevenue: 0, totalCases: 0, highCases: 0, mediumCases: 0, lowCases: 0,
     totalDrugs: 0, lowStockDrugs: 0, dispensedToday: 0,
+    stockValue: 0, petsStockValue: 0, poultryStockValue: 0, livestockStockValue: 0,
   });
   const [animalCounts, setAnimalCounts] = useState<AnimalCount[]>([]);
   const [recentCases, setRecentCases] = useState<RecentCase[]>([]);
@@ -84,9 +89,13 @@ export default function AnalyticsPage() {
     const mediumCases = cases.filter((c: any) => c.urgency === "medium").length;
     const lowCases = cases.filter((c: any) => c.urgency === "low").length;
 
-    const { data: drugs } = await supabase.from("vet_pharmacy_stock").select("quantity, reorder_level").eq("user_id", userId);
+    const { data: drugs } = await supabase.from("vet_pharmacy_stock").select("quantity, reorder_level, unit_price, category_type").eq("user_id", userId);
     const totalDrugs = drugs?.length ?? 0;
     const lowStockDrugs = drugs?.filter((d: any) => d.quantity <= d.reorder_level).length ?? 0;
+    const stockValue = drugs?.reduce((s: number, d: any) => s + (d.quantity * d.unit_price), 0) ?? 0;
+    const petsStockValue = drugs?.filter((d: any) => d.category_type === "pets").reduce((s: number, d: any) => s + (d.quantity * d.unit_price), 0) ?? 0;
+    const poultryStockValue = drugs?.filter((d: any) => d.category_type === "poultry").reduce((s: number, d: any) => s + (d.quantity * d.unit_price), 0) ?? 0;
+    const livestockStockValue = drugs?.filter((d: any) => d.category_type === "livestock").reduce((s: number, d: any) => s + (d.quantity * d.unit_price), 0) ?? 0;
     const { data: dispensing } = await supabase.from("vet_pharmacy_dispensing").select("dispensed_at").eq("user_id", userId);
     const today = new Date().toDateString();
     const dispensedToday = dispensing?.filter((d: any) => new Date(d.dispensed_at).toDateString() === today).length ?? 0;
@@ -111,7 +120,7 @@ export default function AnalyticsPage() {
       createdAt: c.createdAt,
     }));
 
-    setStats({ totalPatients: patientCount ?? 0, totalInvoices, totalRevenue, outstandingRevenue, totalCases, highCases, mediumCases, lowCases, totalDrugs, lowStockDrugs, dispensedToday });
+    setStats({ totalPatients: patientCount ?? 0, totalInvoices, totalRevenue, outstandingRevenue, totalCases, highCases, mediumCases, lowCases, totalDrugs, lowStockDrugs, dispensedToday, stockValue, petsStockValue, poultryStockValue, livestockStockValue });
     setAnimalCounts(animalCountsArr);
     setRecentCases(recent);
   };

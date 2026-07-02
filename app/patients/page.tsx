@@ -78,7 +78,6 @@ export default function PatientsPage() {
       name: name.trim(),
       animal: animal.trim(),
       species_type: filterType !== "all" ? filterType : speciesType,
-      species_type: filterType !== "all" ? filterType : speciesType,
       breed: breed.trim(),
       age: age.trim(),
       weight: weight.trim(),

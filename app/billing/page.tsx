@@ -243,8 +243,8 @@ export default function BillingPage() {
   const unpaidTotal = invoices.filter(inv => inv.status === "unpaid").reduce((sum, inv) => sum + inv.total, 0);
 
   return (
-    <AppNav />
-    <>
+        <>
+      <AppNav />
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; color: #1e293b; font-size: 14px; }

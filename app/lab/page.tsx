@@ -215,5 +215,6 @@ export default function LabPage() {
         </div>
       )}
     </main>
+    </>
   );
 }

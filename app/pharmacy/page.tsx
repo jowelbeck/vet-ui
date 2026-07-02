@@ -15,6 +15,7 @@ type Drug = {
   reorder_level: number;
   expiry_date: string;
   supplier: string;
+  supplier_phone?: string;
   unit_price: number;
   invoice_number: string;
   invoice_date: string;

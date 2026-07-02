@@ -1,4 +1,5 @@
 "use client";
+import AppNav from "@/components/AppNav";
 
 import { useState, useRef } from "react";
 import QRCode from "react-qr-code";
@@ -80,6 +81,7 @@ export default function QRPage() {
 
   return (
     <>
+      <AppNav />
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; color: #1e293b; font-size: 14px; }

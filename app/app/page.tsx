@@ -970,6 +970,13 @@ export default function Home() {
             {!caseId && (
               <div className="card">
                 <div className="card-title">{t.patientInfo}</div>
+                <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+                {["pets", "poultry", "livestock"].map(f => (
+                  <button key={f} onClick={() => setSpeciesType(f)} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                    {f === "pets" ? "Pets" : f === "poultry" ? "Poultry" : "Livestock"}
+                  </button>
+                ))}
+              </div>
                 <div className="field-grid">
                   <div className="field">
                     <label>

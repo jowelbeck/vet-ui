@@ -1,4 +1,5 @@
 "use client";
+import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";

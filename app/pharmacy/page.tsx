@@ -1,4 +1,5 @@
 "use client";
+import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
@@ -176,7 +177,7 @@ export default function VetPharmacyPage() {
   });
 
   return (
-    <main style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "Arial, sans-serif" }}>
+    <><AppNav /><main style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "Arial, sans-serif" }}>
       <header style={{ background: "#1a3d2b", padding: "14px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <a href="/app" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", fontSize: 13 }}>← Back to VetsAI</a>

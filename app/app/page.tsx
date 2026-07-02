@@ -100,7 +100,7 @@ export default function Home() {
   }, []);
   // Form fields
   const [speciesType, setSpeciesType] = useState("pets");
-  const [vaccinationHistory, setVaccinationHistory] = useState([]);
+  const [vaccinationHistory, setVaccinationHistory] = useState<string[]>([]);
   const [caseFilterType, setCaseFilterType] = useState("all");
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");

@@ -254,7 +254,7 @@ export default function VetPharmacyPage() {
               <table style={{ width: "100%", borderCollapse: "collapse" as const }}>
                 <thead>
                   <tr style={{ background: "#f8fafc" }}>
-                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Inv Date / Added", "Supplier", "Phone", "Status"].map(h => (
+                    {["Drug Name", "Category", "Qty", "Unit", "Expiry", "Price", "Inv Date / Added", "Supplier", "Status"].map(h => (
                       <th key={h} style={{ padding: "12px 16px", textAlign: "left" as const, fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase" as const }}>{h}</th>
                     ))}
                   </tr>
@@ -277,8 +277,7 @@ export default function VetPharmacyPage() {
                           <div>Inv: {d.invoice_date ? new Date(d.invoice_date).toLocaleDateString() : "—"}</div>
                           <div style={{ fontSize: 11, color: "#94a3b8" }}>Added: {d.created_at ? new Date(d.created_at).toLocaleDateString() : "—"}</div>
                         </td>
-                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.supplier || "—"}</td>
-                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}>{d.supplier_phone || "—"}</td>
+                        <td style={{ padding: "12px 16px", fontSize: 13, color: "#64748b" }}><div>{d.supplier || "—"}</div>{d.supplier_phone && <div style={{ fontSize: 11, color: "#94a3b8" }}>{d.supplier_phone}</div>}</td>
                         <td style={{ padding: "12px 16px" }}>
                           <span style={{ background: isLow ? "#fef2f2" : "#f0faf4", color: isLow ? "#dc2626" : "#16a34a", padding: "3px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700 }}>
                             {isLow ? "LOW" : "OK"}

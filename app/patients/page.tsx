@@ -301,7 +301,7 @@ export default function PatientsPage() {
         <div className="search-wrap">
           <span className="search-icon">🔍</span>
           <input
-            placeholder="Search by pet name, animal, breed, or owner…"
+            placeholder={filterType === "poultry" ? "Search by farm name, bird type, strain, or owner…" : filterType === "livestock" ? "Search by animal ID, breed, or owner…" : "Search by pet name, animal, breed, or owner…"}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

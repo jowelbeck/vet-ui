@@ -100,6 +100,7 @@ export default function Home() {
   }, []);
   // Form fields
   const [speciesType, setSpeciesType] = useState("pets");
+  const [vaccinationHistory, setVaccinationHistory] = useState([]);
   const [caseFilterType, setCaseFilterType] = useState("all");
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");
@@ -288,6 +289,7 @@ export default function Home() {
         body: JSON.stringify({
           animal: animal.trim(),
         species_type: speciesType,
+        vaccination_history: speciesType === "poultry" ? vaccinationHistory.join(", ") : null,
           symptoms: symptoms.trim(),
           pet_name: petName.trim(),
           breed: breed.trim(),
@@ -1026,6 +1028,19 @@ export default function Home() {
                       onChange={(e) => setWeight(e.target.value)}
                     />
                   </div>
+                  {speciesType === "poultry" && (
+                    <div className="field field-full">
+                      <label>{lang === "fr" ? "Vaccins administres" : "Vaccination history"}</label>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
+                        {["Newcastle Disease", "Gumboro (IBD)", "Infectious Bronchitis", "Mareks Disease", "Fowlpox", "Avian Influenza", "Not vaccinated", "Unknown"].map(v => (
+                          <label key={v} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, cursor: "pointer", background: vaccinationHistory.includes(v) ? "#e8f5e9" : "#f8fafc", border: "1px solid " + (vaccinationHistory.includes(v) ? "#1a3d2b" : "#e2e8f0"), borderRadius: 6, padding: "5px 10px" }}>
+                            <input type="checkbox" checked={vaccinationHistory.includes(v)} onChange={e => setVaccinationHistory(prev => e.target.checked ? [...prev, v] : prev.filter(x => x !== v))} />
+                            {v}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <div className="field field-full">
                     <label>
                       {t.symptoms} <span style={{ color: "var(--red-500)" }}>*</span>

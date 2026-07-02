@@ -224,7 +224,7 @@ export default function LandingPage() {
             <em>with intelligent clinical support.</em>
           </h1>
           <p className="hero-sub">
-            VetsAI is the clinic operating system for veterinary professionals — combining patient records, clinical support, and AI workflows in one place.
+            VetsAI is the clinic operating system for veterinary professionals — combining patient records, AI clinical support, pharmacy management, and billing in one place. Built for pets, poultry and livestock.
           </p>
           <div className="hero-for">
             <div className="hero-for-item">Veterinary clinics</div>
@@ -254,7 +254,7 @@ export default function LandingPage() {
         <div className="stats-inner">
           <div className="stat"><div className="stat-num">3,367+</div><div className="stat-label">Pages of Veterinary Research</div></div>
           <div className="stat"><div className="stat-num">&lt;60s</div><div className="stat-label">Time to full assessment</div></div>
-          <div className="stat"><div className="stat-num">15+</div><div className="stat-label">Animal species supported</div></div>
+          <div className="stat"><div className="stat-num">3-in-1</div><div className="stat-label">Pets, Poultry & Livestock</div></div>
           <div className="stat"><div className="stat-num">$0</div><div className="stat-label">To get started today</div></div>
         </div>
       </div>
@@ -363,14 +363,16 @@ export default function LandingPage() {
           <p className="section-sub">VetsAI is a full clinic operating system — not just a diagnostic tool.</p>
           <div className="modules-grid">
             {[
-              { icon: "🧠", title: "Clinical Support", desc: "Intelligent clinical guidance across symptoms, breed, age and weight — generated for veterinarian review.", live: true },
+              { icon: "🧠", title: "Clinical Support", desc: "AI-powered clinical guidance for pets, poultry and livestock — symptoms, dosages, SOAP notes, and urgency triage.", live: true },
               { icon: "💊", title: "Drug Guidance", desc: "Dosage ranges by species and weight, plus interaction notes — for clinician verification before prescribing.", live: true },
               { icon: "📋", title: "SOAP Notes", desc: "Clinical note drafts generated automatically — ready for your vet to review, edit and sign off.", live: true },
               { icon: "🚨", title: "Urgency Triage", desc: "Every case is automatically flagged as high, medium or low urgency so your team knows what to prioritise.", live: true },
-              { icon: "📁", title: "Patient Records", desc: "Full pet medical history, consultation logs, and owner details — all in one secure digital record.", live: true },
-              { icon: "📅", title: "Appointments", desc: "Scheduling, reminders, and calendar management for your entire clinic team.", live: false },
+              { icon: "📁", title: "Patient Records", desc: "Full medical history for pets, farm animals and livestock — with species-specific fields, owner details and consultation logs.", live: true },
+              { icon: "📅", title: "Appointments", desc: "Scheduling, reminders, and calendar management for your entire clinic team.", live: true },
+              { icon: "🔬", title: "Lab Results", desc: "Order and track lab tests — CBC, urinalysis, fecal exams and more — with normal/abnormal flagging.", live: true },
+              { icon: "💊", title: "Veterinary Pharmacy", desc: "Stock management for pets, poultry and livestock drugs — expiry alerts, low stock warnings, supplier invoicing and dispensing history.", live: true },
               { icon: "💰", title: "Billing & Invoicing", desc: "Generate invoices, track payments, and manage clinic finances from one dashboard.", live: true },
-              { icon: "👥", title: "Multi-user Access", desc: "Role-based access for vets, nurses, and admin staff across your entire clinic.", live: true },
+              { icon: "👥", title: "Multi-user Access", desc: "Role-based access for vets, nurses, technicians, and receptionists — each sees only what they need.", live: true },
               { icon: "📊", title: "Clinic Analytics", desc: "Case trends, common diagnoses, urgency patterns, and clinic performance reports.", live: true },
             ].map((m) => (
               <div className={`module-card ${m.live ? "live" : "coming"}`} key={m.title}>

@@ -119,6 +119,7 @@ export default function AnalyticsPage() {
   const maxAnimalCount = Math.max(...animalCounts.map(a => a.count), 1);
 
   return (
+    <AppNav />
     <>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

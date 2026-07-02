@@ -172,6 +172,7 @@ export default function AppointmentsPage() {
   const totalScheduled = appointments.filter(a => a.status === "scheduled").length;
 
   return (
+    <AppNav />
     <>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

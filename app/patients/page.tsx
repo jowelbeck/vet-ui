@@ -118,6 +118,7 @@ export default function PatientsPage() {
   });
 
   return (
+    <AppNav />
     <>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

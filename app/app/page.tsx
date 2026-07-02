@@ -532,6 +532,7 @@ export default function Home() {
     if (caseFilterType !== "all" && item.species_type !== caseFilterType) return false;
     const q = searchTerm.toLowerCase();
     return (
+    <AppNav />
       (item.petName ?? "").toLowerCase().includes(q) ||
       item.animal.toLowerCase().includes(q) ||
       item.symptoms.toLowerCase().includes(q)

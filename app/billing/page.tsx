@@ -243,6 +243,7 @@ export default function BillingPage() {
   const unpaidTotal = invoices.filter(inv => inv.status === "unpaid").reduce((sum, inv) => sum + inv.total, 0);
 
   return (
+    <AppNav />
     <>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

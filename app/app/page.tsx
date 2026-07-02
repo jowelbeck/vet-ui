@@ -1192,11 +1192,11 @@ export default function Home() {
                         <div className="case-body-inner">
                           <div className="pet-profile">
                             {[
-                              ["Name", item.petName],
-                              ["Animal", item.animal],
-                              ["Breed", item.breed],
-                              ["Age", item.age],
-                              ["Weight", item.weight],
+                              [item.species_type === "poultry" ? "Farm name" : item.species_type === "livestock" ? "Animal ID" : "Name", item.petName],
+                              [item.species_type === "poultry" ? "Bird type" : "Animal", item.animal],
+                              [item.species_type === "poultry" ? "Breed / Strain" : "Breed", item.breed],
+                              [item.species_type === "poultry" ? "Flock size" : "Age", item.age],
+                              [item.species_type === "poultry" ? "Birds affected" : "Weight", item.weight],
                             ].map(([label, val]) => (
                               <div className="pet-field" key={label}>
                                 <strong>{label}</strong>

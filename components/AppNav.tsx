@@ -25,46 +25,18 @@ export default function AppNav() {
   };
 
   return (
-    <nav style={{
-      background: "#1a3d2b",
-      padding: "0 16px",
-      display: "flex",
-      alignItems: "center",
-      gap: 4,
-      overflowX: "auto" as const,
-      whiteSpace: "nowrap" as const,
-      position: "sticky" as const,
-      top: 0,
-      zIndex: 100,
-      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-    }}>
+    <nav style={{ background: "#1a3d2b", padding: "0 16px", display: "flex", alignItems: "center", gap: 4, overflowX: "auto", whiteSpace: "nowrap", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>
       <a href="/app" style={{ color: "#97bc62", fontWeight: 800, fontSize: 15, textDecoration: "none", padding: "12px 12px 12px 4px", flexShrink: 0 }}>
         🐾 VetsAI
       </a>
       <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.2)", margin: "0 4px", flexShrink: 0 }} />
       {NAV_LINKS.map(link => (
-        
-          key={link.href}
-          href={link.href}
-          style={{
-            color: pathname === link.href ? "#97bc62" : "rgba(255,255,255,0.75)",
-            textDecoration: "none",
-            fontSize: 13,
-            fontWeight: pathname === link.href ? 700 : 400,
-            padding: "12px 10px",
-            borderBottom: pathname === link.href ? "2px solid #97bc62" : "2px solid transparent",
-            flexShrink: 0,
-            transition: "color 0.15s",
-          }}
-        >
+        <a key={link.href} href={link.href} style={{ color: pathname === link.href ? "#97bc62" : "rgba(255,255,255,0.75)", textDecoration: "none", fontSize: 13, fontWeight: pathname === link.href ? 700 : 400, padding: "12px 10px", borderBottom: pathname === link.href ? "2px solid #97bc62" : "2px solid transparent", flexShrink: 0 }}>
           {link.label}
         </a>
       ))}
       <div style={{ flex: 1 }} />
-      <button
-        onClick={handleLogout}
-        style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", padding: "6px 14px", borderRadius: 6, cursor: "pointer", fontSize: 12, flexShrink: 0 }}
-      >
+      <button onClick={handleLogout} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", padding: "6px 14px", borderRadius: 6, cursor: "pointer", fontSize: 12, flexShrink: 0 }}>
         Log out
       </button>
     </nav>

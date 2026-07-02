@@ -13,6 +13,7 @@ type Patient = {
   weight?: string;
   owner_name?: string;
   owner_phone?: string;
+  species_type?: string;
   created_at: string;
 };
 

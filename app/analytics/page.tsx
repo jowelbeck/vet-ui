@@ -260,6 +260,26 @@ export default function AnalyticsPage() {
                 <div className="stat-label">Dispensed today</div>
                 <div className="stat-value">{stats.dispensedToday}</div>
               </div>
+              <div className="stat-card green">
+                <div className="stat-icon">💰</div>
+                <div className="stat-label">Total stock value</div>
+                <div className="stat-value">GHS {stats.stockValue.toLocaleString()}</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🐾</div>
+                <div className="stat-label">Pets stock value</div>
+                <div className="stat-value">GHS {stats.petsStockValue.toLocaleString()}</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🐔</div>
+                <div className="stat-label">Poultry stock value</div>
+                <div className="stat-value">GHS {stats.poultryStockValue.toLocaleString()}</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🐄</div>
+                <div className="stat-label">Livestock stock value</div>
+                <div className="stat-value">GHS {stats.livestockStockValue.toLocaleString()}</div>
+              </div>
             </div>
 
             <div className="two-col">

@@ -84,10 +84,10 @@ export default function AnalyticsPage() {
     const mediumCases = cases.filter((c: any) => c.urgency === "medium").length;
     const lowCases = cases.filter((c: any) => c.urgency === "low").length;
 
-    const { data: drugs } = await supabase.from("vet_pharmacy_stock").select("quantity, reorder_level");
+    const { data: drugs } = await supabase.from("vet_pharmacy_stock").select("quantity, reorder_level").eq("user_id", userId);
     const totalDrugs = drugs?.length ?? 0;
     const lowStockDrugs = drugs?.filter((d: any) => d.quantity <= d.reorder_level).length ?? 0;
-    const { data: dispensing } = await supabase.from("vet_pharmacy_dispensing").select("dispensed_at");
+    const { data: dispensing } = await supabase.from("vet_pharmacy_dispensing").select("dispensed_at").eq("user_id", userId);
     const today = new Date().toDateString();
     const dispensedToday = dispensing?.filter((d: any) => new Date(d.dispensed_at).toDateString() === today).length ?? 0;
 

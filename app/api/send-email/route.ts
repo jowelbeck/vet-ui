@@ -317,7 +317,7 @@ export async function POST(req: NextRequest) {
         <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
         <p style="color:#374151;font-size:16px;line-height:1.7">Thank you for requesting a VetsAI demo. I will personally reach out within 24 hours to schedule a time that works for you.</p>
         <p style="color:#374151;font-size:16px;line-height:1.7">You can also <a href="https://vetsai.vet/signup" style="color:#1a3d2b;font-weight:700">start your free trial right now</a> — no credit card required.</p>
-        <p style="color:#374151;font-size:15px">Joseph Okae Welbeck<br/><span style="color:#64748b">Founder, VetsAI Technologies · +233 20 8140795</span></p>
+        <p style="color:#374151;font-size:15px">Joseph Okai Welbeck<br/><span style="color:#64748b">Founder, VetsAI Technologies · +233 20 8140795</span></p>
       </div>
     </div>`;
   }

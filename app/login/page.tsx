@@ -97,6 +97,9 @@ export default function LoginPage() {
           <button className="btn-login" onClick={handleLogin} disabled={loading}>
             {loading ? "Logging in…" : "Log in →"}
           </button>
+          <div style={{ textAlign: "center", marginTop: 12 }}>
+            <a href="/forgot-password" style={{ fontSize: 13, color: "#94a3b8", textDecoration: "none" }}>Forgot password?</a>
+          </div>
 
           <div className="divider">
             Don&apos;t have an account?{" "}

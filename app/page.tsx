@@ -212,6 +212,7 @@ export default function LandingPage() {
           <a href="/demo">Request demo</a>
           <a href="/signup" className="nav-cta">Start free →</a>
         </div>
+        <a href="/fr" style={{ fontSize: 12, fontWeight: 600, color: "#64748b", textDecoration: "none", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0" }}>🇫🇷 FR</a>
 
       </nav>
 

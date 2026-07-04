@@ -80,7 +80,7 @@ export default function DemoPage() {
               <div>
                 <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 6 }}>Country</label>
                 <select value={country} onChange={e => setCountry(e.target.value)} style={{ width: "100%", padding: "11px 14px", border: "1px solid #e2e8f0", borderRadius: 8, fontSize: 14, boxSizing: "border-box" as const }}>
-                  {["Ghana", "Nigeria", "Kenya", "Ivory Coast", "Senegal", "Cameroon", "Uganda", "Tanzania", "South Africa", "Other"].map(c => <option key={c}>{c}</option>)}
+                  {["Ghana", "Nigeria", "Kenya", "South Africa", "Ethiopia", "Tanzania", "Uganda", "Rwanda", "Ivory Coast", "Senegal", "Cameroon", "Mali", "Burkina Faso", "Benin", "Togo", "Niger", "Egypt", "Morocco", "Tunisia", "Algeria", "Libya", "Sudan", "Mozambique", "Zambia", "Zimbabwe", "Malawi", "Botswana", "Namibia", "Angola", "DRC", "Congo", "Gabon", "Sierra Leone", "Liberia", "Gambia", "Eritrea", "Somalia", "Madagascar", "Mauritius", "USA", "Canada", "Brazil", "Mexico", "Colombia", "Argentina", "Chile", "Peru", "India", "Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Philippines", "Indonesia", "Vietnam", "Thailand", "Malaysia", "Singapore", "UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Jordan", "Lebanon", "UK", "Germany", "France", "Netherlands", "Spain", "Italy", "Portugal", "Australia", "New Zealand", "Other"].map(c => <option key={c}>{c}</option>)}
                 </select>
               </div>
               <div>

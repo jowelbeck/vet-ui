@@ -229,6 +229,117 @@ function invoiceEmail(patientName: string, ownerName: string, amount: string, cu
 // ── API Route ─────────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
+
+  // Day 3 check-in
+  if (type === "day3") {
+    subject = "How is your first week with VetsAI going? 🐾";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">Checking in 👋</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">It has been 3 days since you joined VetsAI. Have you tried the <strong>AI clinical support</strong>? Go to Cases → New Case and describe your patient's symptoms to get instant SOAP notes and drug dosages.</p>
+        <div style="text-align:center;margin:32px 0">
+          <a href="https://vetsai.vet/app" style="background:#1a3d2b;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px">Try AI clinical support →</a>
+        </div>
+        <p style="color:#374151;font-size:15px">Joseph<br/><span style="color:#64748b">VetsAI Technologies</span></p>
+      </div>
+    </div>`;
+  }
+
+  // Day 7 pharmacy
+  if (type === "day7") {
+    subject = "Your pharmacy is losing money — here is how to stop it 💊";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">Pharmacy tip 💊</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">Most vet clinics lose 15-20% of pharmacy revenue to expired drugs and untracked dispensing. VetsAI fixes this — track stock, expiry dates, supplier invoices and total stock value by practice type.</p>
+        <div style="text-align:center;margin:32px 0">
+          <a href="https://vetsai.vet/pharmacy" style="background:#1a3d2b;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px">Set up pharmacy →</a>
+        </div>
+        <p style="color:#374151;font-size:15px">Joseph<br/><span style="color:#64748b">VetsAI Technologies</span></p>
+      </div>
+    </div>`;
+  }
+
+  // Day 14 checklist
+  if (type === "day14") {
+    subject = "Are you getting the most out of VetsAI? 📊";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">2 weeks in 📊</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">You have been using VetsAI for 2 weeks. Quick checklist: ☐ Added patients ☐ Set up pharmacy ☐ Used AI support ☐ Created an invoice ☐ Added team members ☐ Checked analytics. Reply if you need help with any of these.</p>
+        <div style="text-align:center;margin:32px 0">
+          <a href="https://vetsai.vet/app" style="background:#1a3d2b;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px">Open VetsAI →</a>
+        </div>
+        <p style="color:#374151;font-size:15px">Joseph<br/><span style="color:#64748b">VetsAI Technologies</span></p>
+      </div>
+    </div>`;
+  }
+
+  // Day 30 upgrade
+  if (type === "day30") {
+    subject = "Your free trial is ending — upgrade to keep your data 🔒";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">Trial ending soon 🔒</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">Your VetsAI free trial is coming to an end. Upgrade now to keep your patient records, cases, pharmacy data and invoices.</p>
+        <div style="background:#f0fdf4;border-radius:12px;padding:24px;margin:24px 0;border:1px solid #86efac">
+          <p style="color:#1a3d2b;font-weight:700;margin:0 0 8px;font-size:18px">VetsAI Clinic — GHS 299/month</p>
+          <p style="color:#374151;font-size:14px;margin:0">Unlimited patients · AI support · Pharmacy · Billing · Analytics · 5 team members</p>
+        </div>
+        <div style="text-align:center;margin:32px 0">
+          <a href="https://vetsai.vet/pricing" style="background:#1a3d2b;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px">Upgrade now →</a>
+        </div>
+        <p style="color:#374151;font-size:15px">Joseph<br/><span style="color:#64748b">VetsAI Technologies · +233 20 8140795</span></p>
+      </div>
+    </div>`;
+  }
+
+  // Demo follow-up 1
+  if (type === "demo_followup1") {
+    subject = "Your VetsAI demo — here is what to expect 🐾";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">Demo request received 🐾</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">Thank you for requesting a VetsAI demo. I will personally reach out within 24 hours to schedule a time that works for you.</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">You can also <a href="https://vetsai.vet/signup" style="color:#1a3d2b;font-weight:700">start your free trial right now</a> — no credit card required.</p>
+        <p style="color:#374151;font-size:15px">Joseph Okae Welbeck<br/><span style="color:#64748b">Founder, VetsAI Technologies · +233 20 8140795</span></p>
+      </div>
+    </div>`;
+  }
+
+  // Demo follow-up 2
+  if (type === "demo_followup2") {
+    subject = "Following up on your VetsAI demo request";
+    html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f);padding:40px;text-align:center">
+        <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0">Following up 👋</h1>
+      </div>
+      <div style="padding:40px">
+        <p style="color:#374151;font-size:16px;line-height:1.7">Hi ${name},</p>
+        <p style="color:#374151;font-size:16px;line-height:1.7">I wanted to follow up on your demo request. Did you get a chance to review VetsAI? I am available for a 20-minute call this week — just reply with a time that works.</p>
+        <div style="text-align:center;margin:32px 0">
+          <a href="https://vetsai.vet/signup" style="background:#1a3d2b;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px">Start free trial →</a>
+        </div>
+        <p style="color:#374151;font-size:15px">Joseph<br/><span style="color:#64748b">VetsAI Technologies · +233 20 8140795</span></p>
+      </div>
+    </div>`;
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();

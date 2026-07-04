@@ -209,11 +209,10 @@ export default function LandingPage() {
           <a href="#modules">Platform</a>
           <a href="#how-it-works">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a href="mailto:hi@vetsai.vet">Book demo</a>
           <a href="/demo">Request demo</a>
           <a href="/signup" className="nav-cta">Start free →</a>
         </div>
-        <a href="/fr" style={{ fontSize: 12, fontWeight: 600, color: "#64748b", textDecoration: "none", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0" }}>🇫🇷 FR</a>
+
       </nav>
 
       {/* Hero */}
@@ -235,7 +234,7 @@ export default function LandingPage() {
           </div>
           <div className="hero-actions">
             <a href="/signup" className="btn-primary">Start free trial →</a>
-            <a href="mailto:hi@vetsai.vet" className="btn-outline">📅 Book a clinic demo</a>
+            <a href="/demo" className="btn-outline">📅 Book a clinic demo</a>
           </div>
           <p className="hero-note">No credit card required · First 3 months free · Cancel anytime</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
@@ -491,7 +490,7 @@ export default function LandingPage() {
           </p>
           <div className="cta-actions">
             <a href="/signup" className="btn-primary">Start free trial →</a>
-            <a href="mailto:hi@vetsai.vet" className="btn-outline">📅 Book a clinic demo</a>
+            <a href="/demo" className="btn-outline">📅 Book a clinic demo</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 12, color: "rgba(255,255,255,0.4)" }}>First 10 clinics get 3 months completely free</p>
         </div>

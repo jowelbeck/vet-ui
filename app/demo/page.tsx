@@ -36,6 +36,13 @@ export default function DemoPage() {
       }),
     }).catch(() => {});
 
+    // Send demo followup email
+    fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, name, type: 'demo_followup1', company: clinic }),
+    }).catch(() => {});
+
     setSent(true);
     setLoading(false);
   };

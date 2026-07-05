@@ -227,6 +227,24 @@ export default function LandingPage() {
           <p className="hero-sub">
             VetsAI is the clinic operating system for veterinary professionals — combining patient records, AI clinical support, pharmacy management, and billing in one place. Built for pets, poultry and livestock.
           </p>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 20 }}>
+            <div style={{ background: "rgba(151,188,98,0.15)", border: "1px solid rgba(151,188,98,0.4)", borderRadius: 24, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 18 }}>🐕</span>
+              <span style={{ color: "#97bc62", fontWeight: 700, fontSize: 14 }}>Pets</span>
+            </div>
+            <div style={{ background: "rgba(151,188,98,0.15)", border: "1px solid rgba(151,188,98,0.4)", borderRadius: 24, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 18 }}>🐔</span>
+              <span style={{ color: "#97bc62", fontWeight: 700, fontSize: 14 }}>Poultry</span>
+            </div>
+            <div style={{ background: "rgba(151,188,98,0.15)", border: "1px solid rgba(151,188,98,0.4)", borderRadius: 24, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 18 }}>🐄</span>
+              <span style={{ color: "#97bc62", fontWeight: 700, fontSize: 14 }}>Livestock</span>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 24, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ color: "#fff", fontWeight: 800, fontSize: 14 }}>3-in-1</span>
+              <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 13 }}>One platform, all practice types</span>
+            </div>
+          </div>
           <div className="hero-for">
             <div className="hero-for-item">Veterinary clinics</div>
             <div className="hero-for-item">Private practices</div>

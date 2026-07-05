@@ -517,6 +517,110 @@ export default function Home() {
     setTimeout(() => win.print(), 500);
   };
 
+  // WOAH notifiable disease detection
+  const WOAH_DISEASES = ['newcastle', 'avian influenza', 'foot and mouth', 'anthrax', 'brucellosis', 'rabies', 'african swine fever', 'lumpy skin', 'peste des petits', 'ppr', 'rift valley', 'contagious bovine', 'cbpp', 'heartwater', 'east coast fever', 'trypanosomiasis', 'highly pathogenic', 'hpai', 'fmd', 'asfv', 'bluetongue', 'sheep pox', 'goat pox', 'equine influenza', 'glanders', 'surra'];
+  const isWoahNotifiable = (data: ApiResult | CaseHistoryItem) => {
+    const text = [
+      ...(data.possible_causes ?? []),
+      data.recommendation ?? "",
+    ].join(" ").toLowerCase();
+    return WOAH_DISEASES.some(d => text.includes(d));
+  };
+
+  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
+    const date = new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    const causes = (data.possible_causes ?? []).join(", ");
+    return `<!DOCTYPE html>
+<html>
+<head>
+  <title>WOAH Disease Notification Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; color: #1e293b; max-width: 700px; margin: 0 auto; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #1a3d2b; }
+    .logo { font-size: 20px; font-weight: 800; color: #1a3d2b; }
+    .logo span { display: block; font-size: 11px; color: #64748b; font-weight: 400; letter-spacing: 1px; }
+    .woah-badge { background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+    h1 { font-size: 18px; color: #1a3d2b; margin: 0 0 4px; }
+    .subtitle { font-size: 12px; color: #64748b; margin-bottom: 24px; }
+    .section { margin-bottom: 20px; }
+    .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 8px; }
+    .field { background: #f8fafc; padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; font-size: 13px; }
+    .field strong { color: #374151; }
+    .alert { background: #fef2f2; border-left: 4px solid #dc2626; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #991b1b; margin-bottom: 20px; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; }
+    .sign-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-top: 20px; }
+    @media print { body { padding: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">VetsAI<span>Clinic Operating System · WOAH-Aligned</span></div>
+    <div class="woah-badge">⚠ NOTIFIABLE DISEASE REPORT</div>
+  </div>
+  <h1>WOAH Disease Notification Report</h1>
+  <p class="subtitle">Generated: ${date} · Submitted via VetsAI · vetsai.vet</p>
+  <div class="alert">
+    ⚠ This case contains findings consistent with a WOAH-notifiable disease. This report should be submitted to your national Chief Veterinary Officer and/or the Ghana Veterinary Council.
+  </div>
+  <div class="section">
+    <div class="section-title">Patient Details</div>
+    <div class="field"><strong>Animal name:</strong> ${petData.petName || "—"}</div>
+    <div class="field"><strong>Species:</strong> ${petData.animal || "—"}</div>
+    <div class="field"><strong>Breed:</strong> ${petData.breed || "—"}</div>
+    <div class="field"><strong>Age:</strong> ${petData.age || "—"}</div>
+    <div class="field"><strong>Weight:</strong> ${petData.weight || "—"}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Clinical Findings</div>
+    <div class="field"><strong>Urgency level:</strong> ${(data.urgency ?? "unknown").toUpperCase()}</div>
+    <div class="field"><strong>Possible diagnoses:</strong> ${causes || "—"}</div>
+    <div class="field"><strong>Recommendation:</strong> ${data.recommendation || "—"}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Reporting Veterinarian</div>
+    <div class="sign-box">
+      <p style="font-size:13px;color:#64748b;margin:0 0 20px">Please complete and sign before submission:</p>
+      <div class="field"><strong>Name:</strong> _________________________________</div>
+      <div class="field"><strong>Licence number:</strong> _________________________________</div>
+      <div class="field"><strong>Clinic name:</strong> _________________________________</div>
+      <div class="field"><strong>Date:</strong> ${date}</div>
+      <div class="field"><strong>Signature:</strong> _________________________________</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Submit to</div>
+    <div class="field">Ghana Veterinary Council · veterinarycouncil.gov.gh</div>
+    <div class="field">Chief Veterinary Officer, Ministry of Food and Agriculture, Ghana</div>
+    <div class="field">WOAH WAHIS System · wahis.woah.org</div>
+  </div>
+  <div class="footer">
+    Generated by VetsAI · vetsai.vet · This report supports WOAH disease surveillance obligations under the Terrestrial Animal Health Code.
+  </div>
+</body>
+</html>`;
+  };
+
+  const reportToAuthorities = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
+    const html = buildWoahReportHTML(data, petData);
+    const win = window.open("", "_blank");
+    if (!win) return;
+    win.document.write(html);
+    win.document.close();
+    win.focus();
+    setTimeout(() => win.print(), 500);
+  };
+
+  const downloadWoahReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
+    const html = buildWoahReportHTML(data, petData);
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `WOAH-report-${petData.petName || petData.animal}-${Date.now()}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const downloadPDF = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
     const html = buildReportHTML(data, petData);
     const blob = new Blob([html], { type: "text/html" });
@@ -941,6 +1045,14 @@ export default function Home() {
                   >
                     ↓ Download report
                   </button>
+                  {isWoahNotifiable(result) && (
+                    <button
+                      onClick={() => reportToAuthorities(result, { petName, animal, breed, age, weight })}
+                      style={{ background: "#dc2626", color: "#fff", border: "none", padding: "10px 20px", borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}
+                    >
+                      ⚠ Report to Authorities (WOAH)
+                    </button>
+                  )}
                 </div>
               </div>
             )}

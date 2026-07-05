@@ -278,6 +278,31 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* WOAH Trust Bar */}
+      <div style={{ background: "#fff", borderBottom: "1px solid #e2e8f0", padding: "16px 40px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 40, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>✅</span>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>WOAH-Aligned Record Keeping</span>
+          </div>
+          <div style={{ width: 1, height: 20, background: "#e2e8f0" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>🌍</span>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>Built for African Veterinary Practice</span>
+          </div>
+          <div style={{ width: 1, height: 20, background: "#e2e8f0" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>🔒</span>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>Secure Clinical Data Storage</span>
+          </div>
+          <div style={{ width: 1, height: 20, background: "#e2e8f0" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>🧠</span>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>AI-Powered Disease Surveillance Support</span>
+          </div>
+        </div>
+      </div>
+
       {/* Problem */}
       <section className="problem-bg">
         <div className="section-inner">

@@ -101,6 +101,8 @@ export default function Home() {
   // Form fields
   const [speciesType, setSpeciesType] = useState("pets");
   const [vaccinationHistory, setVaccinationHistory] = useState<string[]>([]);
+  const [flockSize, setFlockSize] = useState("");
+  const [birdsDead, setBirdsDead] = useState("");
   const [caseFilterType, setCaseFilterType] = useState("all");
   const [animal, setAnimal] = useState("");
   const [petName, setPetName] = useState("");
@@ -295,6 +297,8 @@ export default function Home() {
           breed: breed.trim(),
           age: age.trim(),
           weight: weight.trim(),
+          flock_size: flockSize.trim() || null,
+          birds_dead: birdsDead.trim() || null,
           language: lang,
         }),
       });
@@ -338,6 +342,8 @@ export default function Home() {
           breed: breed.trim(),
           age: age.trim(),
           weight: weight.trim(),
+          flock_size: flockSize.trim() || null,
+          birds_dead: birdsDead.trim() || null,
           language: lang,
         }),
       });
@@ -1090,7 +1096,7 @@ export default function Home() {
                 <div className="card-title">{t.patientInfo}</div>
                 <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
                 {["pets", "poultry", "livestock"].map(f => (
-                  <button key={f} onClick={() => { setSpeciesType(f); setVaccinationHistory([]); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                  <button key={f} onClick={() => { setSpeciesType(f); setVaccinationHistory([]); setFlockSize(''); setBirdsDead(''); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
                     {f === "pets" ? "Pets" : f === "poultry" ? "Poultry" : "Livestock"}
                   </button>
                 ))}
@@ -1155,6 +1161,18 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
+                  )}
+                  {speciesType === "poultry" && (
+                    <>
+                      <div className="field">
+                        <label>{lang === "fr" ? "Taille du troupeau (total)" : "Flock size (total birds)"}</label>
+                        <input placeholder="e.g. 500" value={flockSize} onChange={e => setFlockSize(e.target.value)} />
+                      </div>
+                      <div className="field">
+                        <label>{lang === "fr" ? "Oiseaux morts / affectés" : "Birds dead / affected"}</label>
+                        <input placeholder="e.g. 45 dead, 120 affected" value={birdsDead} onChange={e => setBirdsDead(e.target.value)} />
+                      </div>
+                    </>
                   )}
                   <div className="field field-full">
                     <label>

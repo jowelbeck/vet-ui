@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/backend/:path*",
-        destination: "https://web-production-a66a12.up.railway.app/:path*",
+        destination: "https://web-production-91359.up.railway.app/:path*",
       },
     ];
   },

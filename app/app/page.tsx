@@ -502,7 +502,7 @@ export default function Home() {
   ${soapSection}
   ${sourcesSection}
 
-  <div class="disclaimer">${data.disclaimer || "This report is not a substitute for professional veterinary advice. Always consult a licensed veterinarian."}</div>
+  <div class="disclaimer">${data.disclaimer || "VetsAI Clinical AI — Cross-check all diagnoses, dosages and treatment recommendations against current clinical guidelines and your professional judgment before proceeding. Drug dosages must be verified against patient weight and manufacturer specifications. The attending veterinarian bears full clinical responsibility for treatment decisions."}</div>
 </body>
 </html>`;
   };
@@ -1028,9 +1028,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {result.disclaimer && (
-                  <p className="disclaimer">{result.disclaimer}</p>
-                )}
+                <p className="disclaimer">VetsAI Clinical AI — Cross-check all findings against current clinical guidelines and your professional judgment before proceeding with treatment. Drug dosages should be verified against species weight and manufacturer guidelines.</p>
 
                 <div className="btn-row" style={{ marginTop: 20 }}>
                   <button

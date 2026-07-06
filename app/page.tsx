@@ -199,6 +199,12 @@ export default function LandingPage() {
         }
       `}</style>
 
+      {/* Sticky demo bar */}
+      <div style={{ background: "#1a3d2b", padding: "10px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+        <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 13, margin: 0 }}>🐾 VetsAI is now live in 22 countries — <strong style={{ color: "#86efac" }}>Join 852+ veterinary professionals</strong></p>
+        <a href="/demo" style={{ background: "#86efac", color: "#1a3d2b", padding: "7px 20px", borderRadius: 6, fontWeight: 800, fontSize: 13, textDecoration: "none", whiteSpace: "nowrap" }}>📅 Book a Live Demo →</a>
+      </div>
+
       {/* Nav */}
       <nav>
         <a href="/" className="nav-logo">
@@ -280,6 +286,17 @@ export default function LandingPage() {
           <div className="stat"><div className="stat-num">&lt;60s</div><div className="stat-label">Time to full assessment</div></div>
           <div className="stat"><div className="stat-num">3-in-1</div><div className="stat-label">Pets, Poultry & Livestock</div></div>
           <div className="stat"><div className="stat-num">$0</div><div className="stat-label">To get started today</div></div>
+        </div>
+      </div>
+
+      {/* Lead capture bar */}
+      <div style={{ background: "#f0fdf4", borderBottom: "1px solid #bbf7d0", padding: "20px 40px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <p style={{ fontWeight: 800, fontSize: 16, color: "#1a3d2b", margin: "0 0 4px" }}>See VetsAI in action — free live demo for your clinic</p>
+            <p style={{ fontSize: 13, color: "#64748b", margin: 0 }}>20 minutes · No commitment · Built for African veterinary practice</p>
+          </div>
+          <a href="/demo" style={{ background: "#1a3d2b", color: "#fff", padding: "12px 28px", borderRadius: 8, fontWeight: 800, fontSize: 14, textDecoration: "none", whiteSpace: "nowrap" }}>📅 Book a Live Demo →</a>
         </div>
       </div>
 

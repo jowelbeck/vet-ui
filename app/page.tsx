@@ -251,11 +251,16 @@ export default function LandingPage() {
             <div className="hero-for-item">Mobile veterinarians</div>
             <div className="hero-for-item">Vet schools</div>
           </div>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
+            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>⭐ Used by vets in 22 countries</div>
+            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>⚡ AI results in under 60 seconds</div>
+            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>🔒 WOAH-aligned records</div>
+          </div>
           <div className="hero-actions">
             <a href="/signup" className="btn-primary">Start free trial →</a>
             <a href="/demo" className="btn-outline">📅 Book a clinic demo</a>
           </div>
-          <p className="hero-note">No credit card required · First 3 months free · Cancel anytime</p>
+          <p className="hero-note">✅ No credit card required · ✅ First 3 months free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
             <div style={{ background: "rgba(255,255,255,0.95)", padding: 10, borderRadius: 10, display: "inline-block" }}>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={80} height={80} style={{ display: "block" }} />

@@ -177,7 +177,7 @@ Reply to this email anytime — we read every message.
 </div>
 </body></html>`;
 }
-function invoiceEmail(patientName: string, ownerName: string, amount: string, currency: string, services: any[]) {
+function invoiceEmail(patientName: string, ownerName: string, amount: string, currency: string, services: { name: string; quantity: number; price: number }[]) {
   const serviceRows = services.map(s =>
     `<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;">${s.name}</td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;">${s.quantity}</td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;text-align:right;">${currency} ${(s.quantity * s.price).toFixed(2)}</td></tr>`
   ).join("");

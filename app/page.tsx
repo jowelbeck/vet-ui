@@ -251,17 +251,6 @@ export default function LandingPage() {
               <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 13 }}>One platform, all practice types</span>
             </div>
           </div>
-          <div className="hero-for">
-            <div className="hero-for-item">Veterinary clinics</div>
-            <div className="hero-for-item">Private practices</div>
-            <div className="hero-for-item">Mobile veterinarians</div>
-            <div className="hero-for-item">Vet schools</div>
-          </div>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>⭐ Used by vets in 22 countries</div>
-            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>⚡ AI results in under 60 seconds</div>
-            <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>🔒 WOAH-aligned records</div>
-          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 360, marginTop: 8 }}>
             <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 28px", borderRadius: 10, fontWeight: 900, fontSize: 17, textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, boxShadow: "0 4px 24px rgba(134,239,172,0.4)" }}>
               ▶ Try live demo — no signup needed

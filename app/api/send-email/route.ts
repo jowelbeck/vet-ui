@@ -1,6 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
+// ── Security helpers ──────────────────────────────────────────────────────────
+
+// Escape user-supplied values before they are interpolated into email HTML, so a
+// caller can't inject arbitrary markup/links (branded-phishing content) into a
+// message sent from our DKIM-signed domain.
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function deepEscape<T>(value: T): T {
+  if (typeof value === "string") return escapeHtml(value) as unknown as T;
+  if (Array.isArray(value)) return value.map(deepEscape) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) out[k] = deepEscape(v);
+    return out as T;
+  }
+  return value;
+}
+
+// Accept exactly one well-formed address — no arrays/comma lists (blocks mass
+// sending) and no phone numbers slipping through as recipients.
+const EMAIL_RE = /^[^\s@,]+@[^\s@,]+\.[^\s@,]+$/;
+function isValidEmail(to: unknown): to is string {
+  return typeof to === "string" && to.length <= 254 && EMAIL_RE.test(to.trim());
+}
+
+// In-process per-IP sliding-window rate limit. Backstop against abuse of this
+// (session-less) endpoint until it's moved behind auth.
+const RATE_MAX = 10;
+const RATE_WINDOW_MS = 60_000;
+const rateHits = new Map<string, number[]>();
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (rateHits.get(ip) || []).filter((t) => t > now - RATE_WINDOW_MS);
+  if (hits.length >= RATE_MAX) return true;
+  hits.push(now);
+  rateHits.set(ip, hits);
+  return false;
+}
+
 // Resend client initialized per request
 
 // ── Email templates ───────────────────────────────────────────────────────────
@@ -177,7 +223,7 @@ Reply to this email anytime — we read every message.
 </div>
 </body></html>`;
 }
-function invoiceEmail(patientName: string, ownerName: string, amount: string, currency: string, services: any[]) {
+function invoiceEmail(patientName: string, ownerName: string, amount: string, currency: string, services: { name: string; quantity: number; price: number }[]) {
   const serviceRows = services.map(s =>
     `<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;">${s.name}</td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;">${s.quantity}</td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;text-align:right;">${currency} ${(s.quantity * s.price).toFixed(2)}</td></tr>`
   ).join("");
@@ -230,11 +276,28 @@ function invoiceEmail(patientName: string, ownerName: string, amount: string, cu
 
 export async function POST(req: NextRequest) {
   try {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+    if (rateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please slow down." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
-    const { type, to, data } = body;
+    const { type, to } = body;
+    // Escape all caller-supplied template data before it reaches the HTML.
+    const data = deepEscape(body.data ?? {});
 
     if (!type || !to) {
       return NextResponse.json({ error: "Missing type or to field" }, { status: 400 });
+    }
+    if (!isValidEmail(to)) {
+      return NextResponse.json(
+        { error: "Invalid recipient address" },
+        { status: 400 }
+      );
     }
 
     let subject = "";

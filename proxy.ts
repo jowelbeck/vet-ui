@@ -23,7 +23,13 @@ export async function proxy(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user && request.nextUrl.pathname.startsWith('/app')) {
+  // Routes that require an authenticated session. Kept in sync with the matcher
+  // below. RLS is still the real data boundary — this is the edge auth gate.
+  const PROTECTED = ['/app', '/patients', '/billing', '/pharmacy', '/lab', '/analytics', '/team', '/appointments']
+  const path = request.nextUrl.pathname
+  const isProtected = PROTECTED.some((p) => path === p || path.startsWith(p + '/'))
+
+  if (!user && isProtected) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
@@ -39,5 +45,17 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/app/:path*', '/login', '/signup', '/onboarding'],
+  matcher: [
+    '/app/:path*',
+    '/patients/:path*',
+    '/billing/:path*',
+    '/pharmacy/:path*',
+    '/lab/:path*',
+    '/analytics/:path*',
+    '/team/:path*',
+    '/appointments/:path*',
+    '/login',
+    '/signup',
+    '/onboarding',
+  ],
 }

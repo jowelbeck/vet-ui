@@ -31,6 +31,7 @@ function cap(s?: string) {
 export default function PatientsPage() {
   const router = useRouter();
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [isDemo, setIsDemo] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("all");
@@ -56,7 +57,7 @@ export default function PatientsPage() {
 
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    const isDemo = user?.email === "demo@vetsai.vet";
+    setIsDemo(user?.email === "demo@vetsai.vet");
     if (!user) { router.push("/login"); return; }
     loadPatients();
   };

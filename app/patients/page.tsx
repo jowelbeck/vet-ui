@@ -318,7 +318,7 @@ export default function PatientsPage() {
             <div className="empty-icon">📋</div>
             <p>{patients.length === 0 ? "No patients yet. Add your first patient above." : "No patients match your search."}</p>
             {patients.length === 0 && (
-              <button className="btn-add" onClick={() => setShowForm(true)}>+ Add first patient</button>
+              {!isDemo && <button className="btn-add" onClick={() => setShowForm(true)}>+ Add first patient</button>}
             )}
           </div>
         ) : (
@@ -344,6 +344,7 @@ export default function PatientsPage() {
                     <button
                       className="btn-delete"
                       onClick={(e) => { e.stopPropagation(); deletePatient(patient.id); }}
+                      style={{ display: isDemo ? "none" : undefined }}
                     >
                       Delete
                     </button>

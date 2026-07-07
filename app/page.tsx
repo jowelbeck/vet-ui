@@ -215,7 +215,7 @@ export default function LandingPage() {
           <a href="#modules">Platform</a>
           <a href="#how-it-works">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a href="/demo-login" style={{ fontWeight: 700, color: "#1a3d2b" }}>▶ Try live demo</a>
+          <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "8px 20px", borderRadius: 8, textDecoration: "none", fontWeight: 800, fontSize: 14, display: "inline-flex", alignItems: "center", gap: 6 }}>▶ Try live demo</a>
           <a href="/signup" className="nav-cta">Start free →</a>
         </div>
         <a href="/fr" style={{ fontSize: 12, fontWeight: 600, color: "#64748b", textDecoration: "none", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0" }}>🇫🇷 FR</a>

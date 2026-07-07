@@ -660,6 +660,12 @@ export default function Home() {
   return (
     <>
       <AppNav />
+      {user?.email === "demo@vetsai.vet" && (
+        <div style={{ background: "#1a3d2b", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+          <p style={{ color: "#86efac", fontWeight: 700, fontSize: 14, margin: 0 }}>👋 You are viewing a live demo — explore all features freely</p>
+          <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "8px 20px", borderRadius: 8, fontWeight: 800, fontSize: 13, textDecoration: "none" }}>Create your free account →</a>
+        </div>
+      )}
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {

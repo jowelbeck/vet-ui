@@ -89,7 +89,8 @@ export default function Home() {
       if (!user) { router.push("/login"); return; }
       const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
       const role = await getCurrentUserRole();
-      if (!hasAccess("cases", role)) {
+      const isDemoUser = user.email === "demo@vetsai.vet";
+      if (!isDemoUser && !hasAccess("cases", role)) {
         router.push("/patients");
         return;
       }

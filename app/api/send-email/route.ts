@@ -287,10 +287,12 @@ export async function POST(req: NextRequest) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
+    // From must be on a Resend-verified domain. Reply-to is a monitored inbox
+    // (the templates invite replies). Both overridable via env.
     const { data: result, error } = await resend.emails.send({
-      from: "VetsAI <onboarding@resend.dev>",
-      replyTo: to,
-      to: "jowelbeck@aol.com", // Resend free plan - only verified email
+      from: process.env.RESEND_FROM || "VetsAI <onboarding@vetsai.vet>",
+      replyTo: process.env.RESEND_REPLY_TO || "jowelbeck@aol.com",
+      to,
       subject,
       html,
     });

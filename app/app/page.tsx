@@ -1098,7 +1098,7 @@ export default function Home() {
                 <div className="card-title">{t.patientInfo}</div>
                 <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
                 {["pets", "poultry", "livestock"].map(f => (
-                  <button key={f} onClick={() => { setSpeciesType(f); setVaccinationHistory([]); setFlockSize(''); setBirdsDead(''); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
+                  <button key={f} onClick={() => { setSpeciesType(f); setVaccinationHistory([]); setFlockSize(''); setBirdsDead(''); setAnimal(''); setBreed(''); setAge(''); setWeight(''); setPetName(''); }} style={{ padding: "6px 16px", borderRadius: 20, border: "none", cursor: "pointer", fontWeight: speciesType === f ? 700 : 400, background: speciesType === f ? "#1a3d2b" : "#e2e8f0", color: speciesType === f ? "#fff" : "#64748b", fontSize: 13 }}>
                     {f === "pets" ? "Pets" : f === "poultry" ? "Poultry" : "Livestock"}
                   </button>
                 ))}
@@ -1117,7 +1117,7 @@ export default function Home() {
                   <div className="field">
                     <label>{t.petName}</label>
                     <input
-                      placeholder="Buddy"
+                      placeholder={t.placeholderPetName}
                       value={petName}
                       onChange={(e) => setPetName(e.target.value)}
                     />

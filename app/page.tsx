@@ -262,10 +262,16 @@ export default function LandingPage() {
             <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>⚡ AI results in under 60 seconds</div>
             <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", gap: 6 }}>🔒 WOAH-aligned records</div>
           </div>
-          <div className="hero-actions">
-            <a href="/demo-login" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", padding: "14px 28px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none", border: "1px solid rgba(255,255,255,0.4)", display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 8 }}>▶ Try live demo</a>
-            <a href="/signup" className="btn-primary">Start free trial →</a>
-            <a href="/demo" className="btn-outline">📅 Book a clinic demo</a>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 360, marginTop: 8 }}>
+            <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 28px", borderRadius: 10, fontWeight: 900, fontSize: 17, textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, boxShadow: "0 4px 24px rgba(134,239,172,0.4)" }}>
+              ▶ Try live demo — no signup needed
+            </a>
+            <a href="/signup" style={{ background: "rgba(255,255,255,0.12)", color: "#fff", padding: "14px 28px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.25)" }}>
+              Start free trial →
+            </a>
+            <a href="/demo" style={{ background: "transparent", color: "rgba(255,255,255,0.65)", padding: "12px 28px", borderRadius: 10, fontWeight: 600, fontSize: 14, textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.15)" }}>
+              📅 Book a clinic demo
+            </a>
           </div>
           <p className="hero-note">✅ No credit card required · ✅ First 3 months free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>

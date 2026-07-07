@@ -317,8 +317,8 @@ export default function PatientsPage() {
           <div className="empty">
             <div className="empty-icon">📋</div>
             <p>{patients.length === 0 ? "No patients yet. Add your first patient above." : "No patients match your search."}</p>
-            {patients.length === 0 && (
-              {!isDemo && <button className="btn-add" onClick={() => setShowForm(true)}>+ Add first patient</button>}
+            {patients.length === 0 && !isDemo && (
+              <button className="btn-add" onClick={() => setShowForm(true)}>+ Add first patient</button>
             )}
           </div>
         ) : (

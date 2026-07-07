@@ -56,6 +56,7 @@ export default function PatientsPage() {
 
   const checkAuthAndLoad = async () => {
     const { data: { user } } = await supabase.auth.getUser();
+    const isDemo = user?.email === "demo@vetsai.vet";
     if (!user) { router.push("/login"); return; }
     loadPatients();
   };

@@ -269,8 +269,8 @@ export default function PatientsPage() {
                 <input placeholder={speciesType === "pets" ? "3 years" : speciesType === "poultry" ? "500 birds" : "4 years"} value={age} onChange={(e) => setAge(e.target.value)} />
               </div>
               <div className="field">
-                <label>{speciesType === "poultry" ? "Age (weeks)" : "Weight"}</label>
-                <input placeholder={speciesType === "pets" ? "12 kg" : speciesType === "poultry" ? "4 weeks" : "450 kg"} value={weight} onChange={(e) => setWeight(e.target.value)} />
+                <label>{speciesType === "poultry" ? "Birds age (weeks)" : speciesType === "livestock" ? "Weight" : "Weight"}</label>
+                <input placeholder={speciesType === "pets" ? "12 kg" : speciesType === "poultry" ? "e.g. 6 weeks" : "450 kg"} value={weight} onChange={(e) => setWeight(e.target.value)} />
               </div>
               <div className="field">
                 <label>Owner name</label>

@@ -39,7 +39,14 @@ export async function POST(request: NextRequest) {
       [process.env.NEXT_PUBLIC_PAYSTACK_PROFESSIONAL_PLAN!]: "professional",
       [process.env.NEXT_PUBLIC_PAYSTACK_CLINIC_OS_PLAN!]: "clinic_os",
     };
-    const planName = planMap[planCode] || "starter";
+    const planName = planMap[planCode];
+    if (!planName) {
+      // Don't silently mis-record as a specific tier — surface the misconfig.
+      console.error(
+        `Paystack webhook: unmapped plan_code "${planCode}" (amount ${data.amount}). ` +
+        `Check the NEXT_PUBLIC_PAYSTACK_*_PLAN env vars match the Paystack plan codes.`
+      );
+    }
 
     const { data: users } = await supabase.auth.admin.listUsers();
     const user = users?.users.find((u) => u.email === email);
@@ -50,7 +57,7 @@ export async function POST(request: NextRequest) {
 
     const { error: upsertError } = await supabase.from("subscriptions").upsert({
       user_id: user.id,
-      plan: planName,
+      plan: planName || "starter",
       status: "active",
       paystack_subscription_code: subscriptionCode,
       paystack_customer_code: customerCode,

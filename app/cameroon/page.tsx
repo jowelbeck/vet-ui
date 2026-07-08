@@ -24,7 +24,8 @@ export default function CameroonPage() {
           </h1>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>Le Cameroun compte plus de 800 vétérinaires enregistrés. La plupart des cliniques gèrent encore les dossiers sur papier et via WhatsApp.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>Essai gratuit →</a>
+            <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>
+            <a href="/signup" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Démo au Cameroun</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Sans carte bancaire · 3 mois gratuits · Configuration en 5 minutes</p>

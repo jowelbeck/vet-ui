@@ -22,6 +22,17 @@
 -- that stops cross-tenant exposure today.
 -- ─────────────────────────────────────────────────────────────────────────────
 
+-- Prerequisite: ensure the sent_emails table exists (created by db/sent_emails.sql;
+-- included here so this script is self-contained and won't fail if that wasn't run).
+create table if not exists public.sent_emails (
+  id         uuid        primary key default gen_random_uuid(),
+  user_id    uuid        not null references auth.users(id) on delete cascade,
+  email_type text        not null,
+  sent_at    timestamptz not null default now(),
+  unique (user_id, email_type)
+);
+create index if not exists sent_emails_user_id_idx on public.sent_emails (user_id);
+
 -- Owner-scoped tables: full CRUD limited to your own rows.
 do $$
 declare t text;

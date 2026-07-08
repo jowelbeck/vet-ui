@@ -16,7 +16,12 @@ export async function POST(request: NextRequest) {
     .update(body)
     .digest("hex");
 
-  if (hash !== signature) {
+  const hashBuf = Buffer.from(hash, "utf8");
+  const signatureBuf = Buffer.from(signature || "", "utf8");
+  if (
+    hashBuf.length !== signatureBuf.length ||
+    !crypto.timingSafeEqual(hashBuf, signatureBuf)
+  ) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
 

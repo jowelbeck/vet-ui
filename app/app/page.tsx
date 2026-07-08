@@ -286,7 +286,7 @@ export default function Home() {
     setError("");
     setResult(null);
     try {
-      const res = await fetch("/backend/query", {
+      const res = await fetch("/api/ai/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -330,7 +330,7 @@ export default function Home() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/backend/follow-up", {
+      const res = await fetch("/api/ai/follow-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

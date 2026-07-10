@@ -25,7 +25,7 @@ export async function proxy(request: NextRequest) {
 
   // Routes that require an authenticated session. Kept in sync with the matcher
   // below. RLS is still the real data boundary — this is the edge auth gate.
-  const PROTECTED = ['/app', '/patients', '/billing', '/pharmacy', '/lab', '/analytics', '/team', '/appointments']
+  const PROTECTED = ['/app', '/patients', '/billing', '/pharmacy', '/lab', '/analytics', '/team', '/appointments', '/admin']
   const path = request.nextUrl.pathname
   const isProtected = PROTECTED.some((p) => path === p || path.startsWith(p + '/'))
 
@@ -33,6 +33,21 @@ export async function proxy(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
+  }
+
+  // Account-level deactivation: a logged-in but deactivated user is bounced to
+  // the deactivated notice on every protected navigation.
+  if (user && isProtected) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('deactivated')
+      .eq('id', user.id)
+      .maybeSingle()
+    if (profile?.deactivated) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/deactivated'
+      return NextResponse.redirect(url)
+    }
   }
 
   if (user && ['/login', '/signup'].includes(request.nextUrl.pathname)) {
@@ -54,6 +69,7 @@ export const config = {
     '/analytics/:path*',
     '/team/:path*',
     '/appointments/:path*',
+    '/admin/:path*',
     '/login',
     '/signup',
     '/onboarding',

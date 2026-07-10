@@ -28,6 +28,7 @@ export default function SignupPage() {
     const { error } = await supabase.auth.signUp({
       email: email.trim(),
       password: password.trim(),
+      options: { data: { product: "vetsai" } },
     });
 
     if (error) { setError(error.message); setLoading(false); return; }

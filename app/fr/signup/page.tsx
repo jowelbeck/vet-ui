@@ -18,7 +18,7 @@ export default function FrenchSignupPage() {
     if (password.length < 6) { setError("Le mot de passe doit contenir au moins 6 caractères."); return; }
     setLoading(true);
     setError("");
-    const { error } = await supabase.auth.signUp({ email: email.trim(), password: password.trim() });
+    const { error } = await supabase.auth.signUp({ email: email.trim(), password: password.trim(), options: { data: { product: "vetsai" } } });
     if (error) { setError(error.message); setLoading(false); return; }
     fetch("/api/send-email", {
       method: "POST",

@@ -18,6 +18,11 @@ export default function FrenchLoginPage() {
     setError("");
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password: password.trim() });
     if (error) { setError(error.message); setLoading(false); return; }
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase.from("profiles").select("deactivated").eq("id", user.id).maybeSingle();
+      if (profile?.deactivated) { await supabase.auth.signOut(); router.push("/deactivated"); return; }
+    }
     router.push("/app");
   };
 

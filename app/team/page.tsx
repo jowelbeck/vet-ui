@@ -101,6 +101,16 @@ export default function TeamPage() {
     setMembers((prev) => prev.filter((m) => m.id !== id));
   };
 
+  // Reversible deactivate: sets status to "inactive" so the member loses access
+  // (roleCheck only grants a role when status === "active") without deleting them.
+  const setMemberStatus = async (id: string, status: string) => {
+    const verb = status === "inactive" ? "Deactivate" : "Reactivate";
+    if (!window.confirm(`${verb} this team member?`)) return;
+    const { error } = await supabase.from("clinic_members").update({ status }).eq("id", id);
+    if (error) { setError(error.message); return; }
+    setMembers((prev) => prev.map((m) => (m.id === id ? { ...m, status } : m)));
+  };
+
   const roleColor = (role: string) => {
     const colors: Record<string, string> = {
       admin: { bg: "#f0faf4", color: "#1a3d2b" },
@@ -292,6 +302,17 @@ export default function TeamPage() {
                     <span className="badge" style={{ background: sc.bg, color: sc.color }}>
                       {member.status.charAt(0).toUpperCase() + member.status.slice(1)}
                     </span>
+                    {member.status !== "invited" && (
+                      member.status === "inactive" ? (
+                        <button className="btn-remove" style={{ color: "#1a3d2b" }} onClick={() => setMemberStatus(member.id, "active")}>
+                          Reactivate
+                        </button>
+                      ) : (
+                        <button className="btn-remove" style={{ color: "#b45309" }} onClick={() => setMemberStatus(member.id, "inactive")}>
+                          Deactivate
+                        </button>
+                      )
+                    )}
                     <button className="btn-remove" onClick={() => removeMember(member.id)}>
                       Remove
                     </button>

@@ -34,6 +34,21 @@ export default function LoginPage() {
       return;
     }
 
+    // Account-level deactivation check: blocked accounts can't proceed.
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("deactivated")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (profile?.deactivated) {
+        await supabase.auth.signOut();
+        router.push("/deactivated");
+        return;
+      }
+    }
+
     router.push("/app");
   };
 

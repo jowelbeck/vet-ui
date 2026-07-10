@@ -8,6 +8,9 @@ export default function SignupPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [clinicName, setClinicName] = useState("");
+  const [country, setCountry] = useState("");
+  const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +31,7 @@ export default function SignupPage() {
     const { error } = await supabase.auth.signUp({
       email: email.trim(),
       password: password.trim(),
-      options: { data: { product: "vetsai" } },
+      options: { data: { product: "vetsai", clinic_name: clinicName.trim(), country: country.trim(), phone: phone.trim() } },
     });
 
     if (error) { setError(error.message); setLoading(false); return; }
@@ -142,6 +145,42 @@ export default function SignupPage() {
                 />
               </div>
 
+              <div className="field">
+                <label>Clinic name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Accra Vet Clinic"
+                  value={clinicName}
+                  onChange={(e) => setClinicName(e.target.value)}
+                />
+              </div>
+              <div className="field">
+                <label>Country</label>
+                <select value={country} onChange={(e) => setCountry(e.target.value)} style={{ width: "100%", padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 8, fontSize: 14 }}>
+                  <option value="">Select country...</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Nigeria">Nigeria</option>
+                  <option value="Kenya">Kenya</option>
+                  <option value="Cameroon">Cameroon</option>
+                  <option value="Senegal">Senegal</option>
+                  <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                  <option value="Burkina Faso">Burkina Faso</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="Tanzania">Tanzania</option>
+                  <option value="Uganda">Uganda</option>
+                  <option value="Ethiopia">Ethiopia</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="field">
+                <label>Phone number</label>
+                <input
+                  type="tel"
+                  placeholder="+233 20 000 0000"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
               <div className="field">
                 <label>Password</label>
                 <input

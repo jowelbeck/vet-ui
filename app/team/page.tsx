@@ -4,6 +4,7 @@ import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 type Member = {
   id: string;
@@ -87,6 +88,8 @@ export default function TeamPage() {
     });
 
     if (error) { setError(error.message); setSaving(false); return; }
+
+    trackEvent("team_member_invited", { role: inviteRole });
 
     setSuccessMsg(`Invitation sent to ${inviteEmail}!`);
     setTimeout(() => setSuccessMsg(""), 4000);

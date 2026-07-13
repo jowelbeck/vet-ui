@@ -4,6 +4,7 @@ import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 type Appointment = {
   id: string;
@@ -104,6 +105,8 @@ export default function AppointmentsPage() {
       status: "scheduled",
     });
     if (error) { setError(error.message); setSaving(false); return; }
+
+    trackEvent("appointment_created", { type });
 
     // Send email notification
     if (notifyMethod === "email" && ownerEmail.trim()) {

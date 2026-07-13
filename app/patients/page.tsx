@@ -4,6 +4,7 @@ import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 type Patient = {
   id: string;
@@ -89,6 +90,8 @@ export default function PatientsPage() {
       owner_phone: ownerPhone.trim(),
     });
     if (error) { setError(error.message); setSaving(false); return; }
+    trackEvent("patient_added", { species: animal.trim() });
+
     setSuccessMsg("Patient added successfully!");
     setTimeout(() => setSuccessMsg(""), 3000);
     setShowForm(false);

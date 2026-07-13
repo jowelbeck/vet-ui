@@ -179,6 +179,13 @@ export default function Home() {
   const [treatmentNotes, setTreatmentNotes] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
   const [notesSaved, setNotesSaved] = useState(false);
+  const [gpsLat, setGpsLat] = useState<number | null>(null);
+  const [gpsLng, setGpsLng] = useState<number | null>(null);
+  const [locationSource, setLocationSource] = useState<"device_gps" | "manual" | null>(null);
+  const [locationCapturing, setLocationCapturing] = useState(false);
+  const [showManualLocation, setShowManualLocation] = useState(false);
+  const [manualLat, setManualLat] = useState("");
+  const [manualLng, setManualLng] = useState("");
   const [followUpQuestions, setFollowUpQuestions] = useState<string[]>([]);
   const [followUpAnswers, setFollowUpAnswers] = useState("");
 
@@ -307,6 +314,32 @@ export default function Home() {
     setNotesSaved(false);
     setFollowUpQuestions([]);
     setFollowUpAnswers("");
+  };
+
+  const captureLocation = (): Promise<void> => {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) {
+        setShowManualLocation(true);
+        resolve();
+        return;
+      }
+      setLocationCapturing(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setGpsLat(position.coords.latitude);
+          setGpsLng(position.coords.longitude);
+          setLocationSource("device_gps");
+          setLocationCapturing(false);
+          resolve();
+        },
+        () => {
+          setLocationCapturing(false);
+          setShowManualLocation(true);
+          resolve();
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+      );
+    });
   };
 
   const handleSubmit = async () => {

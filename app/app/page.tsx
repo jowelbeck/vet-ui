@@ -268,6 +268,10 @@ export default function Home() {
           recommendation: newCase.recommendation,
           soap_note: newCase.soap_note,
           created_at: newCase.createdAt,
+          gps_lat: gpsLat,
+          gps_lng: gpsLng,
+          location_captured_at: (gpsLat !== null || gpsLng !== null) ? new Date().toISOString() : null,
+          location_source: locationSource,
         }).select().single().then(({ data: row, error }) => {
           if (error) { console.error("Case save error:", error); return; }
           if (row) setDbCaseId(row.id);
@@ -347,6 +351,7 @@ export default function Home() {
       setError(t.errorRequired);
       return;
     }
+    await captureLocation();
     setLoading(true);
     setError("");
     setResult(null);

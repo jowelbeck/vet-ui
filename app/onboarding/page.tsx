@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
@@ -14,6 +15,12 @@ const STEPS = [
 export default function OnboardingPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    if (step === 4) {
+      trackEvent("onboarding_completed");
+    }
+  }, [step]);
 
   // Step 2 — clinic info
   const [clinicName, setClinicName] = useState("");
@@ -259,7 +266,7 @@ export default function OnboardingPage() {
               <button className="btn-next" onClick={saveFirstPatient} disabled={saving}>
                 {saving ? "Saving…" : "Add patient →"}
               </button>
-              <button className="btn-skip" onClick={() => setStep(4)}>Skip for now</button>
+              <button className="btn-skip" onClick={() => { trackEvent("onboarding_completed", { skipped_patient: true }); setStep(4); }}>Skip for now</button>
             </>
           )}
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 const PLANS = [
   {
@@ -74,6 +75,7 @@ export default function PricingPage() {
 
   const handleSubscribe = (plan: typeof PLANS[0]) => {
     if (!userEmail) return;
+    trackEvent("plan_selected", { plan: plan.name });
     setLoading(plan.name);
 
     const handler = (window as any).PaystackPop.setup({

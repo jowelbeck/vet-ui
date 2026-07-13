@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 export default function FrenchLoginPage() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function FrenchLoginPage() {
       const { data: profile } = await supabase.from("profiles").select("deactivated").eq("id", user.id).maybeSingle();
       if (profile?.deactivated) { await supabase.auth.signOut(); router.push("/deactivated"); return; }
     }
+    trackEvent("login", { locale: "fr" });
     router.push("/app");
   };
 

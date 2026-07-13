@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 export default function FrenchSignupPage() {
   const router = useRouter();
@@ -25,6 +26,8 @@ export default function FrenchSignupPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "welcome", to: email.trim(), data: { clinicName: "votre clinique" } })
     }).catch(console.error);
+    trackEvent("sign_up", { method: "email", locale: "fr" });
+
     setSuccess(true);
     setTimeout(() => router.push("/onboarding"), 2000);
     setLoading(false);

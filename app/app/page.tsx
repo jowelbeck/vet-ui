@@ -174,6 +174,10 @@ export default function Home() {
   // Case flow
   const [result, setResult] = useState<ApiResult | null>(null);
   const [caseId, setCaseId] = useState("");
+  const [dbCaseId, setDbCaseId] = useState<string | null>(null);
+  const [treatmentNotes, setTreatmentNotes] = useState("");
+  const [savingNotes, setSavingNotes] = useState(false);
+  const [notesSaved, setNotesSaved] = useState(false);
   const [followUpQuestions, setFollowUpQuestions] = useState<string[]>([]);
   const [followUpAnswers, setFollowUpAnswers] = useState("");
 
@@ -256,9 +260,33 @@ export default function Home() {
           recommendation: newCase.recommendation,
           soap_note: newCase.soap_note,
           created_at: newCase.createdAt,
-        }).then(({ error }) => { if (error) console.error("Case save error:", error); });
+        }).select().single().then(({ data: row, error }) => {
+          if (error) { console.error("Case save error:", error); return; }
+          if (row) setDbCaseId(row.id);
+        });
       }
     });
+  };
+
+  const saveTreatmentNotes = async () => {
+    if (!dbCaseId || !treatmentNotes.trim()) return;
+    setSavingNotes(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    const { error } = await supabase
+      .from("cases")
+      .update({
+        vet_treatment_notes: treatmentNotes.trim(),
+        vet_notes_added_by: user?.id,
+        vet_notes_added_at: new Date().toISOString(),
+      })
+      .eq("id", dbCaseId);
+    setSavingNotes(false);
+    if (error) {
+      console.error("Treatment notes save error:", error);
+      return;
+    }
+    setNotesSaved(true);
+    setTimeout(() => setNotesSaved(false), 3000);
   };
 
   // ── Form actions ───────────────────────────────────────────────────────────
@@ -273,6 +301,9 @@ export default function Home() {
     setError("");
     setResult(null);
     setCaseId("");
+    setDbCaseId(null);
+    setTreatmentNotes("");
+    setNotesSaved(false);
     setFollowUpQuestions([]);
     setFollowUpAnswers("");
   };
@@ -1004,6 +1035,28 @@ export default function Home() {
                         <li key={i}>{s}</li>
                       ))}
                     </ul>
+                  </div>
+                )}
+                {dbCaseId && (
+                  <div className="result-section">
+                    <h4>Doctor's Treatment Notes</h4>
+                    <p style={{ fontSize: 12, color: "#64748b", marginBottom: 8 }}>
+                      Record your actual treatment decision here. This is saved separately from the AI's suggestions above and becomes part of the permanent case record.
+                    </p>
+                    <textarea
+                      value={treatmentNotes}
+                      onChange={(e) => setTreatmentNotes(e.target.value)}
+                      placeholder="e.g. Administered amoxicillin 20mg/kg BID x7 days, advised owner on hydration..."
+                      rows={4}
+                      style={{ width: "100%", padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 8, fontSize: 14, fontFamily: "inherit", boxSizing: "border-box" as const, resize: "vertical" as const }}
+                    />
+                    <button
+                      onClick={saveTreatmentNotes}
+                      disabled={savingNotes || !treatmentNotes.trim()}
+                      style={{ marginTop: 8, background: "#1a3d2b", color: "#fff", padding: "8px 18px", borderRadius: 7, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", opacity: (savingNotes || !treatmentNotes.trim()) ? 0.5 : 1 }}
+                    >
+                      {savingNotes ? "Saving…" : notesSaved ? "✓ Saved" : "Save Treatment Notes"}
+                    </button>
                   </div>
                 )}
 

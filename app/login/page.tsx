@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics";
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -49,6 +50,7 @@ export default function LoginPage() {
       }
     }
 
+    trackEvent("login");
     router.push("/app");
   };
 

@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -45,6 +46,8 @@ export default function SignupPage() {
         data: { clinicName: "your clinic" }
       })
     }).catch(console.error);
+
+    trackEvent("sign_up", { method: "email", country: country.trim() });
 
     setSuccess(true);
     setTimeout(() => router.push("/onboarding"), 2000);

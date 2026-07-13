@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 export default function DemoLogin() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function DemoLogin() {
       if (error) {
         router.push("/signup");
       } else {
+        trackEvent("demo_login");
         router.push("/app");
       }
     };

@@ -49,6 +49,8 @@ type CaseHistoryItem = {
   disclaimer?: string;
   species_type?: string;
   vet_treatment_notes?: string;
+  gps_lat?: number | null;
+  gps_lng?: number | null;
   createdAt: string;
 };
 
@@ -245,6 +247,8 @@ export default function Home() {
       soap_note: data.soap_note,
       drug_notes: data.drug_notes ?? [],
       createdAt: new Date().toISOString(),
+      gps_lat: gpsLat,
+      gps_lng: gpsLng,
     };
     setCaseHistory((prev) => {
       const updated = [newCase, ...prev];
@@ -590,7 +594,7 @@ export default function Home() {
 </html>`;
   };
 
-  const printReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "") => {
+  const printReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
     const html = buildReportHTML(data, petData, vetNotes);
     const win = window.open("", "_blank");
     if (!win) return;
@@ -610,7 +614,7 @@ export default function Home() {
     return WOAH_DISEASES.some(d => text.includes(d));
   };
 
-  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "") => {
+  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
     const date = new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
     const causes = (data.possible_causes ?? []).join(", ");
     return `<!DOCTYPE html>
@@ -654,6 +658,16 @@ export default function Home() {
     <div class="field"><strong>Weight:</strong> ${petData.weight || "—"}</div>
   </div>
   <div class="section">
+    <div class="section-title">Location &amp; Timing</div>
+    <div class="field"><strong>Species:</strong> ${petData.animal || "—"}</div>
+    <div class="field"><strong>Date/time recorded:</strong> ${locTime ? new Date(locTime).toLocaleString() : date}</div>
+    ${locLat != null && locLng != null ? `
+    <div class="field"><strong>GPS coordinates:</strong> ${locLat}, ${locLng}
+      (<a href="https://maps.google.com/?q=${locLat},${locLng}" target="_blank">view on map</a>)
+    </div>
+    ` : `<div class="field"><strong>GPS coordinates:</strong> Not captured</div>`}
+  </div>
+  <div class="section">
     <div class="section-title">Clinical Findings</div>
     <div class="field"><strong>Urgency level:</strong> ${(data.urgency ?? "unknown").toUpperCase()}</div>
     <div class="field"><strong>Possible diagnoses:</strong> ${causes || "—"}</div>
@@ -689,8 +703,8 @@ export default function Home() {
 </html>`;
   };
 
-  const reportToAuthorities = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
-    const html = buildWoahReportHTML(data, petData);
+  const reportToAuthorities = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
+    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime);
     const win = window.open("", "_blank");
     if (!win) return;
     win.document.write(html);
@@ -699,8 +713,8 @@ export default function Home() {
     setTimeout(() => win.print(), 500);
   };
 
-  const downloadWoahReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }) => {
-    const html = buildWoahReportHTML(data, petData);
+  const downloadWoahReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
+    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime);
     const blob = new Blob([html], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -1145,7 +1159,7 @@ export default function Home() {
                 <div className="btn-row" style={{ marginTop: 20 }}>
                   <button
                     className="btn btn-secondary"
-                    onClick={() => printReport(result, { petName, animal, breed, age, weight }, treatmentNotes)}
+                    onClick={() => printReport(result, { petName, animal, breed, age, weight }, treatmentNotes, gpsLat, gpsLng, new Date().toISOString())}
                   >
                     🖨 Print report
                   </button>
@@ -1157,7 +1171,7 @@ export default function Home() {
                   </button>
                   {isWoahNotifiable(result) && (
                     <button
-                      onClick={() => reportToAuthorities(result, { petName, animal, breed, age, weight })}
+                      onClick={() => reportToAuthorities(result, { petName, animal, breed, age, weight }, treatmentNotes, gpsLat, gpsLng, new Date().toISOString())}
                       style={{ background: "#dc2626", color: "#fff", border: "none", padding: "10px 20px", borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}
                     >
                       ⚠ Report to Authorities (WOAH)
@@ -1292,6 +1306,52 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="btn-row">
+                  {locationCapturing && (
+                    <p style={{ fontSize: 12, color: "#64748b", marginBottom: 8 }}>📍 Getting location…</p>
+                  )}
+                  {gpsLat !== null && gpsLng !== null && (
+                    <p style={{ fontSize: 12, color: "#2d6b47", marginBottom: 8 }}>
+                      📍 Location captured ({locationSource === "device_gps" ? "GPS" : "manual"})
+                    </p>
+                  )}
+                  {showManualLocation && gpsLat === null && (
+                    <div style={{ marginBottom: 10, padding: 10, background: "#f8fafc", borderRadius: 8, border: "1px solid #e2e8f0" }}>
+                      <p style={{ fontSize: 12, color: "#64748b", marginBottom: 6 }}>
+                        Couldn't get device location. Enter coordinates manually (optional), or leave blank to submit without location.
+                      </p>
+                      <div style={{ display: "flex", gap: 8 }}>
+                        <input
+                          type="text"
+                          placeholder="Latitude, e.g. 5.6037"
+                          value={manualLat}
+                          onChange={(e) => setManualLat(e.target.value)}
+                          style={{ flex: 1, padding: "8px 10px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Longitude, e.g. -0.1870"
+                          value={manualLng}
+                          onChange={(e) => setManualLng(e.target.value)}
+                          style={{ flex: 1, padding: "8px 10px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const lat = parseFloat(manualLat);
+                            const lng = parseFloat(manualLng);
+                            if (!isNaN(lat) && !isNaN(lng)) {
+                              setGpsLat(lat);
+                              setGpsLng(lng);
+                              setLocationSource("manual");
+                            }
+                          }}
+                          style={{ padding: "8px 14px", background: "#1a3d2b", color: "#fff", border: "none", borderRadius: 6, fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                        >
+                          Set
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   <button
                     className="btn btn-primary"
                     onClick={handleSubmit}
@@ -1547,7 +1607,7 @@ export default function Home() {
                                 breed: item.breed || "",
                                 age: item.age || "",
                                 weight: item.weight || "",
-                              }, item.vet_treatment_notes ?? "")}
+                              }, item.vet_treatment_notes ?? "", item.gps_lat ?? null, item.gps_lng ?? null, item.createdAt)}
                             >
                               🖨 Print report
                             </button>

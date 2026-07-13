@@ -1,3 +1,6 @@
+"use client";
+import { trackEvent } from "@/lib/analytics";
+
 export default function NigeriaPage() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
@@ -15,7 +18,7 @@ export default function NigeriaPage() {
         </a>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
           <a href="/demo" style={{ color: "#64748b", textDecoration: "none", fontSize: 14 }}>Request demo</a>
-          <a href="/signup" style={{ background: "#1a3d2b", color: "#fff", padding: "8px 20px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>Start free →</a>
+          <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Nigeria", destination: "signup" })} style={{ background: "#1a3d2b", color: "#fff", padding: "8px 20px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>Start free →</a>
         </div>
       </nav>
 
@@ -30,8 +33,8 @@ export default function NigeriaPage() {
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Nigeria has over 5,000 registered veterinarians serving Africa's largest livestock sector. The need for digital clinic management has never been more urgent.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI gives Nigeria&apos;s veterinary professionals a complete digital clinic — patient records, AI clinical support, pharmacy management, billing, and WOAH-aligned disease reporting. All in one place.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Try live demo</a>
-            <a href="/signup" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
+            <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Nigeria", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Try live demo</a>
+            <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Nigeria", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a Nigeria demo</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>No credit card · First 3 months free · Set up in 5 minutes</p>
@@ -81,7 +84,7 @@ export default function NigeriaPage() {
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
         <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your Nigeria clinic?</h2>
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Join veterinary professionals across Africa who trust VetsAI.</p>
-        <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
+        <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Nigeria", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book Nigeria demo →</a>
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>No credit card · First 3 months free · Cancel anytime</p>
       </section>

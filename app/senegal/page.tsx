@@ -1,3 +1,6 @@
+"use client";
+import { trackEvent } from "@/lib/analytics";
+
 export default function SenegalPage() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
@@ -12,7 +15,7 @@ export default function SenegalPage() {
         </a>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
           <a href="/demo" style={{ color: "#64748b", textDecoration: "none", fontSize: 14 }}>Demander une démo</a>
-          <a href="/signup" style={{ background: "#1a3d2b", color: "#fff", padding: "8px 20px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>Essai gratuit →</a>
+          <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "signup" })} style={{ background: "#1a3d2b", color: "#fff", padding: "8px 20px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>Essai gratuit →</a>
           <a href="/" style={{ fontSize: 12, color: "#64748b", textDecoration: "none", padding: "5px 10px", borderRadius: 6, border: "1px solid #e2e8f0" }}>🇬🇧 EN</a>
         </div>
       </nav>
@@ -26,8 +29,8 @@ export default function SenegalPage() {
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Le Sénégal compte plus de 600 vétérinaires enregistrés. L'élevage représente 35% du PIB agricole. La gestion numérique des cliniques vétérinaires est désormais essentielle.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI offre aux vétérinaires du Sénégal une clinique numérique complète — dossiers patients, IA clinique, gestion de pharmacie, facturation et rapports de maladies alignés WOAH. Tout en un seul endroit.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <a href="/demo-login" style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>
-            <a href="/signup" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>
+            <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>
+            <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Démo au Sénégal</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Sans carte bancaire · 3 mois gratuits · Configuration en 5 minutes</p>
@@ -71,7 +74,7 @@ export default function SenegalPage() {
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
         <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Prêt à moderniser votre clinique au Sénégal ?</h2>
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Rejoignez les professionnels vétérinaires à travers l&apos;Afrique qui font confiance à VetsAI.</p>
-        <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Commencer gratuitement →</a>
+        <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Commencer gratuitement →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Réserver une démo →</a>
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Sans carte bancaire · 3 mois gratuits · Annulez à tout moment</p>
       </section>

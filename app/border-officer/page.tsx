@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import OfficerDashboard from "@/components/border/OfficerDashboard";
 
 type BorderOfficer = {
   id: string;
@@ -15,6 +16,7 @@ type BorderPost = {
   id: string;
   name: string;
   country: string;
+  neighboring_country: string;
   status: "pending" | "active" | "rejected";
 };
 
@@ -52,7 +54,7 @@ export default function BorderOfficerPage() {
         setOfficer(officerRow as BorderOfficer);
         const { data: postRow } = await supabase
           .from("border_posts")
-          .select("id, name, country, status")
+          .select("id, name, country, neighboring_country, status")
           .eq("id", officerRow.border_post_id)
           .maybeSingle();
         if (postRow) setPost(postRow as BorderPost);
@@ -133,13 +135,22 @@ export default function BorderOfficerPage() {
 
             {fullyLive ? (
               <p style={{ marginTop: 20, fontSize: 14, color: "#2d6b47", background: "#f0faf4", padding: 12, borderRadius: 8 }}>
-                ✓ You're fully approved. Movement permit and quarantine tools are ready to use for this post.
+                ✓ You're fully approved. Movement permit and quarantine tools are below.
               </p>
             ) : (
               <p style={{ marginTop: 20, fontSize: 14, color: "#64748b" }}>
                 Both your border post and your own application need to be approved by a VetsAI admin before you can log movement
                 permits or quarantine records. This usually takes a few business days.
               </p>
+            )}
+
+            {fullyLive && post && (
+              <OfficerDashboard
+                borderPostId={post.id}
+                userId={userId}
+                postCountry={post.country}
+                neighboringCountry={post.neighboring_country}
+              />
             )}
           </div>
         </div>

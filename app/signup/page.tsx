@@ -188,6 +188,9 @@ export default function SignupPage() {
                 <label>Password</label>
                 <input
                   type="password"
+                  name="new-password"
+                  id="signup-password"
+                  autoComplete="new-password"
                   placeholder="Min. 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

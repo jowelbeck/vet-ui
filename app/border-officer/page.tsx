@@ -20,14 +20,25 @@ type BorderPost = {
   status: "pending" | "active" | "rejected";
 };
 
+// Simple timeout wrapper - deliberately not generic to avoid TypeScript
+// losing track of Supabase's specific return types.
+function withTimeout(promiseLike: PromiseLike<any>, ms: number, label: string): Promise<any> {
+  return Promise.race([
+    Promise.resolve(promiseLike),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`Timed out after ${ms / 1000}s waiting for: ${label}`)), ms)
+    ),
+  ]);
+}
+
 export default function BorderOfficerPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [initError, setInitError] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [officer, setOfficer] = useState<BorderOfficer | null>(null);
   const [post, setPost] = useState<BorderPost | null>(null);
 
-  // Application form state
   const [fullName, setFullName] = useState("");
   const [officerIdNumber, setOfficerIdNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -37,52 +48,65 @@ export default function BorderOfficerPage() {
   const [neighboringCountry, setNeighboringCountry] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-
-  const [initError, setInitError] = useState<string | null>(null);
-
   useEffect(() => {
     const init = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) { setLoading(false); return; }
+        const authResult: any = await withTimeout(supabase.auth.getUser(), 8000, "auth check");
+        const user = authResult?.data?.user;
+
+        if (!user) {
+          setLoading(false);
+          return;
+        }
         setUserId(user.id);
 
-        const { data: officerRow, error: officerError } = await supabase
-          .from("border_officers")
-          .select("id, full_name, border_post_id, verification_status")
-          .eq("user_id", user.id)
-          .maybeSingle();
+        const officerResult: any = await withTimeout(
+          supabase
+            .from("border_officers")
+            .select("id, full_name, border_post_id, verification_status")
+            .eq("user_id", user.id)
+            .maybeSingle(),
+          8000,
+          "officer lookup"
+        );
 
-        if (officerError) {
-          setInitError(`Error loading officer record: ${officerError.message}`);
+        if (officerResult.error) {
+          setInitError(`Error loading officer record: ${officerResult.error.message}`);
           setLoading(false);
           return;
         }
 
+        const officerRow = officerResult.data;
+
         if (officerRow) {
           setOfficer(officerRow as BorderOfficer);
-          const { data: postRow, error: postError } = await supabase
-            .from("border_posts")
-            .select("id, name, country, neighboring_country, status")
-            .eq("id", officerRow.border_post_id)
-            .maybeSingle();
 
-          if (postError) {
-            setInitError(`Error loading border post: ${postError.message}`);
+          const postResult: any = await withTimeout(
+            supabase
+              .from("border_posts")
+              .select("id, name, country, neighboring_country, status")
+              .eq("id", officerRow.border_post_id)
+              .maybeSingle(),
+            8000,
+            "post lookup"
+          );
+
+          if (postResult.error) {
+            setInitError(`Error loading border post: ${postResult.error.message}`);
             setLoading(false);
             return;
           }
-          if (postRow) setPost(postRow as BorderPost);
+
+          if (postResult.data) setPost(postResult.data as BorderPost);
         }
       } catch (err: any) {
-        setInitError(`Unexpected error: ${err?.message || String(err)}`);
+        setInitError(err?.message || String(err));
       } finally {
         setLoading(false);
       }
     };
     init();
   }, []);
-
   const submitApplication = async () => {
     if (!userId) return;
     if (!fullName.trim() || !postName.trim() || !country.trim() || !neighboringCountry.trim()) {
@@ -92,7 +116,7 @@ export default function BorderOfficerPage() {
     setSubmitting(true);
     setError("");
 
-    const { data, error } = await supabase.rpc("fn_apply_as_border_officer", {
+    const { error } = await supabase.rpc("fn_apply_as_border_officer", {
       p_user_id: userId,
       p_full_name: fullName.trim(),
       p_officer_id_number: officerIdNumber.trim() || null,
@@ -108,7 +132,6 @@ export default function BorderOfficerPage() {
       setError(error.message);
       return;
     }
-    // Reload state to show the pending-review screen
     window.location.reload();
   };
 
@@ -124,7 +147,7 @@ export default function BorderOfficerPage() {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
         <div style={{ maxWidth: 480, background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 10, padding: 20 }}>
-          <p style={{ fontSize: 13, fontWeight: 700, color: "#991b1b", marginBottom: 6 }}>Something went wrong loading this page:</p>
+          <p style={{ fontSize: 13, fontWeight: 700, color: "#991b1b", marginBottom: 6 }}>Something went wrong:</p>
           <p style={{ fontSize: 13, color: "#991b1b" }}>{initError}</p>
         </div>
       </div>
@@ -139,7 +162,6 @@ export default function BorderOfficerPage() {
     );
   }
 
-  // Already applied — show status
   if (officer) {
     const postActive = post?.status === "active";
     const officerApproved = officer.verification_status === "approved";
@@ -151,8 +173,8 @@ export default function BorderOfficerPage() {
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
           body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; color: #1e293b; }
         `}</style>
-        <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
-          <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: 32, width: "100%", maxWidth: 480, boxShadow: "0 4px 12px rgba(0,0,0,0.06)" }}>
+        <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: fullyLive ? "flex-start" : "center", padding: 24 }}>
+          <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: 32, width: "100%", maxWidth: 480, boxShadow: "0 4px 12px rgba(0,0,0,0.06)", marginTop: fullyLive ? 24 : 0 }}>
             <h1 style={{ fontSize: 20, fontWeight: 700, color: "#1a3d2b", marginBottom: 16 }}>Border Officer Status</h1>
 
             <div style={{ marginBottom: 12 }}>
@@ -169,26 +191,25 @@ export default function BorderOfficerPage() {
               </p>
             ) : (
               <p style={{ marginTop: 20, fontSize: 14, color: "#64748b" }}>
-                Both your border post and your own application need to be approved by a VetsAI admin before you can log movement
-                permits or quarantine records. This usually takes a few business days.
+                Both your border post and your own application need to be approved by a VetsAI admin before you can log
+                movement permits or quarantine records.
               </p>
             )}
-
-            {fullyLive && post && (
-              <OfficerDashboard
-                borderPostId={post.id}
-                userId={userId}
-                postCountry={post.country}
-                neighboringCountry={post.neighboring_country}
-              />
-            )}
           </div>
+
+          {fullyLive && post && (
+            <OfficerDashboard
+              borderPostId={post.id}
+              userId={userId}
+              postCountry={post.country}
+              neighboringCountry={post.neighboring_country}
+            />
+          )}
         </div>
       </>
     );
   }
 
-  // No application yet — show the form
   return (
     <>
       <style>{`

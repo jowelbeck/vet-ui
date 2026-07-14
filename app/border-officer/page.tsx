@@ -38,28 +38,47 @@ export default function BorderOfficerPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  const [initError, setInitError] = useState<string | null>(null);
+
   useEffect(() => {
     const init = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { setLoading(false); return; }
-      setUserId(user.id);
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) { setLoading(false); return; }
+        setUserId(user.id);
 
-      const { data: officerRow } = await supabase
-        .from("border_officers")
-        .select("id, full_name, border_post_id, verification_status")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      if (officerRow) {
-        setOfficer(officerRow as BorderOfficer);
-        const { data: postRow } = await supabase
-          .from("border_posts")
-          .select("id, name, country, neighboring_country, status")
-          .eq("id", officerRow.border_post_id)
+        const { data: officerRow, error: officerError } = await supabase
+          .from("border_officers")
+          .select("id, full_name, border_post_id, verification_status")
+          .eq("user_id", user.id)
           .maybeSingle();
-        if (postRow) setPost(postRow as BorderPost);
+
+        if (officerError) {
+          setInitError(`Error loading officer record: ${officerError.message}`);
+          setLoading(false);
+          return;
+        }
+
+        if (officerRow) {
+          setOfficer(officerRow as BorderOfficer);
+          const { data: postRow, error: postError } = await supabase
+            .from("border_posts")
+            .select("id, name, country, neighboring_country, status")
+            .eq("id", officerRow.border_post_id)
+            .maybeSingle();
+
+          if (postError) {
+            setInitError(`Error loading border post: ${postError.message}`);
+            setLoading(false);
+            return;
+          }
+          if (postRow) setPost(postRow as BorderPost);
+        }
+      } catch (err: any) {
+        setInitError(`Unexpected error: ${err?.message || String(err)}`);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     init();
   }, []);
@@ -97,6 +116,17 @@ export default function BorderOfficerPage() {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#64748b" }}>
         Loading…
+      </div>
+    );
+  }
+
+  if (initError) {
+    return (
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <div style={{ maxWidth: 480, background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 10, padding: 20 }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: "#991b1b", marginBottom: 6 }}>Something went wrong loading this page:</p>
+          <p style={{ fontSize: 13, color: "#991b1b" }}>{initError}</p>
+        </div>
       </div>
     );
   }

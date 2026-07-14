@@ -60,6 +60,15 @@ export default function BorderOfficerPage() {
         }
         setUserId(user.id);
 
+        // Auto-claim any pending invite for this email before checking
+        // for an existing officer record - a fresh invite becomes a real
+        // officer record the moment they log in.
+        try {
+          await supabase.rpc("fn_claim_my_pending_invite", { p_user_id: user.id });
+        } catch (claimErr) {
+          // Non-fatal - if there's no invite, this just does nothing.
+        }
+
         const officerResult: any = await withTimeout(
           supabase
             .from("border_officers")

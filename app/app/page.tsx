@@ -3,6 +3,7 @@ import AppNav from "@/components/AppNav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { classifyAnimal } from "@/lib/classify-animal";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -282,7 +283,7 @@ export default function Home() {
                 user_id: user.id,
                 name: newCase.petName.trim(),
                 animal: newCase.animal,
-                species_type: speciesType,
+                species_type: classifyAnimal(newCase.animal),
                 breed: newCase.breed || "",
                 age: newCase.age || "",
                 weight: newCase.weight || "",

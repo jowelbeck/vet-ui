@@ -257,11 +257,50 @@ export default function Home() {
     });
     // Also save to Supabase
     console.log("Saving case to Supabase...");
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
       console.log("User for case save:", user?.id);
       if (user) {
+        // Find-or-create the matching patient record so this case shows up
+        // on their ongoing record, not just as an isolated AI analysis.
+        let patientId: string | null = null;
+
+        if (newCase.petName && newCase.petName.trim()) {
+          const { data: existingPatient } = await supabase
+            .from("patients")
+            .select("id")
+            .eq("user_id", user.id)
+            .ilike("name", newCase.petName.trim())
+            .ilike("animal", newCase.animal)
+            .maybeSingle();
+
+          if (existingPatient) {
+            patientId = existingPatient.id;
+          } else {
+            const { data: newPatient, error: patientError } = await supabase
+              .from("patients")
+              .insert({
+                user_id: user.id,
+                name: newCase.petName.trim(),
+                animal: newCase.animal,
+                breed: newCase.breed || "",
+                age: newCase.age || "",
+                weight: newCase.weight || "",
+                owner_name: "",
+                owner_phone: "",
+              })
+              .select()
+              .single();
+            if (patientError) {
+              console.error("Auto-create patient error:", patientError);
+            } else if (newPatient) {
+              patientId = newPatient.id;
+            }
+          }
+        }
+
         supabase.from("cases").insert({
           user_id: user.id,
+          patient_id: patientId,
           animal: newCase.animal,
           pet_name: newCase.petName,
           breed: newCase.breed,

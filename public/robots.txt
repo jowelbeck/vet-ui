@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /app
+Disallow: /api/
+Disallow: /border-officer
+Disallow: /deactivated
+Disallow: /onboarding
+
+Sitemap: https://www.vetsai.vet/sitemap.xml

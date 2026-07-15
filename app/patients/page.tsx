@@ -41,6 +41,22 @@ export default function PatientsPage() {
   const [error, setError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [caseHistoryMap, setCaseHistoryMap] = useState<Record<string, any[]>>({});
+  const [loadingCasesFor, setLoadingCasesFor] = useState<string | null>(null);
+
+  const loadCaseHistory = async (patientId: string) => {
+    if (caseHistoryMap[patientId]) return; // already loaded
+    setLoadingCasesFor(patientId);
+    const { data, error } = await supabase
+      .from("cases")
+      .select("id, symptoms, urgency, recommendation, vet_treatment_notes, created_at")
+      .eq("patient_id", patientId)
+      .order("created_at", { ascending: false });
+    setLoadingCasesFor(null);
+    if (!error && data) {
+      setCaseHistoryMap((prev) => ({ ...prev, [patientId]: data }));
+    }
+  };
 
   // Form state
   const [speciesType, setSpeciesType] = useState("pets");
@@ -332,7 +348,11 @@ export default function PatientsPage() {
             const meta = [patient.animal, patient.breed, patient.age, patient.weight].filter(Boolean).join(" · ");
             return (
               <div className="patient-card" key={patient.id}>
-                <div className="patient-header" onClick={() => setExpandedId(isOpen ? null : patient.id)}>
+                <div className="patient-header" onClick={() => {
+                  const next = isOpen ? null : patient.id;
+                  setExpandedId(next);
+                  if (next) loadCaseHistory(next);
+                }}>
                   <div className="patient-avatar">{animalEmoji(patient.animal)}</div>
                   <div className="patient-info">
                     <div className="patient-name">{patient.name}</div>
@@ -376,6 +396,37 @@ export default function PatientsPage() {
                     </div>
                     <div className="date-added">
                       Added: {new Date(patient.created_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                    </div>
+
+                    <div style={{ marginTop: 16, borderTop: "1px solid #f1f5f9", paddingTop: 12 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#1a3d2b", marginBottom: 8 }}>Case history</div>
+                      {loadingCasesFor === patient.id && (
+                        <div style={{ fontSize: 13, color: "#94a3b8" }}>Loading…</div>
+                      )}
+                      {loadingCasesFor !== patient.id && (caseHistoryMap[patient.id]?.length ?? 0) === 0 && (
+                        <div style={{ fontSize: 13, color: "#94a3b8" }}>No AI case analyses linked to this patient yet.</div>
+                      )}
+                      {(caseHistoryMap[patient.id] ?? []).map((c) => (
+                        <div key={c.id} style={{ padding: "10px 0", borderBottom: "1px solid #f8fafc" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <span style={{ fontSize: 12, fontWeight: 600, color: "#334155" }}>
+                              {new Date(c.created_at).toLocaleDateString()}
+                            </span>
+                            {c.urgency && (
+                              <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "#f1f5f9", textTransform: "capitalize" }}>
+                                {c.urgency}
+                              </span>
+                            )}
+                          </div>
+                          {c.symptoms && <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>Symptoms: {c.symptoms}</div>}
+                          {c.recommendation && <div style={{ fontSize: 12, color: "#334155", marginTop: 4 }}>AI recommendation: {c.recommendation}</div>}
+                          {c.vet_treatment_notes && (
+                            <div style={{ fontSize: 12, color: "#1a3d2b", marginTop: 4, background: "#f0faf4", padding: 8, borderRadius: 6 }}>
+                              Vet treatment: {c.vet_treatment_notes}
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}

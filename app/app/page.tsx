@@ -282,6 +282,7 @@ export default function Home() {
                 user_id: user.id,
                 name: newCase.petName.trim(),
                 animal: newCase.animal,
+                species_type: speciesType,
                 breed: newCase.breed || "",
                 age: newCase.age || "",
                 weight: newCase.weight || "",

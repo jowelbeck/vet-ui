@@ -59,8 +59,8 @@ export default function TeamPage() {
     const { data, error } = await supabase
       .from("clinic_members")
       .select("*")
-      .eq("invited_by", userId)
-      .order("created_at", { ascending: false });
+      .eq("invited_by", userId);
+    if (error) { console.error("Load members error:", error.message); }
     if (!error && data) setMembers(data);
     setLoading(false);
   };
@@ -98,20 +98,20 @@ export default function TeamPage() {
     setSaving(false);
   };
 
-  const removeMember = async (id: string) => {
+  const removeMember = async (email: string) => {
     if (!window.confirm("Remove this team member?")) return;
-    await supabase.from("clinic_members").delete().eq("id", id);
-    setMembers((prev) => prev.filter((m) => m.id !== id));
+    await supabase.from("clinic_members").delete().eq("email", email);
+    setMembers((prev) => prev.filter((m) => m.email !== email));
   };
 
   // Reversible deactivate: sets status to "inactive" so the member loses access
   // (roleCheck only grants a role when status === "active") without deleting them.
-  const setMemberStatus = async (id: string, status: string) => {
+  const setMemberStatus = async (email: string, status: string) => {
     const verb = status === "inactive" ? "Deactivate" : "Reactivate";
     if (!window.confirm(`${verb} this team member?`)) return;
-    const { error } = await supabase.from("clinic_members").update({ status }).eq("id", id);
+    const { error } = await supabase.from("clinic_members").update({ status }).eq("email", email);
     if (error) { setError(error.message); return; }
-    setMembers((prev) => prev.map((m) => (m.id === id ? { ...m, status } : m)));
+    setMembers((prev) => prev.map((m) => (m.email === email ? { ...m, status } : m)));
   };
 
   const roleColor = (role: string) => {
@@ -288,15 +288,12 @@ export default function TeamPage() {
               const rc = roleColor(member.role) as any;
               const sc = statusColor(member.status) as any;
               return (
-                <div className="member-card" key={member.id}>
+                <div className="member-card" key={member.email}>
                   <div className="member-avatar">
                     {member.email[0].toUpperCase()}
                   </div>
                   <div className="member-info">
                     <div className="member-email">{member.email}</div>
-                    <div className="member-meta">
-                      Invited {new Date(member.created_at).toLocaleDateString()}
-                    </div>
                   </div>
                   <div className="member-badges">
                     <span className="badge" style={{ background: rc.bg, color: rc.color }}>
@@ -307,16 +304,16 @@ export default function TeamPage() {
                     </span>
                     {member.status !== "invited" && (
                       member.status === "inactive" ? (
-                        <button className="btn-remove" style={{ color: "#1a3d2b" }} onClick={() => setMemberStatus(member.id, "active")}>
+                        <button className="btn-remove" style={{ color: "#1a3d2b" }} onClick={() => setMemberStatus(member.email, "active")}>
                           Reactivate
                         </button>
                       ) : (
-                        <button className="btn-remove" style={{ color: "#b45309" }} onClick={() => setMemberStatus(member.id, "inactive")}>
+                        <button className="btn-remove" style={{ color: "#b45309" }} onClick={() => setMemberStatus(member.email, "inactive")}>
                           Deactivate
                         </button>
                       )
                     )}
-                    <button className="btn-remove" onClick={() => removeMember(member.id)}>
+                    <button className="btn-remove" onClick={() => removeMember(member.email)}>
                       Remove
                     </button>
                   </div>

@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.vetsai.vet"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/vetsai-icon.svg", type: "image/svg+xml" }],
     shortcut: "/vetsai-icon.svg",
@@ -61,6 +65,31 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "VetsAI",
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web",
+              description: "AI-powered clinic operating system for veterinary professionals across Africa and beyond.",
+              url: "https://www.vetsai.vet",
+              offers: {
+                "@type": "Offer",
+                price: "49",
+                priceCurrency: "USD",
+                description: "Starter plan, first 3 months free",
+              },
+              provider: {
+                "@type": "Organization",
+                name: "VetsAI Technologies",
+                url: "https://www.vetsai.vet",
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );

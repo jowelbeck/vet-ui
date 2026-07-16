@@ -1158,6 +1158,25 @@ export default function Home() {
                     </ul>
                   </div>
                 )}
+                <div className="result-section">
+                  <h4>Location &amp; Timing</h4>
+                  <p style={{ fontSize: 13, color: "#334155", marginBottom: 4 }}>
+                    Species: {animal || "—"}
+                  </p>
+                  <p style={{ fontSize: 13, color: "#334155", marginBottom: 4 }}>
+                    Date/time: {new Date().toLocaleString()}
+                  </p>
+                  {gpsLat != null && gpsLng != null ? (
+                    <p style={{ fontSize: 13, color: "#334155" }}>
+                      GPS: <a href={`https://maps.google.com/?q=${gpsLat},${gpsLng}`} target="_blank" rel="noopener noreferrer">
+                        {gpsLat.toFixed(6)}, {gpsLng.toFixed(6)}
+                      </a>
+                      {locationSource ? ` (${locationSource === "device_gps" ? "device GPS" : "manual entry"})` : ""}
+                    </p>
+                  ) : (
+                    <p style={{ fontSize: 13, color: "#94a3b8" }}>GPS: Not captured</p>
+                  )}
+                </div>
                 {dbCaseId && (
                   <div className="result-section">
                     <h4>Doctor's Treatment Notes</h4>

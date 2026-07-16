@@ -51,7 +51,7 @@ export default function PatientsPage() {
     setLoadingCasesFor(patientId);
     const { data, error } = await supabase
       .from("cases")
-      .select("id, symptoms, urgency, recommendation, possible_causes, vet_treatment_notes, gps_lat, gps_lng, location_source, created_at")
+      .select("id, symptoms, urgency, recommendation, possible_causes, vet_treatment_notes, gps_lat, gps_lng, location_source, reported_to_authorities, created_at")
       .eq("patient_id", patientId)
       .order("created_at", { ascending: false });
     setLoadingCasesFor(null);
@@ -414,11 +414,18 @@ export default function PatientsPage() {
                             <span style={{ fontSize: 12, fontWeight: 600, color: "#334155" }}>
                               {new Date(c.created_at).toLocaleDateString()}
                             </span>
-                            {c.urgency && (
-                              <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "#f1f5f9", textTransform: "capitalize" }}>
-                                {c.urgency}
-                              </span>
-                            )}
+                            <div style={{ display: "flex", gap: 6 }}>
+                              {c.reported_to_authorities && (
+                                <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "#fef3c7", color: "#92400e" }}>
+                                  ⚠ Reported to WOAH
+                                </span>
+                              )}
+                              {c.urgency && (
+                                <span style={{ fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "#f1f5f9", textTransform: "capitalize" }}>
+                                  {c.urgency}
+                                </span>
+                              )}
+                            </div>
                           </div>
                           {c.symptoms && <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>Symptoms: {c.symptoms}</div>}
                           {(c.possible_causes?.length ?? 0) > 0 && (

@@ -658,7 +658,7 @@ export default function Home() {
     return WOAH_DISEASES.some(d => text.includes(d));
   };
 
-  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
+  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null, vetName: string = "", vetLicense: string = "") => {
     const date = new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
     const causes = (data.possible_causes ?? []).join(", ");
     return `<!DOCTYPE html>
@@ -720,12 +720,12 @@ export default function Home() {
   <div class="section">
     <div class="section-title">Reporting Veterinarian</div>
     <div class="sign-box">
-      <p style="font-size:13px;color:#64748b;margin:0 0 20px">Please complete and sign before submission:</p>
-      <div class="field"><strong>Name:</strong> _________________________________</div>
-      <div class="field"><strong>Licence number:</strong> _________________________________</div>
+      ${vetName ? `<p style="font-size:12px;color:#059669;margin:0 0 12px">✓ Attested electronically by the reporting veterinarian below.</p>` : `<p style="font-size:13px;color:#64748b;margin:0 0 20px">Please complete and sign before submission:</p>`}
+      <div class="field"><strong>Name:</strong> ${vetName || "_________________________________"}</div>
+      <div class="field"><strong>Licence number:</strong> ${vetLicense || "_________________________________"}</div>
       <div class="field"><strong>Clinic name:</strong> _________________________________</div>
       <div class="field"><strong>Date:</strong> ${date}</div>
-      <div class="field"><strong>Signature:</strong> _________________________________</div>
+      <div class="field"><strong>Signature:</strong> ${vetName ? `${vetName} (electronically attested)` : "_________________________________"}</div>
     </div>
   </div>
   <div class="section">
@@ -748,7 +748,7 @@ export default function Home() {
   };
 
   const reportToAuthorities = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
-    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime);
+    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime, attestingVetName.trim(), attestingVetLicense.trim());
     const win = window.open("", "_blank");
     if (!win) return;
     win.document.write(html);

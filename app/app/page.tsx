@@ -755,13 +755,17 @@ export default function Home() {
 
     // Persist that this case was reported - only meaningful for the live
     // case (dbCaseId), not historical localStorage entries.
+    console.log("DEBUG reportToAuthorities: dbCaseId =", dbCaseId);
     if (dbCaseId) {
       supabase.from("cases").update({
         reported_to_authorities: true,
         reported_at: new Date().toISOString(),
-      }).eq("id", dbCaseId).then(({ error }) => {
+      }).eq("id", dbCaseId).then(({ error, data }) => {
+        console.log("DEBUG update result:", { error, data });
         if (error) console.error("Failed to mark case as reported:", error);
       });
+    } else {
+      console.log("DEBUG: dbCaseId was falsy, update skipped entirely");
     }
   };
 

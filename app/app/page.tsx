@@ -1091,17 +1091,27 @@ export default function Home() {
               <div className="alert alert-success">✓ {successMessage}</div>
             )}
 
+            {/* WOAH-notifiable alert */}
+            {result && isWoahNotifiable(result) && (
+              <div className="alert alert-emergency" style={{ background: "#fef2f2", border: "2px solid #dc2626" }}>
+                <strong>⚠ WOAH-Notifiable Disease Suspected</strong>
+                <p style={{ marginTop: 6, marginBottom: 0 }}>
+                  One or more possible diagnoses for this case are notifiable under the WOAH Terrestrial Animal Health Code.
+                  This case must be reported to your national Chief Veterinary Officer / Veterinary Council using the
+                  "Report to Authorities (WOAH)" option below.
+                </p>
+              </div>
+            )}
             {/* Emergency banner */}
             {result?.urgency === "high" && (
               <div className="alert alert-emergency">
-                <strong>🚨 Emergency: Seek immediate veterinary care</strong>
-                This case has been flagged as high urgency based on the symptoms provided.
-                <ul>
-                  <li>Contact a veterinarian immediately</li>
-                  <li>Do not give medication unless instructed</li>
-                  <li>Keep the animal calm and safe</li>
-                  <li>Prepare to visit the nearest clinic</li>
-                </ul>
+                <strong>🚨 High Urgency Case</strong>
+                This case has been flagged as high urgency based on the reported symptoms.
+                <p style={{ marginTop: 6, marginBottom: 0, fontSize: 13 }}>
+                  <strong>Disclaimer:</strong> This AI-generated assessment is a clinical decision-support tool only and
+                  does not replace professional veterinary judgment. The attending veterinarian bears full responsibility
+                  for diagnosis, treatment decisions, and any regulatory reporting obligations arising from this case.
+                </p>
               </div>
             )}
 

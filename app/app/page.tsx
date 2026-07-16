@@ -183,6 +183,8 @@ export default function Home() {
   const [attestingVetName, setAttestingVetName] = useState("");
   const [attestingVetLicense, setAttestingVetLicense] = useState("");
   const [attestationConfirmed, setAttestationConfirmed] = useState(false);
+  const [attestingClinicName, setAttestingClinicName] = useState("");
+  const [attestingLocation, setAttestingLocation] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
   const [notesSaved, setNotesSaved] = useState(false);
   const [gpsLat, setGpsLat] = useState<number | null>(null);
@@ -658,7 +660,7 @@ export default function Home() {
     return WOAH_DISEASES.some(d => text.includes(d));
   };
 
-  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null, vetName: string = "", vetLicense: string = "") => {
+  const buildWoahReportHTML = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null, vetName: string = "", vetLicense: string = "", clinicName: string = "", location: string = "") => {
     const date = new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
     const causes = (data.possible_causes ?? []).join(", ");
     return `<!DOCTYPE html>
@@ -723,7 +725,8 @@ export default function Home() {
       ${vetName ? `<p style="font-size:12px;color:#059669;margin:0 0 12px">✓ Attested electronically by the reporting veterinarian below.</p>` : `<p style="font-size:13px;color:#64748b;margin:0 0 20px">Please complete and sign before submission:</p>`}
       <div class="field"><strong>Name:</strong> ${vetName || "_________________________________"}</div>
       <div class="field"><strong>Licence number:</strong> ${vetLicense || "_________________________________"}</div>
-      <div class="field"><strong>Clinic name:</strong> _________________________________</div>
+      <div class="field"><strong>Clinic name:</strong> ${clinicName || "_________________________________"}</div>
+      ${location ? `<div class="field"><strong>Clinic location:</strong> ${location}</div>` : ""}
       <div class="field"><strong>Date:</strong> ${date}</div>
       <div class="field"><strong>Signature:</strong> ${vetName ? `${vetName} (electronically attested)` : "_________________________________"}</div>
     </div>
@@ -748,7 +751,7 @@ export default function Home() {
   };
 
   const reportToAuthorities = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {
-    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime, attestingVetName.trim(), attestingVetLicense.trim());
+    const html = buildWoahReportHTML(data, petData, vetNotes, locLat, locLng, locTime, attestingVetName.trim(), attestingVetLicense.trim(), attestingClinicName.trim(), attestingLocation.trim());
     const win = window.open("", "_blank");
     if (!win) return;
     win.document.write(html);
@@ -765,6 +768,8 @@ export default function Home() {
         reported_at: new Date().toISOString(),
         attesting_vet_name: attestingVetName.trim() || null,
         attesting_vet_license: attestingVetLicense.trim() || null,
+        attesting_clinic_name: attestingClinicName.trim() || null,
+        attesting_location: attestingLocation.trim() || null,
         attested_at: new Date().toISOString(),
       }).eq("id", dbCaseId).then(({ error }) => {
         if (error) console.error("Failed to mark case as reported:", error);
@@ -1125,9 +1130,16 @@ export default function Home() {
               <div className="card">
                 <div className="result-header">
                   <div className="card-title" style={{ marginBottom: 0 }}>Assessment</div>
-                  <span className={`urgency-badge ${urgencyClass(result.urgency)}`}>
-                    {cap(result.urgency)}
-                  </span>
+                  <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    {isWoahNotifiable(result) && (
+                      <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "#dc2626", color: "#fff", display: "flex", alignItems: "center", gap: 4 }}>
+                        ⚠ WOAH Reportable
+                      </span>
+                    )}
+                    <span className={`urgency-badge ${urgencyClass(result.urgency)}`}>
+                      {cap(result.urgency)}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="pet-profile">
@@ -1277,6 +1289,20 @@ export default function Home() {
                           placeholder="Licence number"
                           value={attestingVetLicense}
                           onChange={(e) => setAttestingVetLicense(e.target.value)}
+                          style={{ padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Clinic name (optional)"
+                          value={attestingClinicName}
+                          onChange={(e) => setAttestingClinicName(e.target.value)}
+                          style={{ padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Clinic location (optional)"
+                          value={attestingLocation}
+                          onChange={(e) => setAttestingLocation(e.target.value)}
                           style={{ padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
                         />
                       </div>

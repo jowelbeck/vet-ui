@@ -752,6 +752,17 @@ export default function Home() {
     win.document.close();
     win.focus();
     setTimeout(() => win.print(), 500);
+
+    // Persist that this case was reported - only meaningful for the live
+    // case (dbCaseId), not historical localStorage entries.
+    if (dbCaseId) {
+      supabase.from("cases").update({
+        reported_to_authorities: true,
+        reported_at: new Date().toISOString(),
+      }).eq("id", dbCaseId).then(({ error }) => {
+        if (error) console.error("Failed to mark case as reported:", error);
+      });
+    }
   };
 
   const downloadWoahReport = (data: ApiResult | CaseHistoryItem, petData: { petName: string; animal: string; breed: string; age: string; weight: string }, vetNotes: string = "", locLat: number | null = null, locLng: number | null = null, locTime: string | null = null) => {

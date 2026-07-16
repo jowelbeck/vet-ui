@@ -51,7 +51,7 @@ export default function PatientsPage() {
     setLoadingCasesFor(patientId);
     const { data, error } = await supabase
       .from("cases")
-      .select("id, symptoms, urgency, recommendation, possible_causes, vet_treatment_notes, gps_lat, gps_lng, location_source, reported_to_authorities, created_at")
+      .select("id, symptoms, urgency, recommendation, possible_causes, vet_treatment_notes, gps_lat, gps_lng, location_source, reported_to_authorities, attesting_vet_name, attesting_vet_license, created_at")
       .eq("patient_id", patientId)
       .order("created_at", { ascending: false });
     setLoadingCasesFor(null);
@@ -437,6 +437,11 @@ export default function PatientsPage() {
                           {c.vet_treatment_notes && (
                             <div style={{ fontSize: 12, color: "#1a3d2b", marginTop: 4, background: "#f0faf4", padding: 8, borderRadius: 6 }}>
                               Vet treatment: {c.vet_treatment_notes}
+                            </div>
+                          )}
+                          {c.reported_to_authorities && c.attesting_vet_name && (
+                            <div style={{ fontSize: 11, color: "#92400e", marginTop: 4 }}>
+                              Attested by: {c.attesting_vet_name}{c.attesting_vet_license ? ` (Licence #${c.attesting_vet_license})` : ""}
                             </div>
                           )}
                           {c.gps_lat != null && c.gps_lng != null ? (

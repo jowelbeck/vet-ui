@@ -180,6 +180,9 @@ export default function Home() {
   const [caseId, setCaseId] = useState("");
   const [dbCaseId, setDbCaseId] = useState<string | null>(null);
   const [treatmentNotes, setTreatmentNotes] = useState("");
+  const [attestingVetName, setAttestingVetName] = useState("");
+  const [attestingVetLicense, setAttestingVetLicense] = useState("");
+  const [attestationConfirmed, setAttestationConfirmed] = useState(false);
   const [savingNotes, setSavingNotes] = useState(false);
   const [notesSaved, setNotesSaved] = useState(false);
   const [gpsLat, setGpsLat] = useState<number | null>(null);
@@ -753,15 +756,17 @@ export default function Home() {
     win.focus();
     setTimeout(() => win.print(), 500);
 
-    // Persist that this case was reported - only meaningful for the live
-    // case (dbCaseId), not historical localStorage entries.
-    console.log("DEBUG reportToAuthorities: dbCaseId =", dbCaseId);
+    // Persist that this case was reported, including the attesting vet's
+    // details - only meaningful for the live case (dbCaseId), not
+    // historical localStorage entries.
     if (dbCaseId) {
       supabase.from("cases").update({
         reported_to_authorities: true,
         reported_at: new Date().toISOString(),
-      }).eq("id", dbCaseId).then(({ error, data }) => {
-        console.log("DEBUG update result:", { error, data });
+        attesting_vet_name: attestingVetName.trim() || null,
+        attesting_vet_license: attestingVetLicense.trim() || null,
+        attested_at: new Date().toISOString(),
+      }).eq("id", dbCaseId).then(({ error }) => {
         if (error) console.error("Failed to mark case as reported:", error);
       });
     } else {
@@ -1255,12 +1260,49 @@ export default function Home() {
                     ↓ Download report
                   </button>
                   {isWoahNotifiable(result) && (
-                    <button
-                      onClick={() => reportToAuthorities(result, { petName, animal, breed, age, weight }, treatmentNotes, gpsLat, gpsLng, new Date().toISOString())}
-                      style={{ background: "#dc2626", color: "#fff", border: "none", padding: "10px 20px", borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}
-                    >
-                      ⚠ Report to Authorities (WOAH)
-                    </button>
+                    <div style={{ width: "100%", marginTop: 12, padding: 14, background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#991b1b", marginBottom: 8 }}>
+                        Veterinary Attestation (required before reporting)
+                      </div>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+                        <input
+                          type="text"
+                          placeholder="Full name"
+                          value={attestingVetName}
+                          onChange={(e) => setAttestingVetName(e.target.value)}
+                          style={{ padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Licence number"
+                          value={attestingVetLicense}
+                          onChange={(e) => setAttestingVetLicense(e.target.value)}
+                          style={{ padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: 6, fontSize: 13 }}
+                        />
+                      </div>
+                      <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "#7f1d1d", marginBottom: 12, cursor: "pointer" }}>
+                        <input
+                          type="checkbox"
+                          checked={attestationConfirmed}
+                          onChange={(e) => setAttestationConfirmed(e.target.checked)}
+                          style={{ marginTop: 2 }}
+                        />
+                        I attest that I am a licensed veterinary professional and confirm the accuracy of this assessment
+                        for the purpose of this WOAH disease notification.
+                      </label>
+                      <button
+                        onClick={() => reportToAuthorities(result, { petName, animal, breed, age, weight }, treatmentNotes, gpsLat, gpsLng, new Date().toISOString())}
+                        disabled={!attestingVetName.trim() || !attestingVetLicense.trim() || !attestationConfirmed}
+                        style={{
+                          background: "#dc2626", color: "#fff", border: "none", padding: "10px 20px", borderRadius: 8,
+                          fontWeight: 700, fontSize: 13, cursor: (!attestingVetName.trim() || !attestingVetLicense.trim() || !attestationConfirmed) ? "not-allowed" : "pointer",
+                          opacity: (!attestingVetName.trim() || !attestingVetLicense.trim() || !attestationConfirmed) ? 0.5 : 1,
+                          display: "flex", alignItems: "center", gap: 8,
+                        }}
+                      >
+                        ⚠ Report to Authorities (WOAH)
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>

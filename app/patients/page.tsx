@@ -51,7 +51,7 @@ export default function PatientsPage() {
     setLoadingCasesFor(patientId);
     const { data, error } = await supabase
       .from("cases")
-      .select("id, symptoms, urgency, recommendation, vet_treatment_notes, created_at")
+      .select("id, symptoms, urgency, recommendation, possible_causes, vet_treatment_notes, gps_lat, gps_lng, location_source, created_at")
       .eq("patient_id", patientId)
       .order("created_at", { ascending: false });
     setLoadingCasesFor(null);
@@ -421,11 +421,26 @@ export default function PatientsPage() {
                             )}
                           </div>
                           {c.symptoms && <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>Symptoms: {c.symptoms}</div>}
+                          {(c.possible_causes?.length ?? 0) > 0 && (
+                            <div style={{ fontSize: 12, color: "#92400e", marginTop: 4 }}>
+                              Possible causes: {c.possible_causes.join(", ")}
+                            </div>
+                          )}
                           {c.recommendation && <div style={{ fontSize: 12, color: "#334155", marginTop: 4 }}>AI recommendation: {c.recommendation}</div>}
                           {c.vet_treatment_notes && (
                             <div style={{ fontSize: 12, color: "#1a3d2b", marginTop: 4, background: "#f0faf4", padding: 8, borderRadius: 6 }}>
                               Vet treatment: {c.vet_treatment_notes}
                             </div>
+                          )}
+                          {c.gps_lat != null && c.gps_lng != null ? (
+                            <div style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>
+                              📍 <a href={`https://maps.google.com/?q=${c.gps_lat},${c.gps_lng}`} target="_blank" rel="noopener noreferrer" style={{ color: "#94a3b8" }}>
+                                {c.gps_lat.toFixed(4)}, {c.gps_lng.toFixed(4)}
+                              </a>
+                              {c.location_source ? ` (${c.location_source === "device_gps" ? "GPS" : "manual"})` : ""}
+                            </div>
+                          ) : (
+                            <div style={{ fontSize: 11, color: "#cbd5e1", marginTop: 4 }}>📍 No location captured</div>
                           )}
                         </div>
                       ))}

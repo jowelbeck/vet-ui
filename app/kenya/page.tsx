@@ -25,7 +25,7 @@ export default function KenyaPage() {
             The Clinic Operating System<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>for Kenya&apos;s Veterinarians</em>
           </h1>
-          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>Kenya has over 3,000 registered veterinarians serving East Africa's largest livestock sector. Digital clinic management is now essential for modern veterinary practice.</p>
+          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>Kenya's veterinary professionals serve one of East Africa's largest livestock sectors. Digital clinic management is now essential for modern veterinary practice.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Kenya", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Try live demo</a>
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Kenya", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>

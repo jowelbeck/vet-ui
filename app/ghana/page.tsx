@@ -30,7 +30,7 @@ export default function GhanaPage() {
             The Clinic Operating System<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>for Ghana&apos;s Veterinarians</em>
           </h1>
-          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Ghana has over 1,200 registered veterinarians serving a livestock population of 15 million animals. Most clinics still use paper records and WhatsApp for patient management.</p>
+          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Ghana's veterinary community serves a large and growing livestock sector. Most clinics still use paper records and WhatsApp for patient management.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI gives Ghana&apos;s veterinary professionals a complete digital clinic — patient records, AI clinical support, pharmacy management, billing, and WOAH-aligned disease reporting. All in one place.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Try live demo</a>

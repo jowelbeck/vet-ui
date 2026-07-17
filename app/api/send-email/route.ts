@@ -286,12 +286,25 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { type, to } = body;
+    const { type } = body;
     // Escape all caller-supplied template data before it reaches the HTML.
     const data = deepEscape(body.data ?? {});
 
-    if (!type || !to) {
-      return NextResponse.json({ error: "Missing type or to field" }, { status: 400 });
+    if (!type) {
+      return NextResponse.json({ error: "Missing type field" }, { status: 400 });
+    }
+    // Internal-notification email types must always go to a fixed inbox -
+    // never trust a caller-supplied `to` for these, since that would let
+    // anyone use this endpoint as an open relay through our Resend account.
+    const INTERNAL_NOTIFICATION_TYPES = new Set(["contact"]);
+    let to: string;
+    if (INTERNAL_NOTIFICATION_TYPES.has(type)) {
+      to = "jowelbeck@aol.com";
+    } else {
+      to = body.to;
+      if (!to) {
+        return NextResponse.json({ error: "Missing to field" }, { status: 400 });
+      }
     }
     if (!isValidEmail(to)) {
       return NextResponse.json(

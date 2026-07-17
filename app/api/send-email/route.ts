@@ -345,6 +345,26 @@ export async function POST(req: NextRequest) {
 </div>
 </div>
 </body></html>`;
+    } else if (type === "contact") {
+      subject = `New contact form message from ${data.name || "a visitor"}`;
+      html = `<!DOCTYPE html><html><body style="margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;background:#f1f5f9;">
+<div style="max-width:560px;margin:0 auto;background:#fff;">
+<div style="background:linear-gradient(135deg,#1a3d2b,#3a8f5f);padding:32px;text-align:center;">
+<div style="font-size:32px;margin-bottom:8px;">✉️</div>
+<h1 style="color:#fff;font-size:22px;font-weight:700;margin:0;">New Contact Message</h1>
+</div>
+<div style="padding:32px;">
+<table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Name</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.name || "—"}</td></tr>
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Email</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.email || "—"}</td></tr>
+<tr><td style="padding:8px 0;color:#94a3b8;font-size:13px;">Subject</td><td style="padding:8px 0;font-weight:600;color:#1e293b;">${data.subject || "—"}</td></tr>
+</table>
+<div style="background:#f0faf4;border-radius:10px;padding:20px;">
+<p style="color:#1e293b;line-height:1.7;margin:0;white-space:pre-wrap;">${data.message || ""}</p>
+</div>
+</div>
+</div>
+</body></html>`;
     } else {
       return NextResponse.json({ error: "Unknown email type" }, { status: 400 });
     }

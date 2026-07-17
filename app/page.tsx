@@ -569,10 +569,11 @@ export default function LandingPage() {
           <a href="#how-it-works">How it works</a>
           <a href="#pricing">Pricing</a>
           <a href="/signup">Try free</a>
-          <a href="mailto:hi@vetsai.vet">Contact</a>
+          <a href="/help">Help</a>
+          <a href="/contact">Contact</a>
         </div>
         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
-          © {new Date().getFullYear()} VetsAI Technologies · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · Designed for veterinary professionals across Africa and beyond.
+          © {new Date().getFullYear()} VetsAI Technologies · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/faq">FAQ</a> · <a href="/help">Help</a> · <a href="/contact">Contact</a> · Designed for veterinary professionals across Africa and beyond.
         </div>
       </footer>
     </>

@@ -201,7 +201,7 @@ export default function LandingPage() {
 
       {/* Sticky demo bar */}
       <div style={{ background: "#1a3d2b", padding: "10px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-        <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 13, margin: 0 }}>🐾 VetsAI is now live in 22 countries — <strong style={{ color: "#86efac" }}>Join 852+ veterinary professionals</strong></p>
+        <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 13, margin: 0 }}>🐾 VetsAI is now live — <strong style={{ color: "#86efac" }}>Built for veterinary professionals across Africa and beyond</strong></p>
         <a href="/demo" style={{ background: "#86efac", color: "#1a3d2b", padding: "7px 20px", borderRadius: 6, fontWeight: 800, fontSize: 13, textDecoration: "none", whiteSpace: "nowrap" }}>📅 Book a Live Demo →</a>
       </div>
 

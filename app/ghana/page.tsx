@@ -23,8 +23,55 @@ export default function GhanaPage() {
       </nav>
 
       {/* Hero */}
-      <section style={{ background: "linear-gradient(135deg, #1a3d2b 0%, #2d6a4f 100%)", padding: "80px 40px", color: "#fff" }}>
+      <section style={{ background: "linear-gradient(135deg, #2C1810 0%, #4A2C1A 30%, #1B3A2D 70%, #0D2418 100%)", padding: "80px 40px", color: "#fff", position: "relative", overflow: "hidden" }}>
         <div style={{ maxWidth: 760 }}>
+        
+        {/* Animal scene */}
+        <div style={{ position: "absolute", bottom: 0, right: 0, width: "50%", height: "100%", pointerEvents: "none", overflow: "hidden" }}>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", bottom: 0, right: 0, width: "100%", height: "100%", opacity: 0.1 }}>
+            <ellipse cx="400" cy="490" rx="380" ry="20" fill="rgba(255,255,255,0.3)"/>
+            <g transform="translate(60, 180)">
+              <ellipse cx="120" cy="160" rx="100" ry="65" fill="white"/>
+              <ellipse cx="220" cy="120" rx="45" ry="38" fill="white"/>
+              <ellipse cx="258" cy="130" rx="20" ry="15" fill="rgba(255,255,255,0.7)"/>
+              <circle cx="238" cy="112" r="6" fill="rgba(0,0,0,0.3)"/>
+              <path d="M200,88 Q185,65 175,70" stroke="white" strokeWidth="6" fill="none" strokeLinecap="round"/>
+              <rect x="50" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="85" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="140" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="175" y="215" width="22" height="90" rx="8" fill="white"/>
+            </g>
+            <g transform="translate(340, 230)">
+              <ellipse cx="70" cy="115" rx="58" ry="40" fill="white"/>
+              <ellipse cx="138" cy="68" rx="30" ry="26" fill="white"/>
+              <path d="M118,48 Q105,42 100,65 Q105,75 118,70 Z" fill="white"/>
+              <rect x="25" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="48" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="82" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="105" y="148" width="14" height="65" rx="5" fill="white"/>
+            </g>
+            <g transform="translate(560, 260)">
+              <ellipse cx="40" cy="100" rx="32" ry="42" fill="white"/>
+              <circle cx="65" cy="48" r="18" fill="white"/>
+              <path d="M58,32 Q60,20 65,25 Q67,15 72,22 Q75,12 78,20 Q75,30 65,32 Z" fill="rgba(255,255,255,0.8)"/>
+              <rect x="28" y="138" width="10" height="55" rx="3" fill="white"/>
+              <rect x="45" y="138" width="10" height="55" rx="3" fill="white"/>
+            </g>
+            <g transform="translate(680, 300)">
+              <ellipse cx="30" cy="120" rx="25" ry="35" fill="white"/>
+              <circle cx="32" cy="75" r="22" fill="white"/>
+              <polygon points="18,58 12,38 28,52" fill="white"/>
+              <polygon points="46,58 52,38 36,52" fill="white"/>
+              <ellipse cx="18" cy="152" rx="12" ry="7" fill="rgba(255,255,255,0.8)"/>
+              <ellipse cx="42" cy="152" rx="12" ry="7" fill="rgba(255,255,255,0.8)"/>
+              <path d="M55,140 Q75,120 70,100 Q65,85 50,90" stroke="white" strokeWidth="6" fill="none" strokeLinecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(134,239,172,0.15)", border: "1px solid rgba(134,239,172,0.4)", borderRadius: 24, padding: "6px 16px", marginBottom: 16 }}>
+          <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 New</span>
+          <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Major Upgrade — Disease Surveillance · Mixed Practice · Border Management</span>
+        </div>
           <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇬🇭 Built for Ghanaian Veterinary Practice · WOAH-Aligned</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             The Clinic Operating System<br />
@@ -37,7 +84,7 @@ export default function GhanaPage() {
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a Ghana demo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>No credit card · First 3 months free · Set up in 5 minutes</p>
+          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get 3 months free · No credit card · Set up in 5 minutes</p>
         </div>
       </section>
 

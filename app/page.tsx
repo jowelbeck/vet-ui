@@ -224,27 +224,100 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="hero" style={{ background: "linear-gradient(135deg, #2C1810 0%, #4A2C1A 30%, #1B3A2D 70%, #0D2418 100%)", position: "relative", overflow: "hidden" }}>
-        {/* Animal silhouette watermarks */}
-        <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-          {/* Dog silhouette */}
-          <svg style={{ position: "absolute", right: "5%", top: "10%", opacity: 0.06, width: 320, height: 320 }} viewBox="0 0 100 100" fill="white">
-            <path d="M80,35 C80,35 85,25 82,20 C79,15 72,18 70,22 C68,18 62,15 58,18 C54,21 55,28 55,28 C50,26 44,27 40,30 C36,33 35,38 36,43 C30,44 26,48 26,53 C26,58 30,62 35,62 L35,75 C35,77 37,78 39,78 L45,78 C47,78 48,77 48,75 L48,65 C52,66 58,66 62,65 L62,75 C62,77 64,78 66,78 L72,78 C74,78 75,77 75,75 L75,60 C79,57 82,52 82,47 C82,42 81,38 80,35 Z"/>
-          </svg>
-          {/* Chicken/rooster silhouette */}
-          <svg style={{ position: "absolute", left: "3%", bottom: "15%", opacity: 0.06, width: 220, height: 220 }} viewBox="0 0 100 100" fill="white">
-            <path d="M55,20 C52,15 46,14 43,17 C40,14 35,15 34,19 C31,18 28,21 30,25 C27,26 26,30 28,33 C25,35 25,40 28,42 C26,46 28,51 32,52 L30,75 C30,77 32,78 34,78 L40,78 C42,78 43,77 43,75 L43,65 C46,66 50,66 53,65 L53,75 C53,77 55,78 57,78 L63,78 C65,78 66,77 66,75 L64,52 C68,50 70,45 69,41 C72,39 72,34 69,32 C71,28 69,24 66,23 C65,20 60,18 55,20 Z M45,30 C47,28 51,29 52,32 C50,34 46,34 45,30 Z"/>
-          </svg>
-          {/* Cow silhouette */}
-          <svg style={{ position: "absolute", right: "2%", bottom: "5%", opacity: 0.05, width: 380, height: 280 }} viewBox="0 0 140 100" fill="white">
-            <path d="M110,25 C110,25 118,18 116,12 C114,8 108,10 106,14 C103,10 97,8 94,12 C91,16 93,22 93,22 C85,20 75,21 68,25 C58,30 55,38 56,46 C45,47 38,53 38,60 C38,67 44,72 52,72 L50,88 C50,91 53,92 56,92 L65,92 C68,92 70,91 70,88 L70,74 C78,76 90,76 98,74 L98,88 C98,91 101,92 104,92 L113,92 C116,92 118,91 118,88 L116,72 C123,68 128,61 128,54 C128,44 121,35 110,25 Z"/>
-          </svg>
-          {/* Goat silhouette */}
-          <svg style={{ position: "absolute", left: "25%", top: "5%", opacity: 0.04, width: 200, height: 200 }} viewBox="0 0 100 100" fill="white">
-            <path d="M60,15 C58,10 52,9 49,12 C46,9 40,10 39,14 C35,12 32,16 34,20 C30,22 30,27 33,30 C28,33 28,40 32,43 C30,48 32,54 37,56 L35,78 C35,80 37,82 40,82 L47,82 C50,82 51,80 51,78 L51,68 C54,69 58,69 61,68 L61,78 C61,80 63,82 66,82 L73,82 C76,82 77,80 77,78 L75,55 C80,52 82,46 80,41 C83,38 83,32 79,29 C81,25 79,20 75,18 C73,14 67,13 60,15 Z"/>
-          </svg>
-          {/* Cat silhouette */}
-          <svg style={{ position: "absolute", left: "8%", top: "20%", opacity: 0.05, width: 160, height: 160 }} viewBox="0 0 100 100" fill="white">
-            <path d="M35,15 L30,5 L40,18 C43,16 47,15 50,15 C53,15 57,16 60,18 L70,5 L65,15 C70,20 73,27 73,35 C73,50 63,62 50,62 C37,62 27,50 27,35 C27,27 30,20 35,15 Z M42,35 C42,37 40,39 38,39 C36,39 34,37 34,35 C34,33 36,31 38,31 C40,31 42,33 42,35 Z M66,35 C66,37 64,39 62,39 C60,39 58,37 58,35 C58,33 60,31 62,31 C64,31 66,33 66,35 Z M40,75 L38,62 L45,65 L50,62 L55,65 L62,62 L60,75 C57,78 53,80 50,80 C47,80 43,78 40,75 Z"/>
+        {/* Animal scene - realistic standing animals */}
+        <div style={{ position: "absolute", bottom: 0, right: 0, width: "60%", height: "100%", pointerEvents: "none", overflow: "hidden" }}>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", bottom: 0, right: 0, width: "100%", height: "100%", opacity: 0.12 }}>
+            <ellipse cx="400" cy="490" rx="380" ry="20" fill="rgba(255,255,255,0.3)"/>
+            <g transform="translate(60, 180)">
+              <ellipse cx="120" cy="160" rx="100" ry="65" fill="white"/>
+              <ellipse cx="220" cy="120" rx="45" ry="38" fill="white"/>
+              <ellipse cx="258" cy="130" rx="20" ry="15" fill="rgba(255,255,255,0.7)"/>
+              <circle cx="252" cy="133" r="4" fill="rgba(0,0,0,0.2)"/>
+              <circle cx="264" cy="133" r="4" fill="rgba(0,0,0,0.2)"/>
+              <circle cx="238" cy="112" r="6" fill="rgba(0,0,0,0.3)"/>
+              <circle cx="240" cy="110" r="2" fill="white"/>
+              <ellipse cx="205" cy="88" rx="14" ry="20" fill="white" transform="rotate(-20, 205, 88)"/>
+              <path d="M200,88 Q185,65 175,70" stroke="white" strokeWidth="6" fill="none" strokeLinecap="round"/>
+              <path d="M215,83 Q210,60 225,58" stroke="white" strokeWidth="6" fill="none" strokeLinecap="round"/>
+              <rect x="50" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="85" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="140" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="175" y="215" width="22" height="90" rx="8" fill="white"/>
+              <rect x="48" y="295" width="26" height="12" rx="4" fill="rgba(255,255,255,0.6)"/>
+              <rect x="83" y="295" width="26" height="12" rx="4" fill="rgba(255,255,255,0.6)"/>
+              <rect x="138" y="295" width="26" height="12" rx="4" fill="rgba(255,255,255,0.6)"/>
+              <rect x="173" y="295" width="26" height="12" rx="4" fill="rgba(255,255,255,0.6)"/>
+              <path d="M25,150 Q0,130 10,110 Q20,90 15,75" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+              <ellipse cx="14" cy="70" rx="8" ry="12" fill="white"/>
+              <ellipse cx="110" cy="222" rx="30" ry="15" fill="rgba(255,255,255,0.6)"/>
+            </g>
+            <g transform="translate(310, 220)">
+              <ellipse cx="80" cy="130" rx="70" ry="50" fill="white"/>
+              <rect x="130" y="95" width="25" height="45" rx="10" fill="white"/>
+              <ellipse cx="160" cy="80" rx="35" ry="30" fill="white"/>
+              <ellipse cx="190" cy="88" rx="16" ry="12" fill="rgba(255,255,255,0.7)"/>
+              <circle cx="172" cy="72" r="5" fill="rgba(0,0,0,0.3)"/>
+              <circle cx="174" cy="70" r="2" fill="white"/>
+              <ellipse cx="135" cy="60" rx="10" ry="18" fill="white" transform="rotate(-30, 135, 60)"/>
+              <path d="M148,55 Q140,30 148,20" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+              <path d="M162,50 Q168,28 175,22" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+              <path d="M185,98 Q190,115 183,125" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
+              <rect x="30" y="172" width="16" height="75" rx="6" fill="white"/>
+              <rect x="58" y="172" width="16" height="75" rx="6" fill="white"/>
+              <rect x="98" y="172" width="16" height="75" rx="6" fill="white"/>
+              <rect x="126" y="172" width="16" height="75" rx="6" fill="white"/>
+              <path d="M15,120 Q-5,105 0,90" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
+            </g>
+            <g transform="translate(510, 250)">
+              <ellipse cx="70" cy="115" rx="58" ry="40" fill="white"/>
+              <rect x="108" y="85" width="20" height="38" rx="8" fill="white"/>
+              <ellipse cx="138" cy="68" rx="30" ry="26" fill="white"/>
+              <ellipse cx="164" cy="76" rx="14" ry="10" fill="rgba(255,255,255,0.7)"/>
+              <ellipse cx="168" cy="72" rx="6" ry="4" fill="rgba(0,0,0,0.25)"/>
+              <circle cx="150" cy="60" r="5" fill="rgba(0,0,0,0.3)"/>
+              <circle cx="152" cy="58" r="2" fill="white"/>
+              <path d="M118,48 Q105,42 100,65 Q105,75 118,70 Z" fill="white"/>
+              <path d="M15,100 Q-10,80 -5,55 Q0,35 15,30" stroke="white" strokeWidth="8" fill="none" strokeLinecap="round"/>
+              <rect x="25" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="48" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="82" y="148" width="14" height="65" rx="5" fill="white"/>
+              <rect x="105" y="148" width="14" height="65" rx="5" fill="white"/>
+              <ellipse cx="32" cy="215" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+              <ellipse cx="55" cy="215" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+              <ellipse cx="89" cy="215" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+              <ellipse cx="112" cy="215" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+            </g>
+            <g transform="translate(690, 280)">
+              <ellipse cx="40" cy="100" rx="32" ry="42" fill="white"/>
+              <rect x="52" y="60" width="16" height="35" rx="6" fill="white"/>
+              <circle cx="65" cy="48" r="18" fill="white"/>
+              <path d="M80,46 L92,48 L80,52 Z" fill="rgba(255,255,255,0.7)"/>
+              <path d="M58,32 Q60,20 65,25 Q67,15 72,22 Q75,12 78,20 Q75,30 65,32 Z" fill="rgba(255,255,255,0.8)"/>
+              <ellipse cx="76" cy="56" rx="6" ry="9" fill="rgba(255,255,255,0.6)"/>
+              <circle cx="72" cy="44" r="4" fill="rgba(0,0,0,0.3)"/>
+              <path d="M12,80 Q-5,55 5,35 Q10,20 0,10" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+              <path d="M10,90 Q-15,70 -10,45" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+              <rect x="28" y="138" width="10" height="55" rx="3" fill="white"/>
+              <rect x="45" y="138" width="10" height="55" rx="3" fill="white"/>
+              <path d="M28,193 L15,200 M28,193 L28,205 M28,193 L38,202" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M45,193 L32,200 M45,193 L45,205 M45,193 L55,202" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+            </g>
+            <g transform="translate(460, 310)">
+              <ellipse cx="30" cy="120" rx="25" ry="35" fill="white"/>
+              <circle cx="32" cy="75" r="22" fill="white"/>
+              <polygon points="18,58 12,38 28,52" fill="white"/>
+              <polygon points="46,58 52,38 36,52" fill="white"/>
+              <circle cx="24" cy="70" r="4" fill="rgba(0,0,0,0.3)"/>
+              <circle cx="40" cy="70" r="4" fill="rgba(0,0,0,0.3)"/>
+              <path d="M29,78 L32,82 L35,78 Q32,76 29,78 Z" fill="rgba(0,0,0,0.2)"/>
+              <line x1="8" y1="80" x2="26" y2="82" stroke="white" strokeWidth="1.5"/>
+              <line x1="8" y1="85" x2="26" y2="85" stroke="white" strokeWidth="1.5"/>
+              <line x1="38" y1="82" x2="55" y2="80" stroke="white" strokeWidth="1.5"/>
+              <line x1="38" y1="85" x2="55" y2="85" stroke="white" strokeWidth="1.5"/>
+              <ellipse cx="18" cy="152" rx="12" ry="7" fill="rgba(255,255,255,0.8)"/>
+              <ellipse cx="42" cy="152" rx="12" ry="7" fill="rgba(255,255,255,0.8)"/>
+              <path d="M55,140 Q75,120 70,100 Q65,85 50,90" stroke="white" strokeWidth="6" fill="none" strokeLinecap="round"/>
+            </g>
           </svg>
         </div>
         {/* African pattern overlay */}

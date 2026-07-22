@@ -620,18 +620,41 @@ export default function LandingPage() {
               {
                 name: "Clinic OS", price: "$199", period: "per month",
                 features: ["10 vet accounts", "Unlimited cases", "Full clinic OS access", "Patient records", "Appointments", "Billing & invoicing", "Advanced analytics", "Dedicated support"],
-                featured: false, popular: false,
+                featured: false, popular: false, institution: false,
+              },
+              {
+                name: "Institution", price: "Custom", period: "contact us",
+                features: [
+                  "Unlimited users & seats",
+                  "Vet schools & universities",
+                  "Government veterinary depts",
+                  "K9 police & military units",
+                  "Multi-branch clinic groups",
+                  "Custom branding & white-label",
+                  "WOAH reporting integration",
+                  "Dedicated account manager",
+                  "Custom onboarding & training",
+                  "SLA & uptime guarantee",
+                  "Invoice billing available",
+                  "API access & custom export",
+                ],
+                featured: false, popular: false, institution: true,
               },
             ].map((p) => (
-              <div className={`pricing-card ${p.featured ? "featured" : ""}`} key={p.name}>
+              <div className={`pricing-card ${p.featured ? "featured" : ""}`} key={p.name} style={(p as any).institution ? { border: "2px solid #1a3d2b", background: "#f0fdf4" } : {}}>
                 {p.popular && <div className="pricing-popular">Most popular</div>}
-                <div className="pricing-name">{p.name}</div>
-                <div className="pricing-price">{p.price}</div>
+                {(p as any).institution && <div className="pricing-popular" style={{ background: "#1a3d2b" }}>For institutions</div>}
+                <div className="pricing-name" style={(p as any).institution ? { color: "#1a3d2b" } : {}}>{p.name}</div>
+                <div className="pricing-price" style={(p as any).institution ? { fontSize: 28, color: "#1a3d2b" } : {}}>{p.price}</div>
                 <div className="pricing-period">{p.period}</div>
                 <ul className="pricing-features">
                   {p.features.map((f) => <li key={f}>{f}</li>)}
                 </ul>
-                <a href="/signup" className="btn-pricing">Start free trial</a>
+                {(p as any).institution ? (
+                  <a href="mailto:institutions@vetsai.vet" className="btn-pricing" style={{ background: "#1a3d2b", color: "#fff", border: "none" }}>Contact us →</a>
+                ) : (
+                  <a href="/signup" className="btn-pricing">Start free trial</a>
+                )}
               </div>
             ))}
           </div>

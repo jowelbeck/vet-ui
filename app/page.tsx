@@ -647,11 +647,22 @@ export default function LandingPage() {
                 <div className="pricing-name" style={(p as any).institution ? { color: "#1a3d2b" } : {}}>{p.name}</div>
                 <div className="pricing-price" style={(p as any).institution ? { fontSize: 28, color: "#1a3d2b" } : {}}>{p.price}</div>
                 <div className="pricing-period">{p.period}</div>
-                <ul className="pricing-features">
-                  {p.features.map((f) => <li key={f}>{f}</li>)}
-                </ul>
+                {!(p as any).institution && (
+                  <ul className="pricing-features">
+                    {p.features.map((f) => <li key={f}>{f}</li>)}
+                  </ul>
+                )}
                 {(p as any).institution ? (
-                  <a href="mailto:institutions@vetsai.vet" className="btn-pricing" style={{ background: "#1a3d2b", color: "#fff", border: "none" }}>Contact us →</a>
+                  <div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 12px", marginBottom: 20 }}>
+                      {["Unlimited users & seats", "Vet schools & universities", "Government vet depts", "K9 police & military", "Multi-branch groups", "Custom branding & white-label", "WOAH reporting integration", "Dedicated account manager", "Custom onboarding & training", "SLA & uptime guarantee", "Invoice billing available", "API access & data export"].map(f => (
+                        <div key={f} style={{ fontSize: 12, color: "#1a3d2b", padding: "4px 0", display: "flex", alignItems: "flex-start", gap: 5 }}>
+                          <span style={{ color: "#1a3d2b", fontWeight: 700, flexShrink: 0 }}>✓</span>{f}
+                        </div>
+                      ))}
+                    </div>
+                    <a href="mailto:institutions@vetsai.vet" className="btn-pricing" style={{ background: "#1a3d2b", color: "#fff", border: "none", textAlign: "center" as const, display: "block" }}>Contact us →</a>
+                  </div>
                 ) : (
                   <a href="/signup" className="btn-pricing">Start free trial</a>
                 )}

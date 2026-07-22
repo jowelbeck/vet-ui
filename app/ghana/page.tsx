@@ -84,7 +84,7 @@ export default function GhanaPage() {
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a live demo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get 3 months free · No credit card · Set up in 5 minutes</p>
+          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get first 10 clinics — 3 months free · No credit card · Set up in 5 minutes</p>
         </div>
       </section>
 
@@ -159,7 +159,7 @@ export default function GhanaPage() {
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <h2 style={{ fontSize: 24, fontWeight: 800, color: "#1a3d2b", marginBottom: 24, textAlign: "center" }}>Frequently Asked Questions</h2>
           {[
-            { q: "Is VetsAI free?", a: "The first 10 clinics get 3 months free with no credit card required. After the trial, plans start from GHS 735/month." },
+            { q: "Is VetsAI free?", a: "The first 10 clinics get first 10 clinics — 3 months free with no credit card required. After the trial, plans start from GHS 735/month." },
             { q: "Does VetsAI work for poultry and livestock?", a: "Yes — VetsAI is a 3-in-1 platform for pets, poultry and livestock with species-specific clinical protocols for each." },
             { q: "Is the AI aligned with WOAH guidelines?", a: "Yes. VetsAI automatically detects notifiable diseases and generates official reports aligned with the WOAH Terrestrial Animal Health Code." },
             { q: "Can I use VetsAI offline?", a: "Patient records are accessible offline. The AI clinical support requires an internet connection." },
@@ -179,7 +179,7 @@ export default function GhanaPage() {
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Join veterinary professionals worldwide who trust VetsAI.</p>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book a live demo →</a>
-        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>First 10 clinics get 3 months free · No credit card</p>
+        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>First 10 clinics get first 10 clinics — 3 months free · No credit card</p>
       </section>
 
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>

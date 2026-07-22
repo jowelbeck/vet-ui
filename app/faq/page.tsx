@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: "Is the free trial really free?",
-    a: "Yes. New clinics get 3 months free on the Starter plan, no credit card required. You can cancel anytime during or after the trial with no obligation.",
+    a: "Yes. New clinics get first 10 clinics — 3 months free on the Starter plan, no credit card required. You can cancel anytime during or after the trial with no obligation.",
   },
   {
     q: "What species does VetsAI support?",

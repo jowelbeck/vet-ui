@@ -79,7 +79,7 @@ export default function FrenchSignupPage() {
           <span className="logo-text">VetsAI</span>
         </a>
         <div className="card">
-          <div className="free-badge">🎉 3 mois gratuits — sans carte bancaire</div>
+          <div className="free-badge">🎉 Les 10 premières cliniques — 10 premières cliniques — 3 mois gratuits</div>
           <div className="card-title">Commencez votre essai gratuit</div>
           <div className="card-sub">Rejoignez les professionnels vétérinaires qui utilisent VetsAI dans le monde entier.</div>
 
@@ -127,7 +127,7 @@ export default function FrenchSignupPage() {
         </div>
         <div className="trust-row">
           <span className="trust-item">✓ Sans carte bancaire</span>
-          <span className="trust-item">✓ 3 mois gratuits</span>
+          <span className="trust-item">✓ 10 premières cliniques — 3 mois gratuits</span>
           <span className="trust-item">✓ Annulez à tout moment</span>
         </div>
       </div>

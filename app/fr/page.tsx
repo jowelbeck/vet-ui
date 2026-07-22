@@ -79,7 +79,7 @@ export default function FrenchLandingPage() {
             <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>Essai gratuit →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Demander une démo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Aucune carte bancaire · Les 10 premières cliniques — 3 mois gratuits · Annulez à tout moment</p>
+          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Aucune carte bancaire · Les 10 premières cliniques — 10 premières cliniques — 3 mois gratuits · Annulez à tout moment</p>
         </div>
       </section>
 
@@ -132,7 +132,7 @@ export default function FrenchLandingPage() {
         <a href="/signup" style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block" }}>
           Commencer gratuitement →
         </a>
-        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Aucune carte bancaire · Les 10 premières cliniques — 3 mois gratuits · Annulez à tout moment</p>
+        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Aucune carte bancaire · Les 10 premières cliniques — 10 premières cliniques — 3 mois gratuits · Annulez à tout moment</p>
       </section>
 
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" as const }}>

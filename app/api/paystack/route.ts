@@ -29,6 +29,20 @@ export async function POST(request: NextRequest) {
   const { event: eventType, data } = event;
 
   if (eventType === "subscription.create" || eventType === "charge.success") {
+    fetch(
+      `https://www.google-analytics.com/mp/collect?measurement_id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}&api_secret=${process.env.GA_API_SECRET}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          client_id: data.customer?.email || "unknown",
+          events: [{
+            name: "payment_completed",
+            params: { plan: data.plan?.name || "unknown", amount: data.amount },
+          }],
+        }),
+      }
+    ).catch((e) => console.error("GA4 server event failed:", e));
+
     const email = data.customer?.email;
     const subscriptionCode = data.subscription_code || data.reference;
     const customerCode = data.customer?.customer_code;

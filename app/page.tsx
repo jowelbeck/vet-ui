@@ -290,7 +290,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
           <div>
             <p style={{ fontWeight: 800, fontSize: 16, color: "#1a3d2b", margin: "0 0 4px" }}>See VetsAI in action — free live demo for your clinic</p>
-            <p style={{ fontSize: 13, color: "#64748b", margin: 0 }}>20 minutes · No commitment · Built for African veterinary practice</p>
+            <p style={{ fontSize: 13, color: "#64748b", margin: 0 }}>20 minutes · No commitment · Free for your clinic</p>
           </div>
           <a href="/demo" style={{ background: "#1a3d2b", color: "#fff", padding: "12px 28px", borderRadius: 8, fontWeight: 800, fontSize: 14, textDecoration: "none", whiteSpace: "nowrap" }}>📅 Book a Live Demo →</a>
         </div>
@@ -306,7 +306,7 @@ export default function LandingPage() {
           <div style={{ width: 1, height: 20, background: "#e2e8f0" }} />
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 18 }}>🌍</span>
-            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>Built for African Veterinary Practice</span>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>Used by vets in 22 countries</span>
           </div>
           <div style={{ width: 1, height: 20, background: "#e2e8f0" }} />
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

@@ -5,7 +5,7 @@ export default function SenegalPage() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
       <div style={{ background: "#00853f", padding: "10px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-        <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, margin: 0 }}>🇸🇳 VetsAI est maintenant disponible au Sénégal — <strong>Rejoignez les vétérinaires d&apos;Afrique</strong></p>
+        <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, margin: 0 }}>🇸🇳 VetsAI est maintenant disponible  — <strong>Rejoignez les vétérinaires d&apos;Afrique</strong></p>
         <a href="/demo" style={{ background: "#fff", color: "#00853f", padding: "7px 20px", borderRadius: 6, fontWeight: 800, fontSize: 13, textDecoration: "none" }}>📅 Réserver une démo gratuite →</a>
       </div>
       <nav style={{ background: "#fff", borderBottom: "1px solid #e2e8f0", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
@@ -68,10 +68,10 @@ export default function SenegalPage() {
           <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 Nouveau</span>
           <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Mise à niveau — Surveillance des maladies · Pratique mixte · Gestion des frontières</span>
         </div>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇸🇳 Conçu pour la pratique vétérinaire au Sénégal · Aligné WOAH</div>
+          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇸🇳 Conçu pour la pratique vétérinaire professionnelle · Aligné WOAH</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             Le système d&apos;exploitation clinique<br />
-            <em style={{ color: "#86efac", fontStyle: "normal" }}>pour les vétérinaires du Sénégal</em>
+            <em style={{ color: "#86efac", fontStyle: "normal" }}>pour les professionnels vétérinaires</em>
           </h1>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Le Sénégal compte plus de 600 vétérinaires enregistrés. L'élevage représente 35% du PIB agricole. La gestion numérique des cliniques vétérinaires est désormais essentielle.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI offre aux vétérinaires du Sénégal une clinique numérique complète — dossiers patients, IA clinique, gestion de pharmacie, facturation et rapports de maladies alignés WOAH. Tout en un seul endroit.</p>
@@ -99,7 +99,7 @@ export default function SenegalPage() {
         </div>
       </div>
       <section style={{ padding: "72px 40px", maxWidth: 1100, margin: "0 auto" }}>
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: "#1a3d2b", marginBottom: 12, textAlign: "center" }}>Conçu pour la réalité vétérinaire du Sénégal</h2>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: "#1a3d2b", marginBottom: 12, textAlign: "center" }}>Conçu pour la réalité vétérinaire africaine</h2>
         <p style={{ fontSize: 16, color: "#64748b", textAlign: "center", marginBottom: 48 }}>Pas une copie d&apos;un système occidental. Construit à partir de la pratique vétérinaire africaine.</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {[

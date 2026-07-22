@@ -75,14 +75,14 @@ export default function GhanaPage() {
           <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇬🇭 Built for Ghanaian Veterinary Practice · WOAH-Aligned</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             The Clinic Operating System<br />
-            <em style={{ color: "#86efac", fontStyle: "normal" }}>for Ghana&apos;s Veterinarians</em>
+            <em style={{ color: "#86efac", fontStyle: "normal" }}>for Veterinary Professionals</em>
           </h1>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Ghana's veterinary community serves a large and growing livestock sector. Most clinics still use paper records and WhatsApp for patient management.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI gives Ghana&apos;s veterinary professionals a complete digital clinic — patient records, AI clinical support, pharmacy management, billing, and WOAH-aligned disease reporting. All in one place.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Try live demo</a>
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
-            <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a Ghana demo</a>
+            <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a live demo</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get 3 months free · No credit card · Set up in 5 minutes</p>
         </div>
@@ -107,7 +107,7 @@ export default function GhanaPage() {
 
       {/* Features */}
       <section style={{ padding: "72px 40px", maxWidth: 1100, margin: "0 auto" }}>
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: "#1a3d2b", marginBottom: 12, textAlign: "center" }}>Built for how Ghana&apos;s vets actually work</h2>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: "#1a3d2b", marginBottom: 12, textAlign: "center" }}>Built for how veterinary professionals actually work</h2>
         <p style={{ fontSize: 16, color: "#64748b", textAlign: "center", marginBottom: 48 }}>Not a copy of a Western system. Built from the ground up for African veterinary practice.</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {[
@@ -176,7 +176,7 @@ export default function GhanaPage() {
       {/* CTA */}
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
         <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your clinic?</h2>
-        <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Join veterinary professionals across Africa who trust VetsAI.</p>
+        <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Join veterinary professionals worldwide who trust VetsAI.</p>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Ghana", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book a live demo →</a>
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>No credit card · First 3 months free · Cancel anytime</p>

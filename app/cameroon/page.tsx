@@ -5,7 +5,7 @@ export default function CameroonPage() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
       <div style={{ background: "#007a5e", padding: "10px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-        <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, margin: 0 }}>🇨🇲 VetsAI est maintenant disponible au Cameroun — <strong>Rejoignez les professionnels vétérinaires d&apos;Afrique</strong></p>
+        <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, margin: 0 }}>🇨🇲 VetsAI est maintenant disponible  — <strong>Rejoignez les professionnels vétérinaires d&apos;Afrique</strong></p>
         <a href="/demo" style={{ background: "#fff", color: "#007a5e", padding: "7px 20px", borderRadius: 6, fontWeight: 800, fontSize: 13, textDecoration: "none" }}>📅 Réserver une démo gratuite →</a>
       </div>
       <nav style={{ background: "#fff", borderBottom: "1px solid #e2e8f0", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
@@ -67,7 +67,7 @@ export default function CameroonPage() {
           <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 Nouveau</span>
           <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Mise à niveau — Surveillance des maladies · Pratique mixte · Gestion des frontières</span>
         </div>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇨🇲 Conçu pour la pratique vétérinaire au Cameroun · Aligné WOAH</div>
+          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇨🇲 Conçu pour la pratique vétérinaire professionnelle · Aligné WOAH</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             Le système d&apos;exploitation pour<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>les vétérinaires du Cameroun</em>

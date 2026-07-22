@@ -82,12 +82,12 @@ export default function KenyaPage() {
         </div>
       </section>
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
-        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your Kenya clinic?</h2>
+        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your clinic?</h2>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Kenya", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
-        <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book Kenya demo →</a>
+        <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book a live demo →</a>
       </section>
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +254 · Kenya Veterinary Board
+        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +254 · Chief Veterinary Officer
       </footer>
       <a href="https://wa.me/233208140795?text=Hello%20VetsAI%2C%20I%20am%20a%20veterinarian%20in%20Kenya" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>💬</a>
     </main>

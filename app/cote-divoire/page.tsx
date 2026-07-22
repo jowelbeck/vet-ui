@@ -103,7 +103,7 @@ export default function CoteDIvoirePage() {
         <p style={{ fontSize: 16, color: "#64748b", textAlign: "center", marginBottom: 48 }}>Pas une copie d&apos;un système occidental. Construit à partir de la pratique vétérinaire africaine.</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {[
-            { icon: "🧠", title: "IA Clinique", desc: "Diagnostics différentiels, dosages médicamenteux et notes SOAP en moins de 60 secondes. Basé sur le Manuel Vétérinaire Merck." },
+            { icon: "🧠", title: "IA Clinique", desc: "Diagnostics différentiels, dosages médicamenteux et notes SOAP en moins de 60 secondes. Basé sur le recherche vétérinaire scientifique de référence mondiale." },
             { icon: "💊", title: "Pharmacie Vétérinaire", desc: "Gestion des stocks pour animaux, volailles et bétail — alertes péremption et historique des fournisseurs." },
             { icon: "📁", title: "Dossiers Patients", desc: "Historique médical complet pour toutes les espèces. Fonctionne hors ligne." },
             { icon: "⚠", title: "Rapports WOAH", desc: "Détection automatique des maladies à déclaration obligatoire et génération de rapports officiels." },

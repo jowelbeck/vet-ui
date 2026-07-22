@@ -111,17 +111,17 @@ export default function NigeriaPage() {
         <p style={{ fontSize: 16, color: "#64748b", textAlign: "center", marginBottom: 48 }}>Not a copy of a Western system. Built from the ground up for African veterinary practice.</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {[
-            { icon: "🧠", title: "AI Clinical Support", desc: "Differential diagnoses, drug dosages, and SOAP notes in under 60 seconds. Powered by Merck Veterinary Manual." },
+            { icon: "🧠", title: "AI Clinical Support", desc: "Differential diagnoses, drug dosages, and SOAP notes in under 60 seconds. Powered by gold standard scientific veterinary research." },
             { icon: "💊", title: "Pharmacy Management", desc: "Track drug stock, expiry dates, and supplier invoices for pets, poultry and livestock." },
             { icon: "📁", title: "Patient Records", desc: "Complete medical history for all species. Works offline. No paper needed." },
-            { icon: "⚠", title: "WOAH Disease Reporting", desc: "Auto-detect notifiable diseases and generate official reports for the Veterinary Council of Nigeria." },
+            { icon: "⚠", title: "WOAH Disease Reporting", desc: "Auto-detect notifiable diseases and generate official reports for the Chief Veterinary Officer." },
             { icon: "💰", title: "Billing & Invoicing", desc: "Generate invoices, track payments, and manage clinic finances." },
             { icon: "📊", title: "Analytics", desc: "Case trends, pharmacy performance, and clinic growth metrics." },
           ].map(m => (
             <div key={m.title} style={{ background: "#fff", borderRadius: 14, padding: 28, border: "1px solid #e2e8f0" }}>
               <div style={{ fontSize: 32, marginBottom: 16 }}>{m.icon}</div>
               <div style={{ fontWeight: 700, fontSize: 16, color: "#1a3d2b", marginBottom: 8 }}>{m.title}</div>
-              <div style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6 }}>{m.desc.replace("{council}", "Veterinary Council of Nigeria")}</div>
+              <div style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6 }}>{m.desc.replace("{council}", "Chief Veterinary Officer")}</div>
             </div>
           ))}
         </div>
@@ -175,10 +175,10 @@ export default function NigeriaPage() {
 
       {/* CTA */}
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
-        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your Nigeria clinic?</h2>
+        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Ready to modernize your clinic?</h2>
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Join veterinary professionals across Africa who trust VetsAI.</p>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Nigeria", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Start free →</a>
-        <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book Nigeria demo →</a>
+        <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Book a live demo →</a>
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>No credit card · First 3 months free · Cancel anytime</p>
       </section>
 

@@ -78,7 +78,7 @@ export default function SenegalPage() {
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>
-            <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Démo au Sénégal</a>
+            <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Réserver une démo</a>
           </div>
           <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Les 10 premières cliniques obtiennent 3 mois gratuits · Sans carte bancaire · Configuration en 5 minutes</p>
         </div>
@@ -103,7 +103,7 @@ export default function SenegalPage() {
         <p style={{ fontSize: 16, color: "#64748b", textAlign: "center", marginBottom: 48 }}>Pas une copie d&apos;un système occidental. Construit à partir de la pratique vétérinaire africaine.</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {[
-            { icon: "🧠", title: "IA Clinique", desc: "Diagnostics différentiels, dosages médicamenteux et notes SOAP en moins de 60 secondes. Basé sur le Manuel Vétérinaire Merck." },
+            { icon: "🧠", title: "IA Clinique", desc: "Diagnostics différentiels, dosages médicamenteux et notes SOAP en moins de 60 secondes. Basé sur le recherche vétérinaire scientifique de référence mondiale." },
             { icon: "💊", title: "Pharmacie Vétérinaire", desc: "Gestion des stocks pour animaux, volailles et bétail — alertes péremption et historique des fournisseurs." },
             { icon: "📁", title: "Dossiers Patients", desc: "Historique médical complet pour toutes les espèces. Fonctionne hors ligne." },
             { icon: "⚠", title: "Rapports WOAH", desc: "Détection automatique des maladies à déclaration obligatoire et génération de rapports officiels." },
@@ -119,7 +119,7 @@ export default function SenegalPage() {
         </div>
       </section>
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>
-        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Prêt à moderniser votre clinique au Sénégal ?</h2>
+        <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>Prêt à moderniser votre clinique ?</h2>
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Rejoignez les professionnels vétérinaires à travers l&apos;Afrique qui font confiance à VetsAI.</p>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Commencer gratuitement →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Réserver une démo →</a>

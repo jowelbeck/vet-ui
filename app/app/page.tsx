@@ -693,7 +693,7 @@ export default function Home() {
   <h1>WOAH Disease Notification Report</h1>
   <p class="subtitle">Generated: ${date} · Submitted via VetsAI · vetsai.vet</p>
   <div class="alert">
-    ⚠ This case contains findings consistent with a WOAH-notifiable disease. This report should be submitted to your national Chief Veterinary Officer and/or the Ghana Veterinary Council.
+    ⚠ This case contains findings consistent with a WOAH-notifiable disease. This report should be submitted to your national Chief Veterinary Officer and/or the Chief Veterinary Officer.
   </div>
   <div class="section">
     <div class="section-title">Patient Details</div>
@@ -733,7 +733,7 @@ export default function Home() {
   </div>
   <div class="section">
     <div class="section-title">Submit to</div>
-    <div class="field">Ghana Veterinary Council · veterinarycouncil.gov.gh</div>
+    <div class="field">Chief Veterinary Officer · veterinarycouncil.gov.gh</div>
     <div class="field">Chief Veterinary Officer, Ministry of Food and Agriculture, Ghana</div>
     <div class="field">WOAH WAHIS System · wahis.woah.org</div>
   </div>

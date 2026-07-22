@@ -17,7 +17,7 @@ const FAQS = [
   },
   {
     q: "How accurate is the AI clinical support?",
-    a: "VetsAI's differential diagnoses and treatment guidance are grounded in the Merck Veterinary Manual and a curated veterinary knowledge base. That said, VetsAI is a clinical decision-support tool, not a replacement for professional veterinary judgment — the attending veterinarian is always responsible for the final diagnosis and treatment decision.",
+    a: "VetsAI's differential diagnoses and treatment guidance are grounded in the gold standard scientific veterinary research and a curated veterinary knowledge base. That said, VetsAI is a clinical decision-support tool, not a replacement for professional veterinary judgment — the attending veterinarian is always responsible for the final diagnosis and treatment decision.",
   },
   {
     q: "What is WOAH-aligned disease reporting?",

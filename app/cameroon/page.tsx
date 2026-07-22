@@ -67,7 +67,7 @@ export default function CameroonPage() {
           <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 Nouveau</span>
           <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Mise à niveau — Surveillance des maladies · Pratique mixte · Gestion des frontières</span>
         </div>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇨🇲 Conçu pour la pratique vétérinaire professionnelle · Aligné WOAH</div>
+          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🐾 Plateforme vétérinaire professionnelle · Aligné WOAH</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             Le système d&apos;exploitation pour<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>les vétérinaires du Cameroun</em>

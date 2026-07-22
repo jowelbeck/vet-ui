@@ -67,7 +67,7 @@ export default function KenyaPage() {
           <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 New</span>
           <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Major Upgrade — Disease Surveillance · Mixed Practice · Border Management</span>
         </div>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇰🇪 Built for Kenyan Veterinary Practice · WOAH-Aligned</div>
+          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🐾 Professional Veterinary Platform · WOAH-Aligned</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             The Clinic Operating System<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>for Veterinary Professionals</em>

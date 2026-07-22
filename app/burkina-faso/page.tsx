@@ -68,13 +68,13 @@ export default function BurkinaFasoPage() {
           <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20 }}>🚀 Nouveau</span>
           <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>🚀 Mise à niveau — Surveillance des maladies · Pratique mixte · Gestion des frontières</span>
         </div>
-          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🇧🇫 Conçu pour la pratique vétérinaire professionnelle · Aligné WOAH</div>
+          <div style={{ display: "inline-block", background: "rgba(255,255,255,0.15)", borderRadius: 20, padding: "6px 16px", fontSize: 13, marginBottom: 24 }}>🐾 Plateforme vétérinaire professionnelle · Aligné WOAH</div>
           <h1 style={{ fontSize: 52, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, letterSpacing: "-1px" }}>
             Le système d&apos;exploitation clinique<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>pour les professionnels vétérinaires</em>
           </h1>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Le Burkina Faso possède un important secteur de l'élevage avec plus de 9 millions de bovins. Les vétérinaires ont besoin d'outils numériques adaptés à leur réalité.</p>
-          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI offre aux vétérinaires du Burkina Faso une clinique numérique complète — dossiers patients, IA clinique, gestion de pharmacie, facturation et rapports de maladies alignés WOAH. Tout en un seul endroit.</p>
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI offre aux professionnels vétérinaires du Burkina Faso une clinique numérique complète — dossiers patients, IA clinique, gestion de pharmacie, facturation et rapports de maladies alignés WOAH. Tout en un seul endroit.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Burkina Faso", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Burkina Faso", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>

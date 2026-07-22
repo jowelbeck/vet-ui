@@ -365,7 +365,7 @@ export default function LandingPage() {
               📅 Book a clinic demo
             </a>
           </div>
-          <p className="hero-note">✅ No credit card required · ✅ First 3 months free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
+          <p className="hero-note">✅ No credit card required · ✅ First 10 clinics — 3 months free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
             <div style={{ background: "rgba(255,255,255,0.95)", padding: 10, borderRadius: 10, display: "inline-block" }}>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={80} height={80} style={{ display: "block" }} />
@@ -604,7 +604,7 @@ export default function LandingPage() {
         <div className="section-inner">
           <div className="eyebrow">Pricing</div>
           <h2 className="section-title">Simple, transparent pricing</h2>
-          <p className="section-sub">Start free for 3 months. No credit card required. Cancel anytime.</p>
+          <p className="section-sub">First 10 clinics get 3 months free. No credit card required. Cancel anytime.</p>
           <div className="pricing-grid">
             {[
               {

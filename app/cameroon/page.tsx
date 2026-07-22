@@ -87,7 +87,7 @@ export default function CameroonPage() {
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Réserver une démo →</a>
       </section>
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +237 · Ordre National des Vétérinaires du Cameroun
+        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +237 · <a href="/privacy" style={{color:"rgba(255,255,255,0.4)"}}>Confidentialité</a> · <a href="/terms" style={{color:"rgba(255,255,255,0.4)"}}>Conditions</a>
       </footer>
       <a href="https://wa.me/233208140795?text=Bonjour%20VetsAI%2C%20je%20suis%20vétérinaire%20au%20Cameroun" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>💬</a>
     </main>

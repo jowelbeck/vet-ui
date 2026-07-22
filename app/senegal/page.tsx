@@ -126,7 +126,7 @@ export default function SenegalPage() {
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Sans carte bancaire · 3 mois gratuits · Annulez à tout moment</p>
       </section>
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +221 · Ordre National des Vétérinaires du Sénégal
+        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +221 · <a href="/privacy" style={{color:"rgba(255,255,255,0.4)"}}>Confidentialité</a> · <a href="/terms" style={{color:"rgba(255,255,255,0.4)"}}>Conditions</a>
       </footer>
       <a href="https://wa.me/233208140795?text=Bonjour%20VetsAI%2C%20je%20suis%20vétérinaire%20au%20Sénégal%20et%20souhaite%20en%20savoir%20plus" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>💬</a>
     </main>

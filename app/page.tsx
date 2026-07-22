@@ -225,9 +225,14 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-inner">
-          <div className="hero-tag">🐾 Clinic Operating System · Clinical Intelligence</div>
+          {/* Upgrade announcement badge */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(134,239,172,0.15)", border: "1px solid rgba(134,239,172,0.4)", borderRadius: 24, padding: "6px 16px", marginBottom: 24 }}>
+            <span style={{ background: "#86efac", color: "#1a3d2b", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 20, textTransform: "uppercase" as const, letterSpacing: 1 }}>🚀 New</span>
+            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: 13, fontWeight: 600 }}>Multisystem upgrade — Disease Surveillance · Mixed Practice · Border Management</span>
+          </div>
+          <div className="hero-tag">🐾 Clinic Operating System · Clinical Intelligence · WOAH-Aligned</div>
           <h1>
-            Run your veterinary clinic —<br />
+            The veterinary platform —<br />
             <em>with intelligent clinical support.</em>
           </h1>
           <p className="hero-sub">

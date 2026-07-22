@@ -142,7 +142,7 @@ export default function PricingPage() {
 
         <div className="heading">
           <h1>Choose your plan</h1>
-          <p>Start with first 10 clinics — 3 months free. No credit card required until your trial ends.</p>
+          <p>Start with First 10 clinics get 3 months free. No credit card required until your trial ends.</p>
         </div>
 
         <div className="plans">

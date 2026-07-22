@@ -78,7 +78,7 @@ export default function KenyaPage() {
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Kenya", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Start free trial →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Book a live demo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get first 10 clinics — 3 months free · No credit card · Set up in 5 minutes</p>
+          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>First 10 clinics get First 10 clinics get 3 months free · No credit card · Set up in 5 minutes</p>
         </div>
       </section>
       <section style={{ background: "linear-gradient(135deg, #1a3d2b, #2d6a4f)", padding: "72px 40px", textAlign: "center", color: "#fff" }}>

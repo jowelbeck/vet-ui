@@ -279,7 +279,7 @@ export default function OnboardingPage() {
 
               <div className="ready-box">
                 <h3>Your free trial is active</h3>
-                <p>first 10 clinics — 3 months free · No credit card required · Cancel anytime</p>
+                <p>First 10 clinics get 3 months free · No credit card required · Cancel anytime</p>
               </div>
 
               <div className="quick-links">

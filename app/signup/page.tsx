@@ -108,7 +108,7 @@ export default function SignupPage() {
         </a>
 
         <div className="card">
-          <div className="free-badge">🎉 First 10 clinics get first 10 clinics — 3 months free — no credit card</div>
+          <div className="free-badge">🎉 First 10 clinics get 3 months free — no credit card</div>
           <div className="card-title">Start your free trial</div>
           <div className="card-sub">Join veterinary professionals using VetsAI worldwide.</div>
 
@@ -181,7 +181,7 @@ export default function SignupPage() {
 
         <div className="trust-row">
           <span className="trust-item">✓ No credit card</span>
-          <span className="trust-item">✓ first 10 clinics — 3 months free</span>
+          <span className="trust-item">✓ First 10 clinics get 3 months free</span>
           <span className="trust-item">✓ Cancel anytime</span>
           <span className="trust-item">✓ Gold standard research</span>
         </div>

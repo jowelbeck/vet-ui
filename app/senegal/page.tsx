@@ -73,7 +73,7 @@ export default function SenegalPage() {
             Le système d&apos;exploitation clinique<br />
             <em style={{ color: "#86efac", fontStyle: "normal" }}>pour les professionnels vétérinaires</em>
           </h1>
-          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>Le Sénégal compte plus de 600 vétérinaires enregistrés. L'élevage représente 35% du PIB agricole. La gestion numérique des cliniques vétérinaires est désormais essentielle.</p>
+          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24, maxWidth: 580 }}>La gestion numérique des cliniques vétérinaires est désormais essentielle pour une pratique professionnelle moderne.</p>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 40, maxWidth: 580 }}>VetsAI offre aux professionnels vétérinaires du Sénégal une clinique numérique complète — dossiers patients, IA clinique, gestion de pharmacie, facturation et rapports de maladies alignés WOAH. Tout en un seul endroit.</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="/demo-login" onClick={() => trackEvent("country_page_cta_click", { country: "Senegal", destination: "demo" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "16px 36px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 16 }}>▶ Démo en direct</a>

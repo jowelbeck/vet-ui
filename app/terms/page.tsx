@@ -23,7 +23,7 @@ export default function TermsOfService() {
           <li>Cancel any time — takes effect at end of billing period</li>
           <li>No refunds for partial months</li>
           <li>Pricing may change with 30 days notice</li>
-          <li>First 3 months free on all plans</li>
+          <li>First 10 clinics get 3 months free on all plans</li>
         </ul>
       </section>
       <section style={{ marginBottom: 32 }}>

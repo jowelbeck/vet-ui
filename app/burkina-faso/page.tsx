@@ -80,7 +80,7 @@ export default function BurkinaFasoPage() {
             <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Burkina Faso", destination: "signup" })} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>Essai gratuit →</a>
             <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "16px 36px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 16, border: "1px solid rgba(255,255,255,0.3)" }}>📅 Réserver une démo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Les 10 premières cliniques obtiennent 3 mois gratuits · Sans carte bancaire · Configuration en 5 minutes</p>
+          <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Les 10 premières cliniques obtiennent Les 10 premières cliniques · Les 10 premières cliniques — 3 mois gratuits · Configuration en 5 minutes</p>
         </div>
       </section>
       <div style={{ background: "#1a3d2b", padding: "24px 40px" }}>
@@ -123,7 +123,7 @@ export default function BurkinaFasoPage() {
         <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px" }}>Rejoignez les professionnels vétérinaires à travers l&apos;Afrique qui font confiance à VetsAI.</p>
         <a href="/signup" onClick={() => trackEvent("country_page_cta_click", { country: "Burkina Faso", destination: "signup" })} style={{ background: "#86efac", color: "#1a3d2b", padding: "18px 48px", borderRadius: 10, fontWeight: 800, textDecoration: "none", fontSize: 18, display: "inline-block", marginRight: 16 }}>Commencer gratuitement →</a>
         <a href="/demo" style={{ background: "rgba(255,255,255,0.1)", color: "#fff", padding: "18px 48px", borderRadius: 10, fontWeight: 600, textDecoration: "none", fontSize: 18, display: "inline-block", border: "1px solid rgba(255,255,255,0.3)" }}>Réserver une démo →</a>
-        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Sans carte bancaire · 3 mois gratuits · Annulez à tout moment</p>
+        <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Les 10 premières cliniques · Les 10 premières cliniques · Les 10 premières cliniques — 3 mois gratuits</p>
       </section>
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
         © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +226 · <a href="/privacy" style={{color:"rgba(255,255,255,0.4)"}}>Confidentialité</a> · <a href="/terms" style={{color:"rgba(255,255,255,0.4)"}}>Conditions</a>

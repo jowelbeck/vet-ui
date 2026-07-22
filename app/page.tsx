@@ -223,7 +223,32 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="hero">
+      <section className="hero" style={{ background: "linear-gradient(135deg, #2C1810 0%, #4A2C1A 30%, #1B3A2D 70%, #0D2418 100%)", position: "relative", overflow: "hidden" }}>
+        {/* Animal silhouette watermarks */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+          {/* Dog silhouette */}
+          <svg style={{ position: "absolute", right: "5%", top: "10%", opacity: 0.06, width: 320, height: 320 }} viewBox="0 0 100 100" fill="white">
+            <path d="M80,35 C80,35 85,25 82,20 C79,15 72,18 70,22 C68,18 62,15 58,18 C54,21 55,28 55,28 C50,26 44,27 40,30 C36,33 35,38 36,43 C30,44 26,48 26,53 C26,58 30,62 35,62 L35,75 C35,77 37,78 39,78 L45,78 C47,78 48,77 48,75 L48,65 C52,66 58,66 62,65 L62,75 C62,77 64,78 66,78 L72,78 C74,78 75,77 75,75 L75,60 C79,57 82,52 82,47 C82,42 81,38 80,35 Z"/>
+          </svg>
+          {/* Chicken/rooster silhouette */}
+          <svg style={{ position: "absolute", left: "3%", bottom: "15%", opacity: 0.06, width: 220, height: 220 }} viewBox="0 0 100 100" fill="white">
+            <path d="M55,20 C52,15 46,14 43,17 C40,14 35,15 34,19 C31,18 28,21 30,25 C27,26 26,30 28,33 C25,35 25,40 28,42 C26,46 28,51 32,52 L30,75 C30,77 32,78 34,78 L40,78 C42,78 43,77 43,75 L43,65 C46,66 50,66 53,65 L53,75 C53,77 55,78 57,78 L63,78 C65,78 66,77 66,75 L64,52 C68,50 70,45 69,41 C72,39 72,34 69,32 C71,28 69,24 66,23 C65,20 60,18 55,20 Z M45,30 C47,28 51,29 52,32 C50,34 46,34 45,30 Z"/>
+          </svg>
+          {/* Cow silhouette */}
+          <svg style={{ position: "absolute", right: "2%", bottom: "5%", opacity: 0.05, width: 380, height: 280 }} viewBox="0 0 140 100" fill="white">
+            <path d="M110,25 C110,25 118,18 116,12 C114,8 108,10 106,14 C103,10 97,8 94,12 C91,16 93,22 93,22 C85,20 75,21 68,25 C58,30 55,38 56,46 C45,47 38,53 38,60 C38,67 44,72 52,72 L50,88 C50,91 53,92 56,92 L65,92 C68,92 70,91 70,88 L70,74 C78,76 90,76 98,74 L98,88 C98,91 101,92 104,92 L113,92 C116,92 118,91 118,88 L116,72 C123,68 128,61 128,54 C128,44 121,35 110,25 Z"/>
+          </svg>
+          {/* Goat silhouette */}
+          <svg style={{ position: "absolute", left: "25%", top: "5%", opacity: 0.04, width: 200, height: 200 }} viewBox="0 0 100 100" fill="white">
+            <path d="M60,15 C58,10 52,9 49,12 C46,9 40,10 39,14 C35,12 32,16 34,20 C30,22 30,27 33,30 C28,33 28,40 32,43 C30,48 32,54 37,56 L35,78 C35,80 37,82 40,82 L47,82 C50,82 51,80 51,78 L51,68 C54,69 58,69 61,68 L61,78 C61,80 63,82 66,82 L73,82 C76,82 77,80 77,78 L75,55 C80,52 82,46 80,41 C83,38 83,32 79,29 C81,25 79,20 75,18 C73,14 67,13 60,15 Z"/>
+          </svg>
+          {/* Cat silhouette */}
+          <svg style={{ position: "absolute", left: "8%", top: "20%", opacity: 0.05, width: 160, height: 160 }} viewBox="0 0 100 100" fill="white">
+            <path d="M35,15 L30,5 L40,18 C43,16 47,15 50,15 C53,15 57,16 60,18 L70,5 L65,15 C70,20 73,27 73,35 C73,50 63,62 50,62 C37,62 27,50 27,35 C27,27 30,20 35,15 Z M42,35 C42,37 40,39 38,39 C36,39 34,37 34,35 C34,33 36,31 38,31 C40,31 42,33 42,35 Z M66,35 C66,37 64,39 62,39 C60,39 58,37 58,35 C58,33 60,31 62,31 C64,31 66,33 66,35 Z M40,75 L38,62 L45,65 L50,62 L55,65 L62,62 L60,75 C57,78 53,80 50,80 C47,80 43,78 40,75 Z"/>
+          </svg>
+        </div>
+        {/* African pattern overlay */}
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px)", pointerEvents: "none" }} />
         <div className="hero-inner">
           {/* Upgrade announcement badge */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(134,239,172,0.15)", border: "1px solid rgba(134,239,172,0.4)", borderRadius: 24, padding: "6px 16px", marginBottom: 24 }}>

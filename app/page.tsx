@@ -573,7 +573,7 @@ export default function LandingPage() {
           <a href="/contact">Contact</a>
         </div>
         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
-          © {new Date().getFullYear()} VetsAI Technologies · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/faq">FAQ</a> · <a href="/help">Help</a> · <a href="/contact">Contact</a> · Designed for veterinary professionals across Africa and beyond.
+          © {new Date().getFullYear()} VetsAI Technologies · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/faq">FAQ</a> · <a href="/help">Help</a> · <a href="/contact">Contact</a> · Designed for veterinary professionals.
         </div>
       </footer>
     </>

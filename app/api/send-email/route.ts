@@ -381,7 +381,9 @@ export async function POST(req: NextRequest) {
     } else {
       return NextResponse.json({ error: "Unknown email type" }, { status: 400 });
     }
-
+  console.log("RESEND_API_KEY exists:", !!process.env.RESEND_API_KEY);
+  console.log("Key length:", process.env.RESEND_API_KEY?.length);
+  
     const resend = new Resend(process.env.RESEND_API_KEY);
     // From must be on a Resend-verified domain. Reply-to is a monitored inbox
     // (the templates invite replies). Both overridable via env.

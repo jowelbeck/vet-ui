@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vetsai.vet"),
+
+    verification: {
+    google: "uAlZovi_HlaXt5uOrb46HPCWILzg2otjVLrNsxDYSR4",
+  },
   alternates: {
     canonical: "/",
   },

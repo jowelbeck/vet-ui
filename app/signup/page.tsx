@@ -47,7 +47,17 @@ export default function SignupPage() {
       })
     }).catch(console.error);
 
-    trackEvent("sign_up", { method: "email", country: country.trim() });
+   trackEvent("sign_up", {
+  method: "email",
+  email: email.trim(),
+  country: country.trim(),
+  clinic: clinicName.trim(),
+  page: window.location.pathname,
+  referrer: document.referrer,
+  language: navigator.language,
+  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  browser: navigator.userAgent,
+});
 
     setSuccess(true);
     setTimeout(() => router.push("/onboarding"), 2000);

@@ -1,0 +1,61 @@
+export default function ClinicalDecisionSupportPage() {
+  return (
+    <main style={{ maxWidth: "900px", margin: "60px auto", padding: "20px", lineHeight: "1.8", fontFamily: "Arial, sans-serif" }}>
+      <h1>AI Clinical Decision Support for Veterinary Professionals</h1>
+
+      <p>
+        Every day, veterinarians manage complex cases involving companion animals,
+        livestock, and poultry. Finding reliable information quickly while managing
+        patients can be challenging.
+      </p>
+
+      <p>
+        VetsAI Clinical Decision Support helps licensed veterinary professionals
+        make faster, evidence-based clinical decisions in under 60 seconds.
+      </p>
+
+      <h2>What VetsAI Provides</h2>
+
+      <ul>
+        <li>Differential diagnoses based on clinical signs</li>
+        <li>Drug dosage guidance by species and body weight</li>
+        <li>Automatic SOAP note generation</li>
+        <li>Clinical urgency assessment</li>
+        <li>Evidence-based veterinary references</li>
+        <li>Complete patient medical history</li>
+      </ul>
+
+      <h2>Built for African Veterinary Practice</h2>
+
+      <p>
+        Unlike general AI tools, VetsAI is designed specifically for veterinary
+        professionals working across Africa. The platform supports companion
+        animals, poultry, livestock, and mixed veterinary practice.
+      </p>
+
+      <h2>Evidence-Based Recommendations</h2>
+
+      <p>
+        Clinical guidance is grounded in trusted veterinary references, including
+        the Merck Veterinary Manual, WOAH guidance, and published veterinary
+        literature. VetsAI is designed to support—not replace—the clinical
+        judgment of licensed veterinarians.
+      </p>
+
+      <h2>Disease Surveillance</h2>
+
+      <p>
+        VetsAI supports clinics by identifying cases that may require reporting
+        under WOAH disease surveillance frameworks, helping strengthen early
+        disease detection and structured reporting workflows.
+      </p>
+
+      <h2>Experience VetsAI</h2>
+
+      <p>
+        Discover how AI-powered clinical decision support can help your clinic
+        deliver faster, more consistent veterinary care.
+      </p>
+    </main>
+  );
+}

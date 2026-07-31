@@ -5,6 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const publicRoutes = [
     "",
+    "/clinical-decision-support",
     "/pricing",
     "/privacy",
     "/terms",
@@ -29,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return publicRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
+    changeFrequency: "weekly",
     priority: route === "" ? 1 : 0.7,
   }));
 }

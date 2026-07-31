@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
     description: "AI-powered clinical support, patient records and practice management for vets across Africa.",
-    url: url: "https://www.vetsai.vet",
+    url: "https://www.vetsai.vet",
     siteName: "VetsAI",
     images: [
       {

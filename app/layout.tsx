@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     shortcut: "/vetsai-icon.svg",
     apple: "/vetsai-icon.svg",
   },
-  title: "VetsAI — Clinic Operating System",
+  title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
   description: "AI-powered clinic operating system for veterinary professionals across Africa and beyond.",
   openGraph: {
-    title: "VetsAI — Clinic Operating System",
+    title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
     description: "AI-powered clinical support, patient records and practice management for vets across Africa.",
     url: "https://vetsai.vet",
     siteName: "VetsAI",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VetsAI — Clinic Operating System",
+    title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
     description: "AI-powered clinic operating system for veterinary professionals across Africa.",
     images: ["https://vetsai.vet/og-image.png"],
   },

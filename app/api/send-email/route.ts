@@ -84,7 +84,7 @@ function welcomeEmail(clinicName: string) {
         </a>
       </div>
       <p style="color:#94a3b8;font-size:12px;text-align:center;margin-top:24px;">
-        Need help? Reply to this email or visit <a href="https://vetsai.vet" style="color:#1a3d2b;">vetsai.vet</a>
+        Need help? Reply to this email or visit <a href="https://www.vetsai.vet" style="color:#1a3d2b;">vetsai.vet</a>
       </p>
     </div>
   </div>
@@ -113,7 +113,7 @@ You signed up 3 days ago. Have you had a chance to analyze your first case yet?
 </ol>
 </div>
 <div style="text-align:center;">
-<a href="https://vet-ui-beta.vercel.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+<a href="https://www.vetsai.vet.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
 Analyze my first case →
 </a>
 </div>
@@ -148,7 +148,7 @@ One week in — here's everything your clinic has access to right now.
 </table>
 </div>
 <div style="text-align:center;">
-<a href="https://vet-ui-beta.vercel.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+<a href="https://www.vetsai.vet.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
 Go to my clinic →
 </a>
 </div>
@@ -182,7 +182,7 @@ You're 2 weeks into your free trial. Here's what you get when you stay with Vets
 Your first 3 months are completely free — no credit card needed until then.
 </p>
 <div style="text-align:center;">
-<a href="https://vet-ui-beta.vercel.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+<a href="https://www.vetsai.vet.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
 Continue using VetsAI →
 </a>
 </div>
@@ -212,7 +212,7 @@ Your free trial has one week left. We'd love to keep supporting your clinic.
 Not ready to commit? Reply to this email and tell us what's holding you back — we want to make VetsAI work for your clinic.
 </p>
 <div style="text-align:center;">
-<a href="https://vet-ui-beta.vercel.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+<a href="https://www.vetsai.vet.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
 Keep my clinic →
 </a>
 </div>

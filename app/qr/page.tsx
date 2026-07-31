@@ -6,7 +6,7 @@ import QRCode from "react-qr-code";
 
 const QR_LINKS = [
   { label: "Landing page", url: "https://www.vetsai.vet", desc: "Share with anyone to discover VetsAI", icon: "🌍" },
-  { label: "Free trial signup", url: "https://vetsai.vet/signup", desc: "Direct link to start a free trial", icon: "🚀" },
+  { label: "Free trial signup", url: "https://www.vetsai.vet/signup", desc: "Direct link to start a free trial", icon: "🚀" },
   { label: "Live demo", url: "https://www.vetsai.vet/demo", desc: "Try VetsAI without signing up", icon: "🎬" },
   { label: "Login", url: "https://www.vetsai.vet/login", desc: "For existing clinic users", icon: "🔑" },
 ];

@@ -371,7 +371,7 @@ export default function LandingPage() {
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={80} height={80} style={{ display: "block" }} />
             </div>
             <div>
-              <a href="https://vetsai.vet" style={{ color: "#fff", fontWeight: 700, fontSize: 14, textDecoration: "none", display: "block", marginBottom: 4 }}>vetsai.vet</a>
+              <a href="https://www.vetsai.vet" style={{ color: "#fff", fontWeight: 700, fontSize: 14, textDecoration: "none", display: "block", marginBottom: 4 }}>vetsai.vet</a>
               <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)" }}>📱 Scan to share with your clinic</p>
             </div>
           </div>
@@ -679,7 +679,7 @@ export default function LandingPage() {
             <div style={{ background: "#fff", padding: 16, borderRadius: 12, display: "inline-block", marginBottom: 10 }}>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={120} height={120} style={{ display: "block" }} />
             </div>
-            <a href="https://vetsai.vet" style={{ color: "#fff", fontWeight: 700, fontSize: 15, letterSpacing: 0.5, textDecoration: "none", background: "rgba(255,255,255,0.15)", padding: "6px 16px", borderRadius: 20, border: "1px solid rgba(255,255,255,0.3)" }}>vetsai.vet</a>
+            <a href="https://www.vetsai.vet" style={{ color: "#fff", fontWeight: 700, fontSize: 15, letterSpacing: 0.5, textDecoration: "none", background: "rgba(255,255,255,0.15)", padding: "6px 16px", borderRadius: 20, border: "1px solid rgba(255,255,255,0.3)" }}>vetsai.vet</a>
             <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 6 }}>Scan or click to visit</p>
           </div>
           <div className="eyebrow" style={{ color: "rgba(255,255,255,0.6)" }}>Get started today</div>

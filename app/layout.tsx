@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
     description: "AI-powered clinical support, patient records and practice management for vets across Africa.",
-    url: "https://vetsai.vet",
+    url: url: "https://www.vetsai.vet",
     siteName: "VetsAI",
     images: [
       {
-        url: "https://vetsai.vet/og-image.png",
+        url: "https://www.vetsai.vet/og-image.png",
         width: 1200,
         height: 630,
         alt: "VetsAI — Clinic Operating System",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "VetsAI | AI Veterinary Clinic Software & Clinical Decision Support",
     description: "AI-powered clinic operating system for veterinary professionals across Africa.",
-    images: ["https://vetsai.vet/og-image.png"],
+    images: ["https://www.vetsai.vet/og-image.png"],
   },
 };
 

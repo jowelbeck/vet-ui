@@ -136,7 +136,7 @@ export default function FrenchLandingPage() {
       </section>
 
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" as const }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +233 20 8140795
+       © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · <a href="mailto:support@vetsai.vet" style={{color:"rgba(255,255,255,0.4)"}}>support@vetsai.vet</a>
       </footer>
 
       <a href="https://wa.me/233208140795?text=Bonjour%20VetsAI%2C%20je%20voudrais%20en%20savoir%20plus%20sur%20votre%20logiciel%20vétérinaire" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>

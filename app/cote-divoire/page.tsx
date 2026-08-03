@@ -126,7 +126,7 @@ export default function CoteDIvoirePage() {
         <p style={{ marginTop: 20, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Les 10 premières cliniques · Les 10 premières cliniques · Les 10 premières cliniques — 10 premières cliniques — 3 mois gratuits</p>
       </section>
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +225 · Ordre National des Vétérinaires de Côte d&apos;Ivoire
+       © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · <a href="mailto:support@vetsai.vet" style={{color:"rgba(255,255,255,0.4)"}}>support@vetsai.vet</a> · Ordre National des Vétérinaires de Côte d&apos;Ivoire
       </footer>
       <a href="https://wa.me/233208140795?text=Bonjour%20VetsAI%2C%20je%20suis%20vétérinaire%20en%20Côte%20d%27Ivoire%20et%20souhaite%20en%20savoir%20plus" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>💬</a>
     </main>

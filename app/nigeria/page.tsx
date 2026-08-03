@@ -163,7 +163,7 @@ export default function NigeriaPage() {
             { q: "Does VetsAI work for poultry and livestock?", a: "Yes — VetsAI is a 3-in-1 platform for pets, poultry and livestock with species-specific clinical protocols for each." },
             { q: "Is the AI aligned with WOAH guidelines?", a: "Yes. VetsAI automatically detects notifiable diseases and generates official reports aligned with the WOAH Terrestrial Animal Health Code." },
             { q: "Can I use VetsAI offline?", a: "Patient records are accessible offline. The AI clinical support requires an internet connection." },
-            { q: "How do I get support?", a: `Contact us via WhatsApp at $+234 or email support@vetsai.vet. We respond within 24 hours.` },
+            { q: "How do I get support?", a: `Contact us via email at support@vetsai.vet. We respond within 24 hours.` },
           ].map(item => (
             <div key={item.q} style={{ borderBottom: "1px solid #e2e8f0", paddingBottom: 16, marginBottom: 16 }}>
               <div style={{ fontWeight: 700, color: "#1a3d2b", marginBottom: 6, fontSize: 15 }}>{item.q}</div>
@@ -183,7 +183,7 @@ export default function NigeriaPage() {
       </section>
 
       <footer style={{ background: "#0f1f0f", padding: "32px 40px", color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>
-        © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · +234 · <a href="/privacy" style={{color:"rgba(255,255,255,0.4)"}}>Privacy</a> · <a href="/terms" style={{color:"rgba(255,255,255,0.4)"}}>Terms</a>
+       © {new Date().getFullYear()} VetsAI Technologies · vetsai.vet · <a href="mailto:support@vetsai.vet" style={{color:"rgba(255,255,255,0.4)"}}>support@vetsai.vet</a> · <a href="/privacy" style={{color:"rgba(255,255,255,0.4)"}}>Privacy</a> · <a href="/terms" style={{color:"rgba(255,255,255,0.4)"}}>Terms</a>
       </footer>
 
       <a href="https://wa.me/233208140795?text=Hello%20VetsAI%2C%20I%20am%20a%20veterinarian%20in%20Nigeria%20and%20would%20like%20to%20learn%20more" target="_blank" style={{ position: "fixed", bottom: 24, right: 24, background: "#25D366", color: "#fff", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, textDecoration: "none", boxShadow: "0 4px 16px rgba(37,211,102,0.4)", zIndex: 1000 }}>

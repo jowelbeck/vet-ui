@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
       <p style={{ color: "#64748b", fontSize: 14, marginBottom: 40 }}>Last updated: July 8, 2026</p>
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1a3d2b", marginBottom: 12 }}>1. Who We Are</h2>
-        <p style={{ lineHeight: 1.8, color: "#374151" }}>VetsAI Technologies is a veterinary clinic management platform built for veterinary professionals across Africa. We are registered in Accra, Ghana. Contact us at <a href="mailto:privacy@vetsai.vet" style={{ color: "#1a3d2b" }}>privacy@vetsai.vet</a> or +233 20 8140795.</p>
+        <p style={{ lineHeight: 1.8, color: "#374151" }}>VetsAI Technologies is a veterinary clinic management platform built for veterinary professionals across Africa. We are registered in Accra, Ghana. Contact us at <a href="mailto:privacy@vetsai.vet" style={{ color: "#1a3d2b" }}>privacy@vetsai.vet</a> .</p>
       </section>
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1a3d2b", marginBottom: 12 }}>2. What Data We Collect</h2>
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
       </section>
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1a3d2b", marginBottom: 12 }}>9. Contact</h2>
-        <p style={{ lineHeight: 1.8, color: "#374151" }}>Email: <a href="mailto:privacy@vetsai.vet" style={{ color: "#1a3d2b" }}>privacy@vetsai.vet</a><br />Phone: +233 20 8140795<br />Address: Accra, Ghana</p>
+        <p style={{ lineHeight: 1.8, color: "#374151" }}>Email: <a href="mailto:privacy@vetsai.vet" style={{ color: "#1a3d2b" }}>privacy@vetsai.vet</a><br /> <br />Address: Accra, Ghana</p>
       </section>
       <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 24, marginTop: 40 }}>
         <p style={{ fontSize: 13, color: "#94a3b8" }}>© 2026 VetsAI Technologies · <a href="/terms" style={{ color: "#1a3d2b" }}>Terms of Service</a> · <a href="/privacy" style={{ color: "#1a3d2b" }}>Privacy Policy</a></p>

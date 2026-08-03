@@ -53,7 +53,7 @@ export default function TermsOfService() {
       </section>
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1a3d2b", marginBottom: 12 }}>10. Contact</h2>
-        <p style={{ lineHeight: 1.8, color: "#374151" }}>Email: <a href="mailto:legal@vetsai.vet" style={{ color: "#1a3d2b" }}>legal@vetsai.vet</a><br />Phone: +233 20 8140795<br />Address: Accra, Ghana</p>
+        <p style={{ lineHeight: 1.8, color: "#374151" }}>Email: <a href="mailto:legal@vetsai.vet" style={{ color: "#1a3d2b" }}>legal@vetsai.vet</a><br /> <br />Address: Accra, Ghana</p>
       </section>
       <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 24, marginTop: 40 }}>
         <p style={{ fontSize: 13, color: "#94a3b8" }}>© 2026 VetsAI Technologies · <a href="/terms" style={{ color: "#1a3d2b" }}>Terms of Service</a> · <a href="/privacy" style={{ color: "#1a3d2b" }}>Privacy Policy</a></p>

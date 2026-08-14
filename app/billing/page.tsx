@@ -130,9 +130,13 @@ export default function BillingPage() {
 
     // Send invoice email to owner
     if (ownerName.trim()) {
+      const { data: { session } } = await supabase.auth.getSession();
       fetch("/api/send-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.access_token}`,
+        },
         body: JSON.stringify({
           type: "invoice",
           to: ownerPhone.trim() || "clinic@vetsai.vet",

@@ -33,7 +33,10 @@ function secretMatches(header: string | null): boolean {
 async function sendSequenceEmail(email: string, type: string, clinicName: string) {
   const res = await fetch(`${BASE_URL}/api/send-email`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "x-internal-secret": process.env.CRON_SECRET!,
+    },
     body: JSON.stringify({ to: email, type, data: { clinicName } }),
   });
   if (!res.ok) {

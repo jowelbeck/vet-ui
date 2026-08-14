@@ -110,9 +110,13 @@ export default function AppointmentsPage() {
 
     // Send email notification
     if (notifyMethod === "email" && ownerEmail.trim()) {
+      const { data: { session } } = await supabase.auth.getSession();
       fetch("/api/send-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.access_token}`,
+        },
         body: JSON.stringify({
           type: "appointment",
           to: ownerEmail.trim(),

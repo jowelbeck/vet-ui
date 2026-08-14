@@ -1,5 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
+
+// Verifies the caller is a logged-in clinic user (for appointment/invoice
+// emails) so this endpoint can't be used as an anonymous phishing relay.
+async function getAuthedUserId(req: NextRequest): Promise<string | null> {
+  const authHeader = req.headers.get("authorization");
+  if (!authHeader?.startsWith("Bearer ")) return null;
+  const token = authHeader.slice(7);
+
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+  const { data, error } = await supabase.auth.getUser(token);
+  if (error || !data.user) return null;
+  return data.user.id;
+}
+
+// Only our own cron job may trigger lifecycle drip emails.
+function cronSecretMatches(req: NextRequest): boolean {
+  const header = req.headers.get("x-internal-secret");
+  return !!header && header === process.env.CRON_SECRET;
+}
 
 // ── Security helpers ──────────────────────────────────────────────────────────
 
@@ -292,6 +315,19 @@ export async function POST(req: NextRequest) {
 
     if (!type) {
       return NextResponse.json({ error: "Missing type field" }, { status: 400 });
+    }
+   const LIFECYCLE_TYPES = new Set(["welcome", "day3", "day7", "day14", "day28"]);
+    const USER_TRIGGERED_TYPES = new Set(["appointment", "invoice"]);
+
+    if (LIFECYCLE_TYPES.has(type)) {
+      if (!cronSecretMatches(req)) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    } else if (USER_TRIGGERED_TYPES.has(type)) {
+      const userId = await getAuthedUserId(req);
+      if (!userId) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
     // Internal-notification email types must always go to a fixed inbox -
     // never trust a caller-supplied `to` for these, since that would let

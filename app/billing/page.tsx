@@ -50,6 +50,7 @@ export default function BillingPage() {
   const [patientName, setPatientName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
+  const [ownerEmail, setOwnerEmail] = useState("");
   const [currency, setCurrency] = useState("USD");
   const [notes, setNotes] = useState("");
   const [services, setServices] = useState<Service[]>([
@@ -119,6 +120,7 @@ export default function BillingPage() {
       patient_name: patientName.trim(),
       owner_name: ownerName.trim(),
       owner_phone: ownerPhone.trim(),
+      owner_email: ownerEmail.trim(),
       services: validServices,
       total,
       currency,
@@ -126,10 +128,11 @@ export default function BillingPage() {
       notes: notes.trim(),
     });
 
+
     if (error) { setError(error.message); setSaving(false); return; }
 
     // Send invoice email to owner
-    if (ownerName.trim()) {
+    if (ownerEmail.trim()) {
       const { data: { session } } = await supabase.auth.getSession();
       fetch("/api/send-email", {
         method: "POST",
@@ -139,7 +142,7 @@ export default function BillingPage() {
         },
         body: JSON.stringify({
           type: "invoice",
-          to: ownerPhone.trim() || "clinic@vetsai.vet",
+          to: ownerEmail.trim() || "clinic@vetsai.vet",
           data: {
             patientName: patientName.trim(),
             ownerName: ownerName.trim(),
@@ -236,12 +239,11 @@ export default function BillingPage() {
   };
 
   const resetForm = () => {
-    setPatientName(""); setOwnerName(""); setOwnerPhone("");
+    setPatientName(""); setOwnerName(""); setOwnerPhone(""); setOwnerEmail("");
     setCurrency("USD"); setNotes("");
     setServices([{ name: "", quantity: 1, price: 0 }]);
     setError("");
   };
-
   const filtered = filterStatus === "all" ? invoices : invoices.filter(inv => inv.status === filterStatus);
   const totalRevenue = invoices.filter(inv => inv.status === "paid").reduce((sum, inv) => sum + inv.total, 0);
   const unpaidTotal = invoices.filter(inv => inv.status === "unpaid").reduce((sum, inv) => sum + inv.total, 0);
@@ -387,6 +389,10 @@ export default function BillingPage() {
               <div className="field">
                 <label>Owner phone</label>
                 <input placeholder="+233 20 000 0000" value={ownerPhone} onChange={e => setOwnerPhone(e.target.value)} />
+              </div>
+<div className="field">
+                <label>Owner email</label>
+                <input type="email" placeholder="owner@example.com" value={ownerEmail} onChange={e => setOwnerEmail(e.target.value)} />
               </div>
               <div className="field">
                 <label>Currency</label>

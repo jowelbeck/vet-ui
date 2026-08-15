@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { classifyAnimal } from "@/lib/classify-animal";
+import { trackEvent } from "@/lib/analytics";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -89,11 +90,13 @@ function cap(s?: string): string {
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+   supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) { router.push("/login"); return; }
       const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
       const role = await getCurrentUserRole();
       const isDemoUser = user.email === "demo@vetsai.vet";
+      setIsDemoUser(isDemoUser);
+      if (isDemoUser) setShowConversionBanner(true);
       if (!isDemoUser && !hasAccess("cases", role)) {
         router.push("/patients");
         return;
@@ -120,6 +123,9 @@ export default function Home() {
   const [tab, setTab] = useState<Tab>("new-case");
   const [lang, setLang] = useState<"en" | "fr">("en");
   const [subscription, setSubscription] = useState<{plan: string, status: string} | null>(null);
+  const [isDemoUser, setIsDemoUser] = useState(false);
+  const [showConversionBanner, setShowConversionBanner] = useState(false);
+  const [showConversionModal, setShowConversionModal] = useState(false);
   useEffect(() => {
     const saved = localStorage.getItem("vetsai_lang");
     if (saved === "fr") setLang("fr");
@@ -434,6 +440,7 @@ export default function Home() {
         setCaseId("");
         setFollowUpQuestions([]);
         setFollowUpAnswers("");
+        if (isDemoUser) { setShowConversionModal(true); trackEvent("demo_case_completed"); }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : t.errorGeneral);
@@ -476,6 +483,7 @@ export default function Home() {
         setCaseId("");
         setFollowUpQuestions([]);
         setFollowUpAnswers("");
+       if (isDemoUser) { setShowConversionModal(true); trackEvent("demo_case_completed"); }
       } else {
         setFollowUpQuestions(data.follow_up_questions ?? []);
       }
@@ -823,7 +831,51 @@ export default function Home() {
   return (
     <>
       <AppNav />
-
+      {isDemoUser && showConversionBanner && (
+        <div style={{ background: "#1a3d2b", color: "#fff", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap", fontSize: 14 }}>
+          <span>🐾 You're exploring VetsAI's shared demo — your work here isn't private.</span>
+          <a
+            href="/signup"
+            onClick={() => trackEvent("demo_signup_clicked", { source: "banner" })}
+            style={{ background: "#fff", color: "#1a3d2b", padding: "6px 14px", borderRadius: 6, fontWeight: 700, textDecoration: "none", fontSize: 13 }}
+          >
+            Create Free Account →
+          </a>
+          <button
+            onClick={() => setShowConversionBanner(false)}
+            style={{ background: "transparent", border: "none", color: "rgba(255,255,255,0.7)", cursor: "pointer", fontSize: 18, lineHeight: 1 }}
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+      {isDemoUser && showConversionModal && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+          <div style={{ background: "#fff", borderRadius: 16, padding: 36, maxWidth: 420, textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}>
+            <div style={{ fontSize: 40, marginBottom: 12 }}>✅</div>
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: "#1a3d2b", marginBottom: 10 }}>You just analyzed your first case!</h2>
+            <p style={{ color: "#64748b", fontSize: 14, lineHeight: 1.6, marginBottom: 24 }}>
+              This is VetsAI's clinical decision-support in action. Create your free account to save real cases, add patients, and keep this work private to your clinic.
+            </p>
+            <a
+              href="/signup"
+              onClick={() => trackEvent("demo_signup_clicked", { source: "modal" })}
+              style={{ display: "inline-block", background: "#1a3d2b", color: "#fff", padding: "12px 28px", borderRadius: 8, fontWeight: 700, textDecoration: "none", fontSize: 15, marginBottom: 12 }}
+            >
+              Create Free Account →
+            </a>
+            <div>
+              <button
+                onClick={() => setShowConversionModal(false)}
+                style={{ background: "transparent", border: "none", color: "#94a3b8", cursor: "pointer", fontSize: 13, textDecoration: "underline" }}
+              >
+                Keep exploring the demo
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {

@@ -89,7 +89,7 @@ function welcomeEmail(clinicName: string) {
     <div style="padding:32px;">
       <h2 style="font-size:18px;color:#1a3d2b;margin-bottom:16px;">Hi ${clinicName}! 👋</h2>
       <p style="color:#64748b;line-height:1.7;margin-bottom:20px;">
-        Your free trial is now active. You have <strong>3 months free</strong> to explore everything VetsAI has to offer.
+        Your free trial is now active. You have <strong>1 month free</strong> to explore everything VetsAI has to offer.
       </p>
       <div style="background:#f0faf4;border-radius:10px;padding:20px;margin-bottom:24px;">
         <p style="font-weight:700;color:#1a3d2b;margin:0 0 12px;">What you can do right now:</p>
@@ -202,7 +202,7 @@ You're 2 weeks into your free trial. Here's what you get when you stay with Vets
 </table>
 </div>
 <p style="color:#64748b;line-height:1.7;margin-bottom:24px;">
-Your first 3 months are completely free — no credit card needed until then.
+Your first month is completely free — no credit card needed until then.
 </p>
 <div style="text-align:center;">
 <a href="https://www.vetsai.vet.app/app" style="background:#1a3d2b;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">

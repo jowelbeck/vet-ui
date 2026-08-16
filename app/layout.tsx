@@ -84,7 +84,7 @@ export default function RootLayout({
                 "@type": "Offer",
                 price: "49",
                 priceCurrency: "USD",
-                description: "Starter plan, First 10 clinics get 3 months free",
+                description: "Starter plan, First 10 clinics get 1 month free",
               },
               provider: {
                 "@type": "Organization",

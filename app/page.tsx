@@ -365,7 +365,7 @@ export default function LandingPage() {
               📅 Book a clinic demo
             </a>
           </div>
-          <p className="hero-note">✅ No credit card required · ✅ First 10 clinics — first 10 clinics — First 10 clinics get 3 months free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
+          <p className="hero-note">✅ No credit card required · ✅ First 10 clinics get 1 month free · ✅ Set up in 5 minutes · ✅ Cancel anytime</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
             <div style={{ background: "rgba(255,255,255,0.95)", padding: 10, borderRadius: 10, display: "inline-block" }}>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://vetsai.vet&color=1a3d2b" alt="VetsAI QR Code" width={80} height={80} style={{ display: "block" }} />
@@ -604,8 +604,8 @@ export default function LandingPage() {
         <div className="section-inner">
           <div className="eyebrow">Pricing</div>
           <h2 className="section-title">Simple, transparent pricing</h2>
-          <p className="section-sub">First 10 clinics get first 10 clinics — First 10 clinics get 3 months free. No credit card required. Cancel anytime.</p>
-          <div className="pricing-grid">
+          <p className="section-sub">First 10 clinics get 1 month free. No credit card required. Cancel anytime.</p>
+           <div className="pricing-grid"> 
             {[
               {
                 name: "Starter", price: "$49", period: "per month",
@@ -691,7 +691,7 @@ export default function LandingPage() {
             <a href="/signup" className="btn-primary">Start free trial →</a>
             <a href="/demo" className="btn-outline">📅 Book a clinic demo</a>
           </div>
-          <p style={{ marginTop: 20, fontSize: 12, color: "rgba(255,255,255,0.4)" }}>First 10 clinics get 3 months completely free</p>
+          <p style={{ marginTop: 20, fontSize: 12, color: "rgba(255,255,255,0.4)" }}>First 10 clinics get 1 month completely free</p>
         </div>
       </section>
 

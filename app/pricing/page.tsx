@@ -149,7 +149,7 @@ function PricingPageInner() {
 
         <div className="heading">
           <h1>Choose your plan</h1>
-          <p>Start with First 10 clinics get 3 months free. No credit card required until your trial ends.</p>
+          <p>Start with a free 1-month trial. No credit card required until your trial ends.</p>
         </div>
 
         <div className="plans">
@@ -176,7 +176,7 @@ function PricingPageInner() {
         </div>
 
         <div className="trial-note">
-          First 10 clinics get 3 months completely free · Cancel anytime · Secure payments by Paystack
+          1 month completely free · Cancel anytime · Secure payments by Paystack
         </div>
       </div>
     </>

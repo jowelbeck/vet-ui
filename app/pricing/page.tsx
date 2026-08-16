@@ -173,6 +173,33 @@ function PricingPageInner() {
               </button>
             </div>
           ))}
+          <div className="plan" style={{ border: "2px solid #1a3d2b", background: "#f0fdf4" }}>
+            <div className="popular" style={{ background: "#1a3d2b", color: "#fff" }}>FOR INSTITUTIONS</div>
+            <div className="plan-name">Institution</div>
+            <div className="plan-price" style={{ fontSize: 28 }}>Custom</div>
+            <div className="plan-ghs">contact us</div>
+            <ul className="features">
+              <li>Unlimited users & seats</li>
+              <li>Vet schools & universities</li>
+              <li>Government vet depts</li>
+              <li>K9 police & military</li>
+              <li>Multi-branch groups</li>
+              <li>Custom branding & white-label</li>
+              <li>WOAH reporting integration</li>
+              <li>Dedicated account manager</li>
+              <li>Custom onboarding & training</li>
+              <li>SLA & uptime guarantee</li>
+              <li>Invoice billing available</li>
+              <li>API access & data export</li>
+            </ul>
+            <a
+              href="mailto:institutions@vetsai.vet"
+              className="btn btn-dark"
+              style={{ display: "block", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }}
+            >
+              Contact us →
+            </a>
+          </div>
         </div>
 
         <div className="trial-note">

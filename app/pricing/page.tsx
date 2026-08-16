@@ -193,12 +193,15 @@ function PricingPageInner() {
               <li>API access & data export</li>
             </ul>
             <a
-              href="mailto:institutions@vetsai.vet"
+             href="mailto:institutions@vetsai.vet"
               className="btn btn-dark"
               style={{ display: "block", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }}
             >
               Contact us →
             </a>
+            <p style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 10 }}>
+              or email <a href="mailto:institutions@vetsai.vet" style={{ color: "#1a3d2b", fontWeight: 600 }}>institutions@vetsai.vet</a>
+            </p>
           </div>
         </div>
 

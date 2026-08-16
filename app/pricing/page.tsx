@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { trackEvent } from "@/lib/analytics";
 
@@ -61,8 +61,10 @@ const PLANS = [
   },
 ];
 
-export default function PricingPage() {
+function PricingPageInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const trialExpired = searchParams.get("expired") === "true";
   const [userEmail, setUserEmail] = useState("");
   const [loading, setLoading] = useState<string | null>(null);
 
@@ -97,6 +99,11 @@ export default function PricingPage() {
   return (
     <>
       <script src="https://js.paystack.co/v1/inline.js" async />
+      {trialExpired && (
+        <div style={{ background: "#fef3c7", borderBottom: "1px solid #fde68a", color: "#92400e", textAlign: "center", padding: "12px 20px", fontSize: 14, fontWeight: 600 }}>
+          ⏰ Your free trial has ended — choose a plan below to keep using VetsAI.
+        </div>
+      )}
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; }
@@ -173,5 +180,14 @@ export default function PricingPage() {
         </div>
       </div>
     </>
+  );
+}
+
+
+export default function PricingPage() {
+  return (
+    <Suspense fallback={null}>
+      <PricingPageInner />
+    </Suspense>
   );
 }

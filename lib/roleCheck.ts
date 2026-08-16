@@ -41,3 +41,27 @@ export function hasAccess(module: string, role: Role | null): boolean {
   if (!role) return false;
   return ROLE_ACCESS[module]?.includes(role) ?? false;
 }
+export async function isTrialExpired(): Promise<boolean> {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return false;
+  if (user.email === "demo@vetsai.vet") return false; // demo account never expires
+
+  const { data: clinic } = await supabase
+    .from("clinics")
+    .select("created_at")
+    .eq("user_id", user.id)
+    .maybeSingle();
+  if (!clinic) return false;
+
+  const { data: sub } = await supabase
+    .from("subscriptions")
+    .select("status")
+    .eq("user_id", user.id)
+    .eq("status", "active")
+    .maybeSingle();
+  if (sub) return false; // has an active paid plan, never expired
+
+  const trialEnds = new Date(clinic.created_at);
+  trialEnds.setDate(trialEnds.getDate() + 30);
+  return new Date() > trialEnds;
+}

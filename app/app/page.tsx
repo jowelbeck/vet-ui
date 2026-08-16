@@ -92,11 +92,15 @@ export default function Home() {
   useEffect(() => {
    supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) { router.push("/login"); return; }
-      const { getCurrentUserRole, hasAccess } = await import("@/lib/roleCheck");
+     const { getCurrentUserRole, hasAccess, isTrialExpired } = await import("@/lib/roleCheck");
       const role = await getCurrentUserRole();
       const isDemoUser = user.email === "demo@vetsai.vet";
       setIsDemoUser(isDemoUser);
       if (isDemoUser) setShowConversionBanner(true);
+      if (!isDemoUser && await isTrialExpired()) {
+        router.push("/pricing?expired=true");
+        return;
+      }
       if (!isDemoUser && !hasAccess("cases", role)) {
         router.push("/patients");
         return;

@@ -836,7 +836,12 @@ export default function Home() {
           <span>🐾 You're exploring VetsAI's shared demo — your work here isn't private.</span>
           <a
             href="/signup"
-            onClick={() => trackEvent("demo_signup_clicked", { source: "banner" })}
+            onClick={async (e) => {
+              e.preventDefault();
+              trackEvent("demo_signup_clicked", { source: "banner" });
+              await supabase.auth.signOut();
+              window.location.href = "/signup";
+            }}
             style={{ background: "#fff", color: "#1a3d2b", padding: "6px 14px", borderRadius: 6, fontWeight: 700, textDecoration: "none", fontSize: 13 }}
           >
             Create Free Account →
@@ -860,7 +865,12 @@ export default function Home() {
             </p>
             <a
               href="/signup"
-              onClick={() => trackEvent("demo_signup_clicked", { source: "modal" })}
+              onClick={async (e) => {
+                e.preventDefault();
+                trackEvent("demo_signup_clicked", { source: "modal" });
+                await supabase.auth.signOut();
+                window.location.href = "/signup";
+              }}
               style={{ display: "inline-block", background: "#1a3d2b", color: "#fff", padding: "12px 28px", borderRadius: 8, fontWeight: 700, textDecoration: "none", fontSize: 15, marginBottom: 12 }}
             >
               Create Free Account →

@@ -661,10 +661,7 @@ export default function LandingPage() {
                         </div>
                       ))}
                     </div>
-                    <a href="mailto:institutions@vetsai.vet" className="btn-pricing" style={{ background: "#1a3d2b", color: "#fff", border: "none", textAlign: "center" as const, display: "block" }}>Contact us →</a>
-                    <p style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 10 }}>
-                      or email <a href="mailto:institutions@vetsai.vet" style={{ color: "#1a3d2b", fontWeight: 600 }}>institutions@vetsai.vet</a>
-                    </p>
+                    <a href="/contact" className="btn-pricing" style={{ background: "#1a3d2b", color: "#fff", border: "none", textAlign: "center" as const, display: "block" }}>Contact us →</a>
                   </div>
                 ) : (
                   <a href="/signup" className="btn-pricing">Start free trial</a>
